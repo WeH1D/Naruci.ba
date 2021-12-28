@@ -11,6 +11,7 @@ namespace NaruciBa.Mapping
         public NaruciBaProfile()
         {
             CreateMap<Database.Korisnik, Model.Korisnik>();
+            CreateMap<Database.Podkategorija, Model.Podkategorija>();
         }
     }
 }
