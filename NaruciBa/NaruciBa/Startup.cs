@@ -35,8 +35,13 @@ namespace NaruciBa
             services.AddDbContext<NaruciBaContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //================== Specific service implementations ======================//
+
             services.AddScoped<IKorisnikService, KorisnikService>();
             services.AddScoped<IPodkategorijaService, PodkategorijaService>();
+
+            //========================================================================//
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Services
 {
-    public class BaseReadService<T, TDb> : IReadService<T> where T : class where TDb : class
+    public class BaseReadService<T, TDb, TSearch> : IReadService<T, TSearch> where T : class where TDb : class where TSearch : class
     {
         public NaruciBaContext Context { get; set; }
         protected readonly IMapper _mapper;
@@ -19,7 +19,7 @@ namespace NaruciBa.Services
             Context = context;
         }
 
-        public virtual IEnumerable<T> Get()
+        public virtual IEnumerable<T> Get(TSearch search = null)
         {
             var set = Context.Set<TDb>();
             var list = set.ToList();

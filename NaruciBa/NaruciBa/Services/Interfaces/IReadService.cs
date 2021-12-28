@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Services.Interfaces
 {
-    public interface IReadService<T> where T: class
+    public interface IReadService<T, TSearch> where T: class where TSearch: class
     {
-        public IEnumerable<T> Get();
+        public IEnumerable<T> Get(TSearch search = null);
         public T GetById(int id);
     }
 }

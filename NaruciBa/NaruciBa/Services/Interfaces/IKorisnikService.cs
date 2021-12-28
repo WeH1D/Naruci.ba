@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Services.Interfaces
 {
-    public interface IKorisnikService : IReadService<Model.Korisnik>
+    public interface IKorisnikService : IReadService<Model.Korisnik, object>
     {
     }
 }
