@@ -17,7 +17,7 @@ namespace NaruciBa.WinUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLayout());
+            Application.Run(new frmHome());
         }
     }
 }
