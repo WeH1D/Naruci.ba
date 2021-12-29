@@ -16,6 +16,22 @@ namespace NaruciBa.Mapping
             CreateMap<Database.Podkategorija, Model.Podkategorija>();
             CreateMap<PodkategorijaUpsertRequest, Database.Podkategorija>();
 
+            CreateMap<Database.Kategorija, Model.Kategorija>();
+            CreateMap<KategorijaUpsertRequest, Database.Kategorija>();
+
+            CreateMap<Database.TrgovackiLanac, Model.TrgovackiLanac>();
+            CreateMap<TrgovackiLanacUpsertRequest, Database.TrgovackiLanac>();
+
+            CreateMap<Database.Poslovnica, Model.Poslovnica>();
+            CreateMap<PoslovnicaInsertRequest, Database.Poslovnica>();
+            CreateMap<PoslovnicaUpdateRequest, Database.Poslovnica>();
+
+            CreateMap<Database.Proizvod, Model.Proizvod>();
+            CreateMap<ProizvodInsertRequest, Database.Proizvod>();
+            CreateMap<ProizvodUpdateRequest, Database.Proizvod>();
+
+            CreateMap<Database.Grad, Model.Grad>();
+
         }
     }
 }

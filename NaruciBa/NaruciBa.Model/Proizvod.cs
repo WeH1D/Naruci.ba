@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-#nullable disable
-
-namespace NaruciBa.Database
+namespace NaruciBa.Model
 {
-    public partial class Proizvod
+    public class Proizvod
     {
-        public Proizvod()
-        {
-            NaruceniProizvods = new HashSet<NaruceniProizvod>();
-        }
-
         public int ProizvodID { get; set; }
         public string Sifra { get; set; }
         public string Naziv { get; set; }
@@ -24,9 +18,5 @@ namespace NaruciBa.Database
         public byte[] Slika { get; set; }
         public DateTime? DatumKreiranja { get; set; }
         public DateTime? DatumIzmjene { get; set; }
-
-        public virtual Podkategorija Podkategorija { get; set; }
-        public virtual Poslovnica Poslovnica { get; set; }
-        public virtual ICollection<NaruceniProizvod> NaruceniProizvods { get; set; }
     }
 }

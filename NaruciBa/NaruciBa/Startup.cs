@@ -39,6 +39,11 @@ namespace NaruciBa
 
             services.AddScoped<IKorisnikService, KorisnikService>();
             services.AddScoped<IPodkategorijaService, PodkategorijaService>();
+            services.AddScoped<IKategorijaService, KategorijaService>();
+            services.AddScoped<IGradService, GradService>();
+            services.AddScoped<ITrgovackiLanacService, TrgovackiLanacService>();
+            services.AddScoped<IPoslovnicaService, PoslovnicaService>();
+            services.AddScoped<IProizvodService, ProizvodService>();
 
             //========================================================================//
 

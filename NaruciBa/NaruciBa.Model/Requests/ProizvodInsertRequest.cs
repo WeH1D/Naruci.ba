@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-#nullable disable
-
-namespace NaruciBa.Database
+namespace NaruciBa.Model.Requests
 {
-    public partial class Proizvod
+    public class ProizvodInsertRequest
     {
-        public Proizvod()
-        {
-            NaruceniProizvods = new HashSet<NaruceniProizvod>();
-        }
-
-        public int ProizvodID { get; set; }
         public string Sifra { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
@@ -20,13 +13,9 @@ namespace NaruciBa.Database
         public bool? Kg { get; set; }
         public int? PodkategorijaID { get; set; }
         public int? PoslovnicaID { get; set; }
-        public bool? Status { get; set; }
+        public bool Status = true;
         public byte[] Slika { get; set; }
         public DateTime? DatumKreiranja { get; set; }
         public DateTime? DatumIzmjene { get; set; }
-
-        public virtual Podkategorija Podkategorija { get; set; }
-        public virtual Poslovnica Poslovnica { get; set; }
-        public virtual ICollection<NaruceniProizvod> NaruceniProizvods { get; set; }
     }
 }
