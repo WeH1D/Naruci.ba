@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NaruciBa", "NaruciBa\NaruciBa.csproj", "{FD1BFED0-5EA0-4AC2-BFC4-452500FE48DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaruciBa.Model", "NaruciBa.Model\NaruciBa.Model.csproj", "{7FE8FCFC-6B1C-4B08-B523-A5E5C13B432A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NaruciBa.Model", "NaruciBa.Model\NaruciBa.Model.csproj", "{7FE8FCFC-6B1C-4B08-B523-A5E5C13B432A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{D102C746-2974-4ADE-B23F-62BD4C4BF1A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaruciBa.WinUI", "NaruciBa.WinUI\NaruciBa.WinUI.csproj", "{A22A5539-18F2-4F08-9310-C3B3ABA90432}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{7FE8FCFC-6B1C-4B08-B523-A5E5C13B432A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FE8FCFC-6B1C-4B08-B523-A5E5C13B432A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FE8FCFC-6B1C-4B08-B523-A5E5C13B432A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A22A5539-18F2-4F08-9310-C3B3ABA90432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A22A5539-18F2-4F08-9310-C3B3ABA90432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A22A5539-18F2-4F08-9310-C3B3ABA90432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A22A5539-18F2-4F08-9310-C3B3ABA90432}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A22A5539-18F2-4F08-9310-C3B3ABA90432} = {D102C746-2974-4ADE-B23F-62BD4C4BF1A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3B236523-7469-4504-9B5D-2975691A4BF0}

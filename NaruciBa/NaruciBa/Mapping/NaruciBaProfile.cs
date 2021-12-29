@@ -11,26 +11,26 @@ namespace NaruciBa.Mapping
     {
         public NaruciBaProfile()
         {
-            CreateMap<Database.Korisnik, Model.Korisnik>();
+            CreateMap<Database.Korisnik, Model.Korisnik>().ReverseMap();
 
-            CreateMap<Database.Podkategorija, Model.Podkategorija>();
+            CreateMap<Database.Podkategorija, Model.Podkategorija>().ReverseMap();
             CreateMap<PodkategorijaUpsertRequest, Database.Podkategorija>();
 
-            CreateMap<Database.Kategorija, Model.Kategorija>();
+            CreateMap<Database.Kategorija, Model.Kategorija>().ReverseMap();
             CreateMap<KategorijaUpsertRequest, Database.Kategorija>();
 
-            CreateMap<Database.TrgovackiLanac, Model.TrgovackiLanac>();
+            CreateMap<Database.TrgovackiLanac, Model.TrgovackiLanac>().ReverseMap();
             CreateMap<TrgovackiLanacUpsertRequest, Database.TrgovackiLanac>();
 
-            CreateMap<Database.Poslovnica, Model.Poslovnica>();
+            CreateMap<Database.Poslovnica, Model.Poslovnica>().ReverseMap();
             CreateMap<PoslovnicaInsertRequest, Database.Poslovnica>();
             CreateMap<PoslovnicaUpdateRequest, Database.Poslovnica>();
 
-            CreateMap<Database.Proizvod, Model.Proizvod>();
+            CreateMap<Database.Proizvod, Model.Proizvod>().ReverseMap();
             CreateMap<ProizvodInsertRequest, Database.Proizvod>();
             CreateMap<ProizvodUpdateRequest, Database.Proizvod>();
 
-            CreateMap<Database.Grad, Model.Grad>();
+            CreateMap<Database.Grad, Model.Grad>().ReverseMap();
 
         }
     }
