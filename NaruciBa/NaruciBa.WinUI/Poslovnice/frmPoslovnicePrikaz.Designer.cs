@@ -1,7 +1,7 @@
 ﻿
-namespace NaruciBa.WinUI.Poslovnica
+namespace NaruciBa.WinUI.Poslovnice
 {
-    partial class FrmPoslovnicePrikaz
+    partial class frmPoslovnicePrikaz
     {
         /// <summary>
         /// Required designer variable.
@@ -29,90 +29,142 @@ namespace NaruciBa.WinUI.Poslovnica
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.pnlDgv = new System.Windows.Forms.Panel();
             this.dgvPoslovnice = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.LanacPoslovnica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Adresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Grad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KontaktEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KontaktTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlDgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoslovnice)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlDgv
             // 
-            this.panel1.Controls.Add(this.dgvPoslovnice);
-            this.panel1.Location = new System.Drawing.Point(12, 91);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 347);
-            this.panel1.TabIndex = 2;
+            this.pnlDgv.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDgv.Controls.Add(this.dgvPoslovnice);
+            this.pnlDgv.Location = new System.Drawing.Point(0, 80);
+            this.pnlDgv.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlDgv.Name = "pnlDgv";
+            this.pnlDgv.Padding = new System.Windows.Forms.Padding(20, 0, 20, 20);
+            this.pnlDgv.Size = new System.Drawing.Size(830, 420);
+            this.pnlDgv.TabIndex = 1;
             // 
             // dgvPoslovnice
             // 
             this.dgvPoslovnice.AllowUserToAddRows = false;
             this.dgvPoslovnice.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
+            this.dgvPoslovnice.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPoslovnice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPoslovnice.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPoslovnice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvPoslovnice.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvPoslovnice.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPoslovnice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPoslovnice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPoslovnice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LanacPoslovnica,
+            this.Adresa,
+            this.Grad,
+            this.KontaktEmail,
+            this.KontaktTel});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPoslovnice.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPoslovnice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPoslovnice.Location = new System.Drawing.Point(0, 0);
+            this.dgvPoslovnice.EnableHeadersVisualStyles = false;
+            this.dgvPoslovnice.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvPoslovnice.Location = new System.Drawing.Point(20, 0);
             this.dgvPoslovnice.Name = "dgvPoslovnice";
             this.dgvPoslovnice.ReadOnly = true;
-            this.dgvPoslovnice.Size = new System.Drawing.Size(776, 347);
+            this.dgvPoslovnice.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvPoslovnice.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvPoslovnice.RowHeadersWidth = 20;
+            this.dgvPoslovnice.RowTemplate.DividerHeight = 1;
+            this.dgvPoslovnice.RowTemplate.Height = 40;
+            this.dgvPoslovnice.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPoslovnice.Size = new System.Drawing.Size(790, 400);
             this.dgvPoslovnice.TabIndex = 0;
             // 
-            // textBox1
+            // LanacPoslovnica
             // 
-            this.textBox1.Location = new System.Drawing.Point(579, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(197, 20);
-            this.textBox1.TabIndex = 0;
+            this.LanacPoslovnica.DataPropertyName = "trgovackiLanacID";
+            this.LanacPoslovnica.HeaderText = "Lanac poslovnica";
+            this.LanacPoslovnica.Name = "LanacPoslovnica";
+            this.LanacPoslovnica.ReadOnly = true;
             // 
-            // button1
+            // Adresa
             // 
-            this.button1.Location = new System.Drawing.Point(468, 27);
-            this.button1.Name = "button1";
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button1.Size = new System.Drawing.Size(105, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Dodaj poslovnicu";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Adresa.DataPropertyName = "adresa";
+            this.Adresa.HeaderText = "Adresa poslovnice";
+            this.Adresa.Name = "Adresa";
+            this.Adresa.ReadOnly = true;
             // 
-            // panel2
+            // Grad
             // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Location = new System.Drawing.Point(12, 12);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(776, 73);
-            this.panel2.TabIndex = 3;
+            this.Grad.DataPropertyName = "GradID";
+            this.Grad.HeaderText = "Grad";
+            this.Grad.Name = "Grad";
+            this.Grad.ReadOnly = true;
             // 
-            // FrmPoslovnicePrikaz
+            // KontaktEmail
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.KontaktEmail.DataPropertyName = "kontaktEmail";
+            this.KontaktEmail.HeaderText = "Kontakt email";
+            this.KontaktEmail.Name = "KontaktEmail";
+            this.KontaktEmail.ReadOnly = true;
+            // 
+            // KontaktTel
+            // 
+            this.KontaktTel.DataPropertyName = "kontaktTel";
+            this.KontaktTel.HeaderText = "Kontakt telefon";
+            this.KontaktTel.Name = "KontaktTel";
+            this.KontaktTel.ReadOnly = true;
+            // 
+            // frmPoslovnicePrikaz
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.ClientSize = new System.Drawing.Size(830, 500);
             this.ControlBox = false;
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FrmPoslovnicePrikaz";
-            this.ShowIcon = false;
+            this.Controls.Add(this.pnlDgv);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "frmPoslovnicePrikaz";
+            this.Text = "frmPoslovnicePrikaz";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FrmPoslovnicePrikaz_Load);
-            this.panel1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.frmPoslovnicePrikaz_Load);
+            this.SizeChanged += new System.EventHandler(this.frmPoslovnicePrikaz_SizeChanged);
+            this.pnlDgv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoslovnice)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlDgv;
         private System.Windows.Forms.DataGridView dgvPoslovnice;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LanacPoslovnica;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Adresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Grad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KontaktEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KontaktTel;
     }
 }

@@ -10,5 +10,6 @@ namespace NaruciBa.WinUI
     public class AppTheme
     {
         public static Color PrimaryColor = Color.FromArgb(255, 83, 73);
+        public static Color BackgroundColor = Color.FromArgb(252, 230, 230);
     }
 }

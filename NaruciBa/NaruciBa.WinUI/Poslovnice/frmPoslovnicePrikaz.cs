@@ -3,30 +3,37 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NaruciBa.Model.SearchObjects;
 
-namespace NaruciBa.WinUI.Poslovnica
+namespace NaruciBa.WinUI.Poslovnice
 {
-    public partial class FrmPoslovnicePrikaz : Form
+    public partial class frmPoslovnicePrikaz : Form
     {
-        APIService _poslovnicaService = new APIService("Poslovnica");
-        public FrmPoslovnicePrikaz()
+        private APIService _poslovnicaService = new APIService("Poslovnica");
+        public frmPoslovnicePrikaz()
         {
             InitializeComponent();
+            pnlDgv.Height = this.ClientRectangle.Height;
+            pnlDgv.Width = this.ClientRectangle.Width;
         }
 
-        private async void FrmPoslovnicePrikaz_Load(object sender, EventArgs e)
+        private async void frmPoslovnicePrikaz_Load(object sender, EventArgs e)
         {
+            dgvPoslovnice.AutoGenerateColumns = false;
             dgvPoslovnice.DataSource = await _poslovnicaService.Get<List<Model.Poslovnica>>();
+
+            //btnDodajPoslovnicu.BackColor = AppTheme.PrimaryColor;
         }
 
-        private void btnPretraga_Click(object sender, EventArgs e)
+        private void frmPoslovnicePrikaz_SizeChanged(object sender, EventArgs e)
         {
-           
+            pnlDgv.Height = this.ClientRectangle.Height;
+            pnlDgv.Width = this.ClientRectangle.Width;
         }
     }
 }
