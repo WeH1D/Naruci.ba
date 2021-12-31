@@ -32,20 +32,20 @@ namespace NaruciBa.WinUI
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.narudzbeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.poslovniceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kuponiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dostavljaciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kategorijeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlTopBar = new System.Windows.Forms.Panel();
+            this.lblNaslov = new System.Windows.Forms.Label();
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.pnlLogoContainer = new System.Windows.Forms.Panel();
             this.txtLogo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.narudzbeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kuponiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dostavljaciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblNaslov = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlRight.SuspendLayout();
@@ -73,6 +73,16 @@ namespace NaruciBa.WinUI
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
+            // narudzbeToolStripMenuItem
+            // 
+            this.narudzbeToolStripMenuItem.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.narudzbeToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.narudzbeToolStripMenuItem.Name = "narudzbeToolStripMenuItem";
+            this.narudzbeToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15);
+            this.narudzbeToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
+            this.narudzbeToolStripMenuItem.Text = "Narudzbe";
+            this.narudzbeToolStripMenuItem.Click += new System.EventHandler(this.narudzbeToolStripMenuItem_Click);
+            // 
             // poslovniceToolStripMenuItem
             // 
             this.poslovniceToolStripMenuItem.BackColor = System.Drawing.Color.White;
@@ -83,6 +93,26 @@ namespace NaruciBa.WinUI
             this.poslovniceToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
             this.poslovniceToolStripMenuItem.Text = "Poslovnice";
             this.poslovniceToolStripMenuItem.Click += new System.EventHandler(this.poslovniceToolStripMenuItem_Click);
+            // 
+            // kuponiToolStripMenuItem
+            // 
+            this.kuponiToolStripMenuItem.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kuponiToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.kuponiToolStripMenuItem.Name = "kuponiToolStripMenuItem";
+            this.kuponiToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15);
+            this.kuponiToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
+            this.kuponiToolStripMenuItem.Text = "Kuponi";
+            this.kuponiToolStripMenuItem.Click += new System.EventHandler(this.kuponiToolStripMenuItem_Click);
+            // 
+            // dostavljaciToolStripMenuItem
+            // 
+            this.dostavljaciToolStripMenuItem.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dostavljaciToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dostavljaciToolStripMenuItem.Name = "dostavljaciToolStripMenuItem";
+            this.dostavljaciToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15);
+            this.dostavljaciToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
+            this.dostavljaciToolStripMenuItem.Text = "Dostavljaci";
+            this.dostavljaciToolStripMenuItem.Click += new System.EventHandler(this.dostavljaciToolStripMenuItem_Click);
             // 
             // kategorijeToolStripMenuItem
             // 
@@ -113,7 +143,7 @@ namespace NaruciBa.WinUI
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(200, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Padding = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.pnlRight.Padding = new System.Windows.Forms.Padding(20);
             this.pnlRight.Size = new System.Drawing.Size(1084, 107);
             this.pnlRight.TabIndex = 1;
             // 
@@ -126,6 +156,17 @@ namespace NaruciBa.WinUI
             this.pnlTopBar.Name = "pnlTopBar";
             this.pnlTopBar.Size = new System.Drawing.Size(1044, 67);
             this.pnlTopBar.TabIndex = 0;
+            // 
+            // lblNaslov
+            // 
+            this.lblNaslov.AutoSize = true;
+            this.lblNaslov.Font = new System.Drawing.Font("Montserrat", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaslov.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblNaslov.Location = new System.Drawing.Point(38, 21);
+            this.lblNaslov.Name = "lblNaslov";
+            this.lblNaslov.Size = new System.Drawing.Size(119, 26);
+            this.lblNaslov.TabIndex = 1;
+            this.lblNaslov.Text = "Poslovnice";
             // 
             // pnlLogo
             // 
@@ -171,47 +212,6 @@ namespace NaruciBa.WinUI
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // narudzbeToolStripMenuItem
-            // 
-            this.narudzbeToolStripMenuItem.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.narudzbeToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.narudzbeToolStripMenuItem.Name = "narudzbeToolStripMenuItem";
-            this.narudzbeToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15);
-            this.narudzbeToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
-            this.narudzbeToolStripMenuItem.Text = "Narudzbe";
-            this.narudzbeToolStripMenuItem.Click += new System.EventHandler(this.narudzbeToolStripMenuItem_Click);
-            // 
-            // kuponiToolStripMenuItem
-            // 
-            this.kuponiToolStripMenuItem.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kuponiToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.kuponiToolStripMenuItem.Name = "kuponiToolStripMenuItem";
-            this.kuponiToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15);
-            this.kuponiToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
-            this.kuponiToolStripMenuItem.Text = "Kuponi";
-            this.kuponiToolStripMenuItem.Click += new System.EventHandler(this.kuponiToolStripMenuItem_Click);
-            // 
-            // dostavljaciToolStripMenuItem
-            // 
-            this.dostavljaciToolStripMenuItem.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dostavljaciToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dostavljaciToolStripMenuItem.Name = "dostavljaciToolStripMenuItem";
-            this.dostavljaciToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15);
-            this.dostavljaciToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
-            this.dostavljaciToolStripMenuItem.Text = "Dostavljaci";
-            this.dostavljaciToolStripMenuItem.Click += new System.EventHandler(this.dostavljaciToolStripMenuItem_Click);
-            // 
-            // lblNaslov
-            // 
-            this.lblNaslov.AutoSize = true;
-            this.lblNaslov.Font = new System.Drawing.Font("Montserrat", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNaslov.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblNaslov.Location = new System.Drawing.Point(38, 21);
-            this.lblNaslov.Name = "lblNaslov";
-            this.lblNaslov.Size = new System.Drawing.Size(119, 26);
-            this.lblNaslov.TabIndex = 1;
-            this.lblNaslov.Text = "Poslovnice";
-            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,7 +228,6 @@ namespace NaruciBa.WinUI
             this.Name = "frmHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Naruci.ba";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmHome_Load);
             this.SizeChanged += new System.EventHandler(this.frmHome_SizeChanged);
             this.menuStrip.ResumeLayout(false);

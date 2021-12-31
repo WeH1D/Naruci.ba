@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NaruciBa.WinUI.Login;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace NaruciBa.WinUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmHome());
+            Application.Run(new Login.frmLogin());
         }
     }
 }

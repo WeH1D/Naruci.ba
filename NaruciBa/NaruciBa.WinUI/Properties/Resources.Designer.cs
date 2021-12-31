@@ -79,5 +79,15 @@ namespace NaruciBa.WinUI.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magnifying_glass {
+            get {
+                object obj = ResourceManager.GetObject("magnifying-glass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

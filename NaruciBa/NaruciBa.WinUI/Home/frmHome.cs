@@ -1,4 +1,5 @@
-﻿using NaruciBa.WinUI.Poslovnice;
+﻿using NaruciBa.WinUI.Kategorije;
+using NaruciBa.WinUI.Poslovnice;
 using NaruciBa.WinUI.utils;
 using System;
 using System.Collections.Generic;
@@ -63,9 +64,9 @@ namespace NaruciBa.WinUI
 
         private void kategorijeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //frmPoslovnicePrikaz frm = new frmPoslovnicePrikaz();
-            //frm.MdiParent = this;
-            //frm.Show();
+            frmKategorijePrikaz frm = new frmKategorijePrikaz();
+            frm.MdiParent = this;
+            frm.Show();
             SetActiveMenuItem(kategorijeToolStripMenuItem);
             lblNaslov.Text = kategorijeToolStripMenuItem.Text;
         }

@@ -39,19 +39,27 @@ namespace NaruciBa.WinUI.Poslovnice
             this.Grad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KontaktEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KontaktTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlActions = new System.Windows.Forms.Panel();
+            this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtPretraga = new System.Windows.Forms.TextBox();
             this.pnlDgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoslovnice)).BeginInit();
+            this.pnlActions.SuspendLayout();
+            this.pnlSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlDgv
             // 
             this.pnlDgv.BackColor = System.Drawing.Color.Transparent;
             this.pnlDgv.Controls.Add(this.dgvPoslovnice);
-            this.pnlDgv.Location = new System.Drawing.Point(0, 80);
+            this.pnlDgv.Location = new System.Drawing.Point(0, 103);
             this.pnlDgv.Margin = new System.Windows.Forms.Padding(0);
             this.pnlDgv.Name = "pnlDgv";
             this.pnlDgv.Padding = new System.Windows.Forms.Padding(20, 0, 20, 20);
-            this.pnlDgv.Size = new System.Drawing.Size(830, 420);
+            this.pnlDgv.Size = new System.Drawing.Size(830, 397);
             this.pnlDgv.TabIndex = 1;
             // 
             // dgvPoslovnice
@@ -101,7 +109,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.dgvPoslovnice.RowTemplate.DividerHeight = 1;
             this.dgvPoslovnice.RowTemplate.Height = 40;
             this.dgvPoslovnice.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPoslovnice.Size = new System.Drawing.Size(790, 400);
+            this.dgvPoslovnice.Size = new System.Drawing.Size(790, 377);
             this.dgvPoslovnice.TabIndex = 0;
             // 
             // LanacPoslovnica
@@ -139,12 +147,66 @@ namespace NaruciBa.WinUI.Poslovnice
             this.KontaktTel.Name = "KontaktTel";
             this.KontaktTel.ReadOnly = true;
             // 
+            // pnlActions
+            // 
+            this.pnlActions.Controls.Add(this.btnDodajPoslovnicu);
+            this.pnlActions.Controls.Add(this.pnlSearch);
+            this.pnlActions.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlActions.Location = new System.Drawing.Point(0, 0);
+            this.pnlActions.Name = "pnlActions";
+            this.pnlActions.Size = new System.Drawing.Size(830, 100);
+            this.pnlActions.TabIndex = 1;
+            // 
+            // btnDodajPoslovnicu
+            // 
+            this.btnDodajPoslovnicu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDodajPoslovnicu.FlatAppearance.BorderSize = 0;
+            this.btnDodajPoslovnicu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDodajPoslovnicu.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDodajPoslovnicu.ForeColor = System.Drawing.Color.White;
+            this.btnDodajPoslovnicu.Location = new System.Drawing.Point(20, 30);
+            this.btnDodajPoslovnicu.Name = "btnDodajPoslovnicu";
+            this.btnDodajPoslovnicu.Size = new System.Drawing.Size(155, 31);
+            this.btnDodajPoslovnicu.TabIndex = 1;
+            this.btnDodajPoslovnicu.Text = "Dodaj poslovnicu";
+            this.btnDodajPoslovnicu.UseVisualStyleBackColor = false;
+            // 
+            // pnlSearch
+            // 
+            this.pnlSearch.Controls.Add(this.pictureBox1);
+            this.pnlSearch.Controls.Add(this.txtPretraga);
+            this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlSearch.Location = new System.Drawing.Point(545, 0);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Size = new System.Drawing.Size(285, 100);
+            this.pnlSearch.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = global::NaruciBa.WinUI.Properties.Resources.magnifying_glass;
+            this.pictureBox1.Location = new System.Drawing.Point(242, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(22, 22);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // txtPretraga
+            // 
+            this.txtPretraga.Font = new System.Drawing.Font("Montserrat Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPretraga.Location = new System.Drawing.Point(68, 33);
+            this.txtPretraga.Name = "txtPretraga";
+            this.txtPretraga.Size = new System.Drawing.Size(197, 24);
+            this.txtPretraga.TabIndex = 2;
+            // 
             // frmPoslovnicePrikaz
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(830, 500);
             this.ControlBox = false;
+            this.Controls.Add(this.pnlActions);
             this.Controls.Add(this.pnlDgv);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmPoslovnicePrikaz";
@@ -154,6 +216,10 @@ namespace NaruciBa.WinUI.Poslovnice
             this.SizeChanged += new System.EventHandler(this.frmPoslovnicePrikaz_SizeChanged);
             this.pnlDgv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoslovnice)).EndInit();
+            this.pnlActions.ResumeLayout(false);
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -166,5 +232,10 @@ namespace NaruciBa.WinUI.Poslovnice
         private System.Windows.Forms.DataGridViewTextBoxColumn Grad;
         private System.Windows.Forms.DataGridViewTextBoxColumn KontaktEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn KontaktTel;
+        private System.Windows.Forms.Panel pnlActions;
+        private System.Windows.Forms.Button btnDodajPoslovnicu;
+        private System.Windows.Forms.TextBox txtPretraga;
+        private System.Windows.Forms.Panel pnlSearch;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

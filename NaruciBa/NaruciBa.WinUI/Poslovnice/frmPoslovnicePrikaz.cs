@@ -18,8 +18,9 @@ namespace NaruciBa.WinUI.Poslovnice
         public frmPoslovnicePrikaz()
         {
             InitializeComponent();
-            pnlDgv.Height = this.ClientRectangle.Height;
+            pnlDgv.Height = this.ClientRectangle.Height - pnlActions.ClientRectangle.Height;
             pnlDgv.Width = this.ClientRectangle.Width;
+            btnDodajPoslovnicu.BackColor = AppTheme.PrimaryColor;
         }
 
         private async void frmPoslovnicePrikaz_Load(object sender, EventArgs e)
@@ -32,7 +33,7 @@ namespace NaruciBa.WinUI.Poslovnice
 
         private void frmPoslovnicePrikaz_SizeChanged(object sender, EventArgs e)
         {
-            pnlDgv.Height = this.ClientRectangle.Height;
+            pnlDgv.Height = this.ClientRectangle.Height - pnlActions.ClientRectangle.Height;
             pnlDgv.Width = this.ClientRectangle.Width;
         }
     }

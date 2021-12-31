@@ -62,6 +62,18 @@
     <Compile Include="Home\frmHome.Designer.cs">
       <DependentUpon>frmHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kategorije\frmKategorijePrikaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kategorije\frmKategorijePrikaz.Designer.cs">
+      <DependentUpon>frmKategorijePrikaz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Poslovnice\frmPoslovnicePrikaz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +87,12 @@
     <Compile Include="utils\MyRenderer.cs" />
     <EmbeddedResource Include="Home\frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kategorije\frmKategorijePrikaz.resx">
+      <DependentUpon>frmKategorijePrikaz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Poslovnice\frmPoslovnicePrikaz.resx">
       <DependentUpon>frmPoslovnicePrikaz.cs</DependentUpon>
@@ -115,5 +133,9 @@
   <ItemGroup>
     <None Include="Resources\add.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifying-glass.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
