@@ -31,5 +31,14 @@ namespace NaruciBa.WinUI.Properties {
                 return ((string)(this["ApiURL"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:5002")]
+        public string IdentityServerApi {
+            get {
+                return ((string)(this["IdentityServerApi"]));
+            }
+        }
     }
 }

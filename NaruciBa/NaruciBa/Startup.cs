@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
 using NaruciBa.Database;
 using NaruciBa.Services;
 using NaruciBa.Services.Interfaces;
@@ -29,11 +31,32 @@ namespace NaruciBa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
             services.AddSwaggerGen();
             services.AddDbContext<NaruciBaContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = Configuration.GetValue<string>("IndentityServerUrl") ;
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false
+                };
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiScope", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "NaruciBaApi");
+                });
+            });
+
 
             //================== Specific service implementations ======================//
 
@@ -61,6 +84,7 @@ namespace NaruciBa
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();
@@ -72,7 +96,8 @@ namespace NaruciBa
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers()
+                    .RequireAuthorization();
             });
         }
     }

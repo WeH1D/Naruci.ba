@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,7 @@ namespace NaruciBa.WinUI.Kategorije
                 }
 
                 dgv.Dock = DockStyle.Top;
+                dgv.Name = $"{kategorija}";
                 dgv.BorderStyle = BorderStyle.None;
                 dgv.BackgroundColor = Color.White;
                 dgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -74,11 +76,25 @@ namespace NaruciBa.WinUI.Kategorije
                 cellStyle.SelectionForeColor = cellStyle.ForeColor;
                 dgv.DefaultCellStyle = cellStyle;
 
-                var height = dgv.Rows.GetRowsHeight(DataGridViewElementStates.None);
-                dgv.ClientSize = new Size(dgv.ClientSize.Width, height + 30);
+                dgv.Height = 50;
+
+                dgv.ColumnHeaderMouseClick += handleHeaderClick;
 
                 flpKategorije.Controls.Add(dgv);
             }
+        }
+
+        private void handleHeaderClick(object sender, EventArgs e)
+        {
+            var dgv = (DataGridView)sender;
+            if (dgv.Height != 50)
+                dgv.Height = 50;
+            else
+            {
+                var height = dgv.Rows.GetRowsHeight(DataGridViewElementStates.None);
+                dgv.ClientSize = new Size(dgv.ClientSize.Width, height + 30);
+            }
+
         }
 
         private void flpKategorije_Layout(object sender, LayoutEventArgs e)
