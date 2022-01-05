@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IdentityModel.Client;
+using NaruciBa.WinUI.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace NaruciBa.WinUI.Login
 {
     public partial class frmLogin : Form
     {
+        private APIService _korisnikService = new APIService("Korisnik");
+
         public frmLogin()
         {
             InitializeComponent();
@@ -22,14 +26,33 @@ namespace NaruciBa.WinUI.Login
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            //if(!string.IsNullOrEmpty(Properties.Settings.Default.AccessToken))
+            //{
+            //    this.Hide();
+            //    frmHome frm = new frmHome();
+            //    frm.ShowDialog();
+            //}
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            frmHome frm = new frmHome();
-            frm.ShowDialog();
+            TokenService service = new TokenService();
+            try
+            {
+                Properties.Settings.Default.AccessToken = "";
+                Properties.Settings.Default.RefreshToken = "";
+                await service.setToken(txtEmail.Text, txtPassword.Text);
+
+                this.Hide();
+                frmHome frm = new frmHome();
+                frm.ShowDialog();
+            }
+            catch(Exception)
+            {
+                txtValidation.Visible = true;
+                txtEmail.Text = "";
+                txtPassword.Text = "";
+            }
         }
     }
 }

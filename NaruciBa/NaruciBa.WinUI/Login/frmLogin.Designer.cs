@@ -33,6 +33,7 @@ namespace NaruciBa.WinUI.Login
             this.pnlDecoration = new System.Windows.Forms.Panel();
             this.pnlLogin = new System.Windows.Forms.Panel();
             this.pnlLoginForm = new System.Windows.Forms.Panel();
+            this.txtValidation = new System.Windows.Forms.Label();
             this.lblSinginToContinue = new System.Windows.Forms.Label();
             this.lblWelcomeBack = new System.Windows.Forms.Label();
             this.lblSignup = new System.Windows.Forms.Label();
@@ -73,6 +74,7 @@ namespace NaruciBa.WinUI.Login
             // 
             // pnlLoginForm
             // 
+            this.pnlLoginForm.Controls.Add(this.txtValidation);
             this.pnlLoginForm.Controls.Add(this.lblSinginToContinue);
             this.pnlLoginForm.Controls.Add(this.lblWelcomeBack);
             this.pnlLoginForm.Controls.Add(this.lblSignup);
@@ -88,6 +90,17 @@ namespace NaruciBa.WinUI.Login
             this.pnlLoginForm.Name = "pnlLoginForm";
             this.pnlLoginForm.Size = new System.Drawing.Size(298, 417);
             this.pnlLoginForm.TabIndex = 1;
+            // 
+            // txtValidation
+            // 
+            this.txtValidation.AutoSize = true;
+            this.txtValidation.ForeColor = System.Drawing.Color.Red;
+            this.txtValidation.Location = new System.Drawing.Point(43, 294);
+            this.txtValidation.Name = "txtValidation";
+            this.txtValidation.Size = new System.Drawing.Size(208, 13);
+            this.txtValidation.TabIndex = 10;
+            this.txtValidation.Text = "Email or password you entered is incorrect.";
+            this.txtValidation.Visible = false;
             // 
             // lblSinginToContinue
             // 
@@ -148,10 +161,10 @@ namespace NaruciBa.WinUI.Login
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(25, 306);
+            this.btnLogin.Location = new System.Drawing.Point(25, 320);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(249, 34);
-            this.btnLogin.TabIndex = 2;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -179,14 +192,17 @@ namespace NaruciBa.WinUI.Login
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtPassword.Location = new System.Drawing.Point(25, 242);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(249, 23);
             this.txtPassword.TabIndex = 2;
             // 
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtEmail.Location = new System.Drawing.Point(25, 186);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(249, 23);
@@ -266,5 +282,6 @@ namespace NaruciBa.WinUI.Login
         private System.Windows.Forms.Label lblForgotPassword;
         private System.Windows.Forms.Label lblSinginToContinue;
         private System.Windows.Forms.Label lblWelcomeBack;
+        private System.Windows.Forms.Label txtValidation;
     }
 }

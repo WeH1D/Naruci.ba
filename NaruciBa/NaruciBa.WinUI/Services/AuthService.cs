@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.WinUI.Services
 {
-    class AuthService
+    public class AuthService
     {
+
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Flurl.Http;
 using IdentityModel.Client;
 using NaruciBa.Model;
+using NaruciBa.WinUI.Services;
 using Newtonsoft.Json;
 
 namespace NaruciBa.WinUI
@@ -16,43 +17,17 @@ namespace NaruciBa.WinUI
         private string _route;
         string _url = Properties.Settings.Default.ApiURL;
         private HttpClient _apiClient = new HttpClient();
-        private TokenResponse _token = null;
 
         public APIService(string route)
         {
             _route = route;
         }
 
-        //TODO: na loginu spremiti token u staticku varijablu, ne pozivati ga svaki put
-        public async Task<TokenResponse> getToken()
-        {
-            if (_token == null)
-            {
-                var disco = await _apiClient.GetDiscoveryDocumentAsync(Properties.Settings.Default.IdentityServerApi);
-                _token = await _apiClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
-                {
-                    Address = disco.TokenEndpoint,
-
-                    ClientId = "WinApp",
-                    ClientSecret = "WinAppPassword",
-                    Scope = "NaruciBaApi"
-                });
-
-                if (_token.IsError)
-                {
-                    throw new Exception("Connection error");
-                }
-            }
-
-            return _token;
-        }
-
-
         //TODO: FINISH THE REST OF APISERVICe
+        // TODO: Find a way to check for access token validtiy before making the api call
+        // store hashed password and username in Properties.defaults 
         public async Task<T> Get<T>(object request = null)
         {
-            TokenResponse token = await getToken();
-
             var url = $"{_url}/{_route}";
             if (request != null)
             {
@@ -60,7 +35,7 @@ namespace NaruciBa.WinUI
                 url += await request.ToQueryString();
             }
 
-            _apiClient.SetBearerToken(token.AccessToken);
+            _apiClient.SetBearerToken(Properties.Settings.Default.AccessToken);
 
             var response = await _apiClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)

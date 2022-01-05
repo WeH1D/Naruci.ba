@@ -1,4 +1,5 @@
-﻿using NaruciBa.Model;
+﻿using Microsoft.AspNetCore.Authorization;
+using NaruciBa.Model;
 using NaruciBa.Model.Requests;
 using NaruciBa.Services.Interfaces;
 using System;

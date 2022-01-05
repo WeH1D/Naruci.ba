@@ -12,6 +12,10 @@ using System.Reflection;
 using System.Linq;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using IdentityServer4.Validation;
+using IdentityServer4.Services;
+using NaruciBa.Database;
 
 namespace IdentityServer
 {
@@ -29,6 +33,9 @@ namespace IdentityServer
             // uncomment, if you want to add an MVC-based UI
             //services.AddControllersWithViews();
 
+            services.AddDbContext<NaruciBaContext>(options =>
+                options.UseSqlServer(@"Server = localhost, 1433; Database = NaruciBa; Trusted_Connection = False; MultipleActiveResultSets = true; user = sa; Password = QWEasd123!"));
+
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             const string connectionString = @"Server=localhost, 5010;Database=NaruciBaIdentityServer;Trusted_Connection=False;MultipleActiveResultSets=true;user=sa; Password=QWEasd123!";
 
@@ -37,28 +44,34 @@ namespace IdentityServer
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
             })
-                //.AddTestUsers(TestUsers.Users)
-                .AddConfigurationStore(options =>
-                {
-                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
-                        sql => sql.MigrationsAssembly(migrationsAssembly));
-                })
-                .AddOperationalStore(options =>
-                {
-                    options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
-                        sql => sql.MigrationsAssembly(migrationsAssembly));
-                 });
+                // .AddInMemoryIdentityResources(Config.IdentityResources)
+                // .AddInMemoryApiResources(Config.ApiResources)
+                // .AddInMemoryApiScopes(Config.ApiScopes)
+                // .AddInMemoryClients(Config.Clients)
+                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+            .AddConfigurationStore(options =>
+            {
+                options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                   sql => sql.MigrationsAssembly(migrationsAssembly));
+            })
+            .AddOperationalStore(options =>
+            {
+                options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                    sql => sql.MigrationsAssembly(migrationsAssembly));
+            });
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
+            //services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
+            //services.AddTransient<IProfileService, ProfileService>();
 
         }
 
         public void Configure(IApplicationBuilder app)
         {
             // this will do the initial DB population
-            // InitializeDatabase(app);
+            InitializeDatabase(app);
 
             if (Environment.IsDevelopment())
             {
@@ -70,6 +83,10 @@ namespace IdentityServer
             //app.UseRouting();
 
             app.UseIdentityServer();
+
+            //app.UseAuthentication();
+            //app.UseAuthorization();
+
 
             // uncomment, if you want to add MVC
             //app.UseAuthorization();

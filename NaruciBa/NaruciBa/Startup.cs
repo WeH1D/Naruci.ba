@@ -37,10 +37,11 @@ namespace NaruciBa
             services.AddSwaggerGen();
             services.AddDbContext<NaruciBaContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
-                options.Authority = Configuration.GetValue<string>("IndentityServerUrl") ;
+                options.Authority = Configuration.GetValue<string>("IndentityServerUrl");
 
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -50,10 +51,15 @@ namespace NaruciBa
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("ApiScope", policy =>
+                options.AddPolicy("WinApp", policy =>
                 {
                     policy.RequireAuthenticatedUser();
-                    policy.RequireClaim("scope", "NaruciBaApi");
+                    policy.RequireClaim("scope", "WinAppScope");
+                });
+                options.AddPolicy("MobileApp", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "MobileAppScope");
                 });
             });
 

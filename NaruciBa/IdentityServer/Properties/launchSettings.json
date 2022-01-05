@@ -8,5 +8,7 @@
       },
       "applicationUrl": "https://localhost:5002"
     }
-  }
+  },
+  "apiUrl": "https://localhost:5001/api",
+  "identityServerConnectionString": "Server=localhost, 5010;Database=NaruciBaIdentityServer;Trusted_Connection=False;MultipleActiveResultSets=true;user=sa; Password=QWEasd123!"
 }

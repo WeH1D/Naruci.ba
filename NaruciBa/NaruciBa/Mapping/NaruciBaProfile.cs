@@ -30,6 +30,9 @@ namespace NaruciBa.Mapping
             CreateMap<ProizvodInsertRequest, Database.Proizvod>();
             CreateMap<ProizvodUpdateRequest, Database.Proizvod>();
 
+            CreateMap<Database.Korisnik, Model.Korisnik>().ReverseMap();
+            CreateMap<KorisnikInsertRequest, Database.Korisnik>();
+
             CreateMap<Database.Grad, Model.Grad>().ReverseMap();
 
         }

@@ -1,4 +1,5 @@
-﻿using NaruciBa.Services;
+﻿using NaruciBa.Model.Requests;
+using NaruciBa.Services;
 using NaruciBa.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Controllers
 {
-    public class KorisnikController: BaseReadController<Model.Korisnik, object>
+    public class KorisnikController: BaseCRUDController<Model.Korisnik, object, KorisnikInsertRequest, object>
     {
         public KorisnikController(IKorisnikService service)
             : base(service)
