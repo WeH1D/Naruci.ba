@@ -26,6 +26,7 @@ namespace NaruciBa.WinUI
         //TODO: FINISH THE REST OF APISERVICe
         // TODO: Find a way to check for access token validtiy before making the api call
         // store hashed password and username in Properties.defaults 
+       
         public async Task<T> Get<T>(object request = null)
         {
             var url = $"{_url}/{_route}";
@@ -51,14 +52,38 @@ namespace NaruciBa.WinUI
         public async Task<T> GetById<T>(object id)
         {
             var url = $"{_url}/{_route}/{id}";
-            var result = await url.GetJsonAsync<T>();
-            return result;
+
+            _apiClient.SetBearerToken(Properties.Settings.Default.AccessToken);
+
+            var response = await _apiClient.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Connection error");
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            var obj = JsonConvert.DeserializeObject<T>(content);
+
+            return obj;
         }
         public async Task<T> Insert<T>(object request)
         {
             var url = $"{_url}/{_route}";
-            var result = await url.PostJsonAsync(request).ReceiveJson<T>();
-            return result;
+
+            _apiClient.SetBearerToken(Properties.Settings.Default.AccessToken);
+
+            var response = await _apiClient.PostAsync(url, new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Connection error");
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            var obj = JsonConvert.DeserializeObject<T>(content);
+
+            return obj;
         }
         public async Task<T> Update<T>(object id, object request)
         {

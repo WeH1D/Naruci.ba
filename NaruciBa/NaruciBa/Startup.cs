@@ -41,6 +41,7 @@ namespace NaruciBa
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
+                
                 options.Authority = Configuration.GetValue<string>("IndentityServerUrl");
 
                 options.TokenValidationParameters = new TokenValidationParameters

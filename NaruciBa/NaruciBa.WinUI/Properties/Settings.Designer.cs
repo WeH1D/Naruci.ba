@@ -64,5 +64,29 @@ namespace NaruciBa.WinUI.Properties {
                 this["RefreshToken"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string email {
+            get {
+                return ((string)(this["email"]));
+            }
+            set {
+                this["email"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string passwordHash {
+            get {
+                return ((string)(this["passwordHash"]));
+            }
+            set {
+                this["passwordHash"] = value;
+            }
+        }
     }
 }

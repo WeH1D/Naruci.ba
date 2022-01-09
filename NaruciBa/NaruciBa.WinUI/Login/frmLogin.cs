@@ -15,6 +15,7 @@ namespace NaruciBa.WinUI.Login
     public partial class frmLogin : Form
     {
         private APIService _korisnikService = new APIService("Korisnik");
+        TokenService service = new TokenService();
 
         public frmLogin()
         {
@@ -24,24 +25,49 @@ namespace NaruciBa.WinUI.Login
             lblSignup.ForeColor = AppTheme.PrimaryColor;
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
+     // Open app --> if there is an access token set refresh token and log in automatically
+     //          --> if refresh token cant be set reset all storred data of user
+     // Login --> if access token is set succesfully store email and hashed password and let user through
+     //       --> if token isnt set succesfully then reset text fields and let user tryy again
+
+        private async void frmLogin_Load(object sender, EventArgs e)
         {
-            //if(!string.IsNullOrEmpty(Properties.Settings.Default.AccessToken))
-            //{
-            //    this.Hide();
-            //    frmHome frm = new frmHome();
-            //    frm.ShowDialog();
-            //}
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.AccessToken))
+            {
+                try
+                {
+                    await service.setRefreshToken();
+
+                    this.Hide();
+                    frmHome frm = new frmHome();
+                    frm.ShowDialog();
+                }
+                catch (Exception)
+                {
+                    Properties.Settings.Default.AccessToken = "";
+                    Properties.Settings.Default.RefreshToken = "";
+                    Properties.Settings.Default.email = "";
+                    Properties.Settings.Default.passwordHash = "";
+                }
+
+            }
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            TokenService service = new TokenService();
+           
             try
             {
                 Properties.Settings.Default.AccessToken = "";
                 Properties.Settings.Default.RefreshToken = "";
+                Properties.Settings.Default.email = "";
+                Properties.Settings.Default.passwordHash = "";
+
                 await service.setToken(txtEmail.Text, txtPassword.Text);
+
+                Properties.Settings.Default.email = txtEmail.Text;
+                // TODO --> hashs the password
+                Properties.Settings.Default.passwordHash = txtPassword.Text;
 
                 this.Hide();
                 frmHome frm = new frmHome();
