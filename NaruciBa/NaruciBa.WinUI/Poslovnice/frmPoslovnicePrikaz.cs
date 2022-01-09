@@ -21,6 +21,7 @@ namespace NaruciBa.WinUI.Poslovnice
             pnlDgv.Height = this.ClientRectangle.Height - pnlActions.ClientRectangle.Height;
             pnlDgv.Width = this.ClientRectangle.Width;
             btnDodajPoslovnicu.BackColor = AppTheme.PrimaryColor;
+            btnDodajLanacPoslovnica.BackColor = AppTheme.PrimaryColor;
         }
 
         private async void frmPoslovnicePrikaz_Load(object sender, EventArgs e)
@@ -35,6 +36,18 @@ namespace NaruciBa.WinUI.Poslovnice
         {
             pnlDgv.Height = this.ClientRectangle.Height - pnlActions.ClientRectangle.Height;
             pnlDgv.Width = this.ClientRectangle.Width;
+        }
+
+        private void btnDodajPoslovnicu_Click(object sender, EventArgs e)
+        {
+            frmDodajPoslovnicu frm = new frmDodajPoslovnicu();
+            frm.ShowDialog();
+        }
+
+        private void btnDodajLanacPoslovnica_Click(object sender, EventArgs e)
+        {
+            fmrDodajLanacPoslovnica frm = new fmrDodajLanacPoslovnica();
+            frm.ShowDialog();
         }
     }
 }

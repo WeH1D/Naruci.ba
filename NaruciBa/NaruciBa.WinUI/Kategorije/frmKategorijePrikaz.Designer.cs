@@ -29,15 +29,24 @@ namespace NaruciBa.WinUI.Kategorije
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flpKategorije = new System.Windows.Forms.FlowLayoutPanel();
             this.dgvIdk = new System.Windows.Forms.DataGridView();
             this.DgvMain = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlFlow = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlEditKategorija = new System.Windows.Forms.Panel();
+            this.pnlUrediKategoriju = new System.Windows.Forms.Panel();
+            this.btnSacuvaj = new System.Windows.Forms.Button();
+            this.btnIzbrisiPodkategoriju = new System.Windows.Forms.Button();
+            this.txtOdabranaPodkategorija = new System.Windows.Forms.TextBox();
+            this.lblPodkategorijaNaziv = new System.Windows.Forms.Label();
+            this.btnIzbrisiKategoriju = new System.Windows.Forms.Button();
+            this.txtOdabranaKategorija = new System.Windows.Forms.TextBox();
+            this.lblIzabranaKategorijaNaziv = new System.Windows.Forms.Label();
+            this.lblIzabranaKategorija = new System.Windows.Forms.Label();
             this.pnlAddKategorija = new System.Windows.Forms.Panel();
             this.pnlKategorijaAddForm = new System.Windows.Forms.Panel();
             this.pnlDodajPodkategoriju = new System.Windows.Forms.Panel();
@@ -52,25 +61,16 @@ namespace NaruciBa.WinUI.Kategorije
             this.lblNazivkategorije = new System.Windows.Forms.Label();
             this.btnDodajKategoriju = new System.Windows.Forms.Button();
             this.txtDodajKategoriju = new System.Windows.Forms.TextBox();
-            this.lblIzabranaKategorija = new System.Windows.Forms.Label();
-            this.pnlUrediKategoriju = new System.Windows.Forms.Panel();
-            this.lblIzabranaKategorijaNaziv = new System.Windows.Forms.Label();
-            this.txtOdabranaKategorija = new System.Windows.Forms.TextBox();
-            this.btnIzbrisiKategoriju = new System.Windows.Forms.Button();
-            this.txtOdabranaPodkategorija = new System.Windows.Forms.TextBox();
-            this.lblPodkategorijaNaziv = new System.Windows.Forms.Label();
-            this.btnIzbrisiPodkategoriju = new System.Windows.Forms.Button();
-            this.btnSacuvaj = new System.Windows.Forms.Button();
             this.flpKategorije.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIdk)).BeginInit();
             this.pnlFlow.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.pnlEditKategorija.SuspendLayout();
+            this.pnlUrediKategoriju.SuspendLayout();
             this.pnlAddKategorija.SuspendLayout();
             this.pnlKategorijaAddForm.SuspendLayout();
             this.pnlDodajPodkategoriju.SuspendLayout();
             this.pnlDodajKategorjiu.SuspendLayout();
-            this.pnlUrediKategoriju.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpKategorije
@@ -93,33 +93,33 @@ namespace NaruciBa.WinUI.Kategorije
             // 
             this.dgvIdk.AllowUserToAddRows = false;
             this.dgvIdk.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Transparent;
-            this.dgvIdk.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
+            this.dgvIdk.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvIdk.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvIdk.BackgroundColor = System.Drawing.Color.White;
             this.dgvIdk.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvIdk.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvIdk.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIdk.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIdk.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvIdk.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIdk.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DgvMain});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIdk.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIdk.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvIdk.EnableHeadersVisualStyles = false;
             this.dgvIdk.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvIdk.Location = new System.Drawing.Point(3, 3);
@@ -174,6 +174,115 @@ namespace NaruciBa.WinUI.Kategorije
             this.pnlEditKategorija.Name = "pnlEditKategorija";
             this.pnlEditKategorija.Size = new System.Drawing.Size(438, 268);
             this.pnlEditKategorija.TabIndex = 1;
+            // 
+            // pnlUrediKategoriju
+            // 
+            this.pnlUrediKategoriju.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlUrediKategoriju.Controls.Add(this.btnSacuvaj);
+            this.pnlUrediKategoriju.Controls.Add(this.btnIzbrisiPodkategoriju);
+            this.pnlUrediKategoriju.Controls.Add(this.txtOdabranaPodkategorija);
+            this.pnlUrediKategoriju.Controls.Add(this.lblPodkategorijaNaziv);
+            this.pnlUrediKategoriju.Controls.Add(this.btnIzbrisiKategoriju);
+            this.pnlUrediKategoriju.Controls.Add(this.txtOdabranaKategorija);
+            this.pnlUrediKategoriju.Controls.Add(this.lblIzabranaKategorijaNaziv);
+            this.pnlUrediKategoriju.Controls.Add(this.lblIzabranaKategorija);
+            this.pnlUrediKategoriju.Location = new System.Drawing.Point(12, 12);
+            this.pnlUrediKategoriju.Name = "pnlUrediKategoriju";
+            this.pnlUrediKategoriju.Size = new System.Drawing.Size(408, 246);
+            this.pnlUrediKategoriju.TabIndex = 1;
+            // 
+            // btnSacuvaj
+            // 
+            this.btnSacuvaj.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSacuvaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSacuvaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSacuvaj.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacuvaj.ForeColor = System.Drawing.Color.White;
+            this.btnSacuvaj.Location = new System.Drawing.Point(227, 171);
+            this.btnSacuvaj.Name = "btnSacuvaj";
+            this.btnSacuvaj.Size = new System.Drawing.Size(177, 29);
+            this.btnSacuvaj.TabIndex = 7;
+            this.btnSacuvaj.Text = "Sacuvaj Izmjene";
+            this.btnSacuvaj.UseVisualStyleBackColor = false;
+            // 
+            // btnIzbrisiPodkategoriju
+            // 
+            this.btnIzbrisiPodkategoriju.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnIzbrisiPodkategoriju.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnIzbrisiPodkategoriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzbrisiPodkategoriju.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIzbrisiPodkategoriju.ForeColor = System.Drawing.Color.White;
+            this.btnIzbrisiPodkategoriju.Location = new System.Drawing.Point(334, 119);
+            this.btnIzbrisiPodkategoriju.Name = "btnIzbrisiPodkategoriju";
+            this.btnIzbrisiPodkategoriju.Size = new System.Drawing.Size(70, 29);
+            this.btnIzbrisiPodkategoriju.TabIndex = 6;
+            this.btnIzbrisiPodkategoriju.Text = "Izbrisi";
+            this.btnIzbrisiPodkategoriju.UseVisualStyleBackColor = false;
+            // 
+            // txtOdabranaPodkategorija
+            // 
+            this.txtOdabranaPodkategorija.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOdabranaPodkategorija.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOdabranaPodkategorija.Location = new System.Drawing.Point(35, 123);
+            this.txtOdabranaPodkategorija.Name = "txtOdabranaPodkategorija";
+            this.txtOdabranaPodkategorija.Size = new System.Drawing.Size(264, 21);
+            this.txtOdabranaPodkategorija.TabIndex = 5;
+            // 
+            // lblPodkategorijaNaziv
+            // 
+            this.lblPodkategorijaNaziv.AutoSize = true;
+            this.lblPodkategorijaNaziv.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPodkategorijaNaziv.Location = new System.Drawing.Point(32, 104);
+            this.lblPodkategorijaNaziv.Name = "lblPodkategorijaNaziv";
+            this.lblPodkategorijaNaziv.Size = new System.Drawing.Size(85, 15);
+            this.lblPodkategorijaNaziv.TabIndex = 4;
+            this.lblPodkategorijaNaziv.Text = "Podkategorija:";
+            // 
+            // btnIzbrisiKategoriju
+            // 
+            this.btnIzbrisiKategoriju.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnIzbrisiKategoriju.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnIzbrisiKategoriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzbrisiKategoriju.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIzbrisiKategoriju.ForeColor = System.Drawing.Color.White;
+            this.btnIzbrisiKategoriju.Location = new System.Drawing.Point(334, 62);
+            this.btnIzbrisiKategoriju.Name = "btnIzbrisiKategoriju";
+            this.btnIzbrisiKategoriju.Size = new System.Drawing.Size(71, 29);
+            this.btnIzbrisiKategoriju.TabIndex = 3;
+            this.btnIzbrisiKategoriju.Text = "Izbrisi";
+            this.btnIzbrisiKategoriju.UseVisualStyleBackColor = false;
+            // 
+            // txtOdabranaKategorija
+            // 
+            this.txtOdabranaKategorija.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOdabranaKategorija.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOdabranaKategorija.Location = new System.Drawing.Point(35, 66);
+            this.txtOdabranaKategorija.Name = "txtOdabranaKategorija";
+            this.txtOdabranaKategorija.Size = new System.Drawing.Size(264, 21);
+            this.txtOdabranaKategorija.TabIndex = 2;
+            // 
+            // lblIzabranaKategorijaNaziv
+            // 
+            this.lblIzabranaKategorijaNaziv.AutoSize = true;
+            this.lblIzabranaKategorijaNaziv.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIzabranaKategorijaNaziv.Location = new System.Drawing.Point(32, 47);
+            this.lblIzabranaKategorijaNaziv.Name = "lblIzabranaKategorijaNaziv";
+            this.lblIzabranaKategorijaNaziv.Size = new System.Drawing.Size(65, 15);
+            this.lblIzabranaKategorijaNaziv.TabIndex = 1;
+            this.lblIzabranaKategorijaNaziv.Text = "Kategorija:";
+            // 
+            // lblIzabranaKategorija
+            // 
+            this.lblIzabranaKategorija.AutoSize = true;
+            this.lblIzabranaKategorija.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIzabranaKategorija.Location = new System.Drawing.Point(12, 12);
+            this.lblIzabranaKategorija.Name = "lblIzabranaKategorija";
+            this.lblIzabranaKategorija.Size = new System.Drawing.Size(128, 16);
+            this.lblIzabranaKategorija.TabIndex = 0;
+            this.lblIzabranaKategorija.Text = "Izabrana kategorija";
             // 
             // pnlAddKategorija
             // 
@@ -348,115 +457,6 @@ namespace NaruciBa.WinUI.Kategorije
             this.txtDodajKategoriju.Size = new System.Drawing.Size(264, 21);
             this.txtDodajKategoriju.TabIndex = 2;
             // 
-            // lblIzabranaKategorija
-            // 
-            this.lblIzabranaKategorija.AutoSize = true;
-            this.lblIzabranaKategorija.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIzabranaKategorija.Location = new System.Drawing.Point(12, 12);
-            this.lblIzabranaKategorija.Name = "lblIzabranaKategorija";
-            this.lblIzabranaKategorija.Size = new System.Drawing.Size(128, 16);
-            this.lblIzabranaKategorija.TabIndex = 0;
-            this.lblIzabranaKategorija.Text = "Izabrana kategorija";
-            // 
-            // pnlUrediKategoriju
-            // 
-            this.pnlUrediKategoriju.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlUrediKategoriju.Controls.Add(this.btnSacuvaj);
-            this.pnlUrediKategoriju.Controls.Add(this.btnIzbrisiPodkategoriju);
-            this.pnlUrediKategoriju.Controls.Add(this.txtOdabranaPodkategorija);
-            this.pnlUrediKategoriju.Controls.Add(this.lblPodkategorijaNaziv);
-            this.pnlUrediKategoriju.Controls.Add(this.btnIzbrisiKategoriju);
-            this.pnlUrediKategoriju.Controls.Add(this.txtOdabranaKategorija);
-            this.pnlUrediKategoriju.Controls.Add(this.lblIzabranaKategorijaNaziv);
-            this.pnlUrediKategoriju.Controls.Add(this.lblIzabranaKategorija);
-            this.pnlUrediKategoriju.Location = new System.Drawing.Point(12, 12);
-            this.pnlUrediKategoriju.Name = "pnlUrediKategoriju";
-            this.pnlUrediKategoriju.Size = new System.Drawing.Size(408, 246);
-            this.pnlUrediKategoriju.TabIndex = 1;
-            // 
-            // lblIzabranaKategorijaNaziv
-            // 
-            this.lblIzabranaKategorijaNaziv.AutoSize = true;
-            this.lblIzabranaKategorijaNaziv.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIzabranaKategorijaNaziv.Location = new System.Drawing.Point(32, 47);
-            this.lblIzabranaKategorijaNaziv.Name = "lblIzabranaKategorijaNaziv";
-            this.lblIzabranaKategorijaNaziv.Size = new System.Drawing.Size(65, 15);
-            this.lblIzabranaKategorijaNaziv.TabIndex = 1;
-            this.lblIzabranaKategorijaNaziv.Text = "Kategorija:";
-            // 
-            // txtOdabranaKategorija
-            // 
-            this.txtOdabranaKategorija.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOdabranaKategorija.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOdabranaKategorija.Location = new System.Drawing.Point(35, 66);
-            this.txtOdabranaKategorija.Name = "txtOdabranaKategorija";
-            this.txtOdabranaKategorija.Size = new System.Drawing.Size(264, 21);
-            this.txtOdabranaKategorija.TabIndex = 2;
-            // 
-            // btnIzbrisiKategoriju
-            // 
-            this.btnIzbrisiKategoriju.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnIzbrisiKategoriju.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnIzbrisiKategoriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIzbrisiKategoriju.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIzbrisiKategoriju.ForeColor = System.Drawing.Color.White;
-            this.btnIzbrisiKategoriju.Location = new System.Drawing.Point(334, 62);
-            this.btnIzbrisiKategoriju.Name = "btnIzbrisiKategoriju";
-            this.btnIzbrisiKategoriju.Size = new System.Drawing.Size(71, 29);
-            this.btnIzbrisiKategoriju.TabIndex = 3;
-            this.btnIzbrisiKategoriju.Text = "Izbrisi";
-            this.btnIzbrisiKategoriju.UseVisualStyleBackColor = false;
-            // 
-            // txtOdabranaPodkategorija
-            // 
-            this.txtOdabranaPodkategorija.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOdabranaPodkategorija.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOdabranaPodkategorija.Location = new System.Drawing.Point(35, 123);
-            this.txtOdabranaPodkategorija.Name = "txtOdabranaPodkategorija";
-            this.txtOdabranaPodkategorija.Size = new System.Drawing.Size(264, 21);
-            this.txtOdabranaPodkategorija.TabIndex = 5;
-            // 
-            // lblPodkategorijaNaziv
-            // 
-            this.lblPodkategorijaNaziv.AutoSize = true;
-            this.lblPodkategorijaNaziv.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPodkategorijaNaziv.Location = new System.Drawing.Point(32, 104);
-            this.lblPodkategorijaNaziv.Name = "lblPodkategorijaNaziv";
-            this.lblPodkategorijaNaziv.Size = new System.Drawing.Size(85, 15);
-            this.lblPodkategorijaNaziv.TabIndex = 4;
-            this.lblPodkategorijaNaziv.Text = "Podkategorija:";
-            // 
-            // btnIzbrisiPodkategoriju
-            // 
-            this.btnIzbrisiPodkategoriju.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnIzbrisiPodkategoriju.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnIzbrisiPodkategoriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIzbrisiPodkategoriju.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIzbrisiPodkategoriju.ForeColor = System.Drawing.Color.White;
-            this.btnIzbrisiPodkategoriju.Location = new System.Drawing.Point(334, 119);
-            this.btnIzbrisiPodkategoriju.Name = "btnIzbrisiPodkategoriju";
-            this.btnIzbrisiPodkategoriju.Size = new System.Drawing.Size(70, 29);
-            this.btnIzbrisiPodkategoriju.TabIndex = 6;
-            this.btnIzbrisiPodkategoriju.Text = "Izbrisi";
-            this.btnIzbrisiPodkategoriju.UseVisualStyleBackColor = false;
-            // 
-            // btnSacuvaj
-            // 
-            this.btnSacuvaj.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSacuvaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnSacuvaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSacuvaj.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSacuvaj.ForeColor = System.Drawing.Color.White;
-            this.btnSacuvaj.Location = new System.Drawing.Point(227, 171);
-            this.btnSacuvaj.Name = "btnSacuvaj";
-            this.btnSacuvaj.Size = new System.Drawing.Size(177, 29);
-            this.btnSacuvaj.TabIndex = 7;
-            this.btnSacuvaj.Text = "Sacuvaj Izmjene";
-            this.btnSacuvaj.UseVisualStyleBackColor = false;
-            // 
             // frmKategorijePrikaz
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -478,14 +478,14 @@ namespace NaruciBa.WinUI.Kategorije
             this.pnlFlow.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.pnlEditKategorija.ResumeLayout(false);
+            this.pnlUrediKategoriju.ResumeLayout(false);
+            this.pnlUrediKategoriju.PerformLayout();
             this.pnlAddKategorija.ResumeLayout(false);
             this.pnlKategorijaAddForm.ResumeLayout(false);
             this.pnlDodajPodkategoriju.ResumeLayout(false);
             this.pnlDodajPodkategoriju.PerformLayout();
             this.pnlDodajKategorjiu.ResumeLayout(false);
             this.pnlDodajKategorjiu.PerformLayout();
-            this.pnlUrediKategoriju.ResumeLayout(false);
-            this.pnlUrediKategoriju.PerformLayout();
             this.ResumeLayout(false);
 
         }

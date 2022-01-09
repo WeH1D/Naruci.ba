@@ -68,6 +68,8 @@ namespace NaruciBa.WinUI.Login
                 Properties.Settings.Default.email = txtEmail.Text;
                 // TODO --> hashs the password
                 Properties.Settings.Default.passwordHash = txtPassword.Text;
+                Properties.Settings.Default.Save();
+
 
                 this.Hide();
                 frmHome frm = new frmHome();

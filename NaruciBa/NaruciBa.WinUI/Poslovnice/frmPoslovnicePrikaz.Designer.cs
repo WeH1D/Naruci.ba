@@ -40,6 +40,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.KontaktEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KontaktTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlActions = new System.Windows.Forms.Panel();
+            this.btnDodajLanacPoslovnica = new System.Windows.Forms.Button();
             this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -149,6 +150,7 @@ namespace NaruciBa.WinUI.Poslovnice
             // 
             // pnlActions
             // 
+            this.pnlActions.Controls.Add(this.btnDodajLanacPoslovnica);
             this.pnlActions.Controls.Add(this.btnDodajPoslovnicu);
             this.pnlActions.Controls.Add(this.pnlSearch);
             this.pnlActions.Dock = System.Windows.Forms.DockStyle.Top;
@@ -156,6 +158,21 @@ namespace NaruciBa.WinUI.Poslovnice
             this.pnlActions.Name = "pnlActions";
             this.pnlActions.Size = new System.Drawing.Size(830, 100);
             this.pnlActions.TabIndex = 1;
+            // 
+            // btnDodajLanacPoslovnica
+            // 
+            this.btnDodajLanacPoslovnica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDodajLanacPoslovnica.FlatAppearance.BorderSize = 0;
+            this.btnDodajLanacPoslovnica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDodajLanacPoslovnica.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDodajLanacPoslovnica.ForeColor = System.Drawing.Color.White;
+            this.btnDodajLanacPoslovnica.Location = new System.Drawing.Point(193, 30);
+            this.btnDodajLanacPoslovnica.Name = "btnDodajLanacPoslovnica";
+            this.btnDodajLanacPoslovnica.Size = new System.Drawing.Size(171, 31);
+            this.btnDodajLanacPoslovnica.TabIndex = 4;
+            this.btnDodajLanacPoslovnica.Text = "Dodaj trgovacki lanac";
+            this.btnDodajLanacPoslovnica.UseVisualStyleBackColor = false;
+            this.btnDodajLanacPoslovnica.Click += new System.EventHandler(this.btnDodajLanacPoslovnica_Click);
             // 
             // btnDodajPoslovnicu
             // 
@@ -170,6 +187,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.btnDodajPoslovnicu.TabIndex = 1;
             this.btnDodajPoslovnicu.Text = "Dodaj poslovnicu";
             this.btnDodajPoslovnicu.UseVisualStyleBackColor = false;
+            this.btnDodajPoslovnicu.Click += new System.EventHandler(this.btnDodajPoslovnicu_Click);
             // 
             // pnlSearch
             // 
@@ -237,5 +255,6 @@ namespace NaruciBa.WinUI.Poslovnice
         private System.Windows.Forms.TextBox txtPretraga;
         private System.Windows.Forms.Panel pnlSearch;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnDodajLanacPoslovnica;
     }
 }

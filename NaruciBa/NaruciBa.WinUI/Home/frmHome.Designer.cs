@@ -46,6 +46,9 @@ namespace NaruciBa.WinUI
             this.pnlLogoContainer = new System.Windows.Forms.Panel();
             this.txtLogo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.pnlDivider = new System.Windows.Forms.Panel();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlRight.SuspendLayout();
@@ -150,6 +153,9 @@ namespace NaruciBa.WinUI
             // pnlTopBar
             // 
             this.pnlTopBar.BackColor = System.Drawing.Color.White;
+            this.pnlTopBar.Controls.Add(this.lblUserName);
+            this.pnlTopBar.Controls.Add(this.pnlDivider);
+            this.pnlTopBar.Controls.Add(this.btnLogout);
             this.pnlTopBar.Controls.Add(this.lblNaslov);
             this.pnlTopBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTopBar.Location = new System.Drawing.Point(20, 20);
@@ -212,6 +218,43 @@ namespace NaruciBa.WinUI
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Location = new System.Drawing.Point(925, 17);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(102, 31);
+            this.btnLogout.TabIndex = 2;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // pnlDivider
+            // 
+            this.pnlDivider.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pnlDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pnlDivider.ForeColor = System.Drawing.Color.Silver;
+            this.pnlDivider.Location = new System.Drawing.Point(910, 10);
+            this.pnlDivider.Name = "pnlDivider";
+            this.pnlDivider.Size = new System.Drawing.Size(2, 48);
+            this.pnlDivider.TabIndex = 3;
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblUserName.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(645, 23);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblUserName.Size = new System.Drawing.Size(259, 23);
+            this.lblUserName.TabIndex = 4;
+            this.lblUserName.Text = "nekipravodugemail@gmial.co.uk..com";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,6 +303,9 @@ namespace NaruciBa.WinUI
         private System.Windows.Forms.ToolStripMenuItem kuponiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dostavljaciToolStripMenuItem;
         private System.Windows.Forms.Label lblNaslov;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Panel pnlDivider;
+        private System.Windows.Forms.Label lblUserName;
     }
 }
 

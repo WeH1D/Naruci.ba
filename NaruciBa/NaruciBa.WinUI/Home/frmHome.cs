@@ -1,4 +1,5 @@
 ﻿using NaruciBa.WinUI.Kategorije;
+using NaruciBa.WinUI.Login;
 using NaruciBa.WinUI.Poslovnice;
 using NaruciBa.WinUI.utils;
 using System;
@@ -37,9 +38,12 @@ namespace NaruciBa.WinUI
         {
             this.SetBevel(false);
 
+            btnLogout.BackColor = AppTheme.PrimaryColor;
             menuStrip.Width = this.Width / 6;
             pnlLogo.Width = this.Width / 6;
-            
+
+            lblUserName.Text = Properties.Settings.Default.email;
+
             frmPoslovnicePrikaz frm = new frmPoslovnicePrikaz();
             frm.MdiParent = this;
             frm.Show();
@@ -101,8 +105,6 @@ namespace NaruciBa.WinUI
 
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////
-
         private void SetActiveMenuItem(ToolStripMenuItem activeItem)
         {
             foreach (ToolStripMenuItem item in menuStrip.Items)
@@ -114,7 +116,19 @@ namespace NaruciBa.WinUI
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AccessToken = "";
+            Properties.Settings.Default.RefreshToken = "";
+            Properties.Settings.Default.email = "";
+            Properties.Settings.Default.passwordHash = "";
+
+            frmLogin frm = new frmLogin();
+            this.Hide();
+            frm.ShowDialog();
+            this.Close();
+
+        }
 
     }
 }

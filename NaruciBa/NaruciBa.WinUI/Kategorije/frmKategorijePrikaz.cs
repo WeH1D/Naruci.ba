@@ -93,36 +93,42 @@ namespace NaruciBa.WinUI.Kategorije
 
         private async void btnDodajKategoriju_Click(object sender, EventArgs e)
         {
-            await _kategorijaService.Insert<Model.Kategorija>(new Model.Requests.KategorijaUpsertRequest()
+            if (txtDodajKategoriju.Text != "")
             {
-                Naziv = txtDodajKategoriju.Text
-            });
+                await _kategorijaService.Insert<Model.Kategorija>(new Model.Requests.KategorijaUpsertRequest()
+                {
+                    Naziv = txtDodajKategoriju.Text
+                });
 
-            kategorije = await _kategorijaService.Get<List<Model.Kategorija>>();
-            txtDodajKategoriju.Text = "";
+                kategorije = await _kategorijaService.Get<List<Model.Kategorija>>();
+                txtDodajKategoriju.Text = "";
 
-            cbKategorija.DataSource = null;
-            cbKategorija.DataSource = kategorije;
-            cbKategorija.DisplayMember = "Naziv";
-            cbKategorija.ValueMember = "KategorijaId";
+                cbKategorija.DataSource = null;
+                cbKategorija.DataSource = kategorije;
+                cbKategorija.DisplayMember = "Naziv";
+                cbKategorija.ValueMember = "KategorijaId";
 
-            clearKategorije();
-            loadKategorije();
+                clearKategorije();
+                loadKategorije();
+            }
         }
 
         private async void btnDodajPodkateogrija_Click(object sender, EventArgs e)
         {
-            await _podkategorijeService.Insert<Model.Podkategorija>(new Model.Requests.PodkategorijaUpsertRequest()
+            if (txtPodkategorijaNaziv.Text != "")
             {
-                Naziv = txtPodkategorijaNaziv.Text,
-                KategorijaID = int.Parse(cbKategorija.SelectedValue.ToString())
-            });
+                await _podkategorijeService.Insert<Model.Podkategorija>(new Model.Requests.PodkategorijaUpsertRequest()
+                {
+                    Naziv = txtPodkategorijaNaziv.Text,
+                    KategorijaID = int.Parse(cbKategorija.SelectedValue.ToString())
+                });
 
-            podkategorije = await _podkategorijeService.Get<List<Model.Podkategorija>>();
-            txtPodkategorijaNaziv.Text = "";
+                podkategorije = await _podkategorijeService.Get<List<Model.Podkategorija>>();
+                txtPodkategorijaNaziv.Text = "";
 
-            clearKategorije();
-            loadKategorije();
+                clearKategorije();
+                loadKategorije();
+            }
         }
 
         void loadKategorije()
@@ -176,7 +182,8 @@ namespace NaruciBa.WinUI.Kategorije
                 cellStyle.SelectionForeColor = cellStyle.ForeColor;
                 dgv.DefaultCellStyle = cellStyle;
 
-                dgv.Height = 50;
+                var height = dgv.Rows.GetRowsHeight(DataGridViewElementStates.None);
+                dgv.ClientSize = new Size(dgv.ClientSize.Width, height + 30);
 
                 dgv.ColumnHeaderMouseClick += handleHeaderClick;
                 dgv.CellClick += handleCellClick;

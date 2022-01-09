@@ -88,8 +88,20 @@ namespace NaruciBa.WinUI
         public async Task<T> Update<T>(object id, object request)
         {
             var url = $"{_url}/{_route}/{id}";
-            var result = await url.PutJsonAsync(request).ReceiveJson<T>();
-            return result;
+
+            _apiClient.SetBearerToken(Properties.Settings.Default.AccessToken);
+
+            var response = await _apiClient.PutAsync(url, new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"));
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Connection error");
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            var obj = JsonConvert.DeserializeObject<T>(content);
+
+            return obj;
         }
     }
 }
