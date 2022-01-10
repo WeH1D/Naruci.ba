@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace NaruciBa.WinUI.Poslovnice
     public partial class fmrDodajLanacPoslovnica : Form
     {
         APIService _LanacPoslovnicaService = new APIService("TrgovackiLanac");
+        Model.Requests.TrgovackiLanacUpsertRequest request = new Model.Requests.TrgovackiLanacUpsertRequest();
+
         public fmrDodajLanacPoslovnica()
         {
             InitializeComponent();
@@ -27,11 +30,23 @@ namespace NaruciBa.WinUI.Poslovnice
         {
             if(txtNaziv.Text != "")
             {
-                await _LanacPoslovnicaService.Insert<Model.TrgovackiLanac>(new Model.Requests.TrgovackiLanacUpsertRequest()
-                {
-                    Naziv = txtNaziv.Text,
-                    Slika = null
-                });
+                request.Naziv = txtNaziv.Text;
+                await _LanacPoslovnicaService.Insert<Model.TrgovackiLanac>(request);
+            }
+        }
+
+        private void lblDodajSliku_Click(object sender, EventArgs e)
+        {
+            var result = ofd.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                var filename = ofd.FileName;
+                request.SlikaPutanja = filename;
+                var file = File.ReadAllBytes(filename);
+                request.Slika = file;
+                Image img = Image.FromFile(filename);
+                pbTrgovackiLanac.Image = img;
             }
         }
     }

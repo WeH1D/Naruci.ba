@@ -19,15 +19,15 @@ namespace NaruciBa.Controllers
         }
 
         [HttpPost]
-        public T Insert([FromBody] TInsert request)
+        public async Task<T> Insert([FromBody] TInsert request)
         {
-            return _crudService.Insert(request);
+            return await _crudService.Insert(request);
         }
 
         [HttpPut("{id}")]
-        public T Update(int id, [FromBody] TUpdate request)
+        public async Task<T> Update(int id, [FromBody] TUpdate request)
         {
-            return _crudService.Update(id, request);
+            return await _crudService.Update(id, request);
         }
     }
 }

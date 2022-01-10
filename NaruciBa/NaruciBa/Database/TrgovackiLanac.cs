@@ -15,7 +15,7 @@ namespace NaruciBa.Database
 
         public int TrgovackiLanacID { get; set; }
         public string Naziv { get; set; }
-        public byte[] Slika { get; set; }
+        public string SlikaPutanja { get; set; }
 
         public virtual ICollection<Poslovnica> Poslovnicas { get; set; }
         public virtual ICollection<TrgovackiLanacKategorija> TrgovackiLanacKategorijas { get; set; }

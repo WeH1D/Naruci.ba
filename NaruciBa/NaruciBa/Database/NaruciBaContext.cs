@@ -358,7 +358,7 @@ namespace NaruciBa.Database
 
                 entity.Property(e => e.Naziv).HasMaxLength(50);
 
-                entity.Property(e => e.Slika).HasColumnType("image");
+                entity.Property(e => e.SlikaPutanja).HasColumnType("image");
             });
 
             modelBuilder.Entity<TrgovackiLanacKategorija>(entity =>

@@ -64,7 +64,6 @@ namespace NaruciBa
                 });
             });
 
-
             //================== Specific service implementations ======================//
 
             services.AddScoped<IKorisnikService, KorisnikService>();

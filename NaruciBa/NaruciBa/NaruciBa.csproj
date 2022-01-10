@@ -26,5 +26,9 @@
     <ProjectReference Include="..\NaruciBa.Model\NaruciBa.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\TrgovackiLanac\" />
+  </ItemGroup>
+
 
 </Project>

@@ -35,6 +35,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.lblNaziv = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.btnDodaj = new System.Windows.Forms.Button();
+            this.ofd = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbTrgovackiLanac)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,6 +69,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.lblDodajSliku.Size = new System.Drawing.Size(66, 15);
             this.lblDodajSliku.TabIndex = 4;
             this.lblDodajSliku.Text = "Dodaj sliku";
+            this.lblDodajSliku.Click += new System.EventHandler(this.lblDodajSliku_Click);
             // 
             // lblNaziv
             // 
@@ -101,6 +103,10 @@ namespace NaruciBa.WinUI.Poslovnice
             this.btnDodaj.UseVisualStyleBackColor = false;
             this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
             // 
+            // ofd
+            // 
+            this.ofd.FileName = "openFileDialog";
+            // 
             // fmrDodajLanacPoslovnica
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -132,5 +138,6 @@ namespace NaruciBa.WinUI.Poslovnice
         private System.Windows.Forms.Label lblNaziv;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Button btnDodaj;
+        private System.Windows.Forms.OpenFileDialog ofd;
     }
 }

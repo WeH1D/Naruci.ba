@@ -20,7 +20,7 @@ namespace NaruciBa.Services
 
         }
 
-        public override Model.Korisnik Insert(KorisnikInsertRequest request)
+        public async override Task<Model.Korisnik> Insert(KorisnikInsertRequest request)
         {
             if(Context.Korisniks.Where(a => a.Email == request.Email).Any())
             {
@@ -37,8 +37,8 @@ namespace NaruciBa.Services
             korisnik.DatumKreiranja = DateTime.Now;
             korisnik.DatumIzmjene = DateTime.Now;
 
-            Context.Korisniks.Add(korisnik);
-            Context.SaveChanges();
+            await Context.Korisniks.AddAsync(korisnik);
+            await Context.SaveChangesAsync();
 
             if (request.dostavljacInsert != null)
             {
@@ -49,7 +49,7 @@ namespace NaruciBa.Services
                     DostavljacStatus = request.dostavljacInsert.DostavljacStatus
 
                 };
-                Context.Dostavljacs.Add(dostavljac);
+                await Context.Dostavljacs.AddAsync(dostavljac);
             }
             else if (request.koordinatorInsert != null)
             {
@@ -59,7 +59,7 @@ namespace NaruciBa.Services
                     DatumZaposlenja = request.koordinatorInsert.DatumZaposlenja
 
                 };
-                Context.Koordinators.Add(koordinator);
+                await Context.Koordinators.AddAsync(koordinator);
             }
             else
             {
@@ -67,10 +67,10 @@ namespace NaruciBa.Services
                 {
                     KorisnikID = korisnik.KorisnikID,
                 };
-                Context.Klijents.Add(klijent);
+                await Context.Klijents.AddAsync(klijent);
             }
 
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
 
             return _mapper.Map<Model.Korisnik>(korisnik);
         }

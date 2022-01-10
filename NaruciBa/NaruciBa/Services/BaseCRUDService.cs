@@ -15,21 +15,21 @@ namespace NaruciBa.Services
         {
         }
 
-        public virtual T Insert(TInsert request)
+        public async virtual Task<T> Insert(TInsert request)
         {
             var set = Context.Set<TDb>();
             TDb entity = _mapper.Map<TDb>(request);
-            set.Add(entity);
-            Context.SaveChanges();
+            await set .AddAsync(entity);
+            await Context.SaveChangesAsync();
             return _mapper.Map<T>(entity);
         }
 
-        public virtual T Update(int id, TUpdate request)
+        public async virtual Task<T> Update(int id, TUpdate request)
         {
             var set = Context.Set<TDb>();
-            var entity = set.Find(id);
+            var entity = await set.FindAsync(id);
             _mapper.Map(request, entity);
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
             return _mapper.Map<T>(entity);
         }
     }
