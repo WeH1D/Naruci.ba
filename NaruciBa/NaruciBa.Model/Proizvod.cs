@@ -15,8 +15,11 @@ namespace NaruciBa.Model
         public int? PodkategorijaID { get; set; }
         public int? PoslovnicaID { get; set; }
         public bool? Status { get; set; }
+        public string SlikaPutanja { get; set; }
         public byte[] Slika { get; set; }
         public DateTime? DatumKreiranja { get; set; }
         public DateTime? DatumIzmjene { get; set; }
+        public virtual Podkategorija Podkategorija { get; set; }
+        public virtual Poslovnica Poslovnica { get; set; }
     }
 }

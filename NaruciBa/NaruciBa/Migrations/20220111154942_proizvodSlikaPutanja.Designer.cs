@@ -10,8 +10,8 @@ using NaruciBa.Database;
 namespace NaruciBa.Migrations
 {
     [DbContext(typeof(NaruciBaContext))]
-    [Migration("20220110104623_trgovackiLanacSlikaPutanja")]
-    partial class trgovackiLanacSlikaPutanja
+    [Migration("20220111154942_proizvodSlikaPutanja")]
+    partial class proizvodSlikaPutanja
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -208,8 +208,8 @@ namespace NaruciBa.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<byte[]>("Slika")
-                        .HasColumnType("image");
+                    b.Property<string>("SlikaPutanja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefon")
                         .HasMaxLength(50)
@@ -330,8 +330,8 @@ namespace NaruciBa.Migrations
                     b.Property<int?>("PoslovnicaID")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("SlikaRacuna")
-                        .HasColumnType("image");
+                    b.Property<string>("SlikaRacunaPutanja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("UkupanIznos")
                         .HasColumnType("decimal(18,0)");
@@ -491,8 +491,8 @@ namespace NaruciBa.Migrations
                     b.Property<string>("Sifra")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Slika")
-                        .HasColumnType("image");
+                    b.Property<string>("SlikaPutanja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("Status")
                         .HasColumnType("bit");
@@ -546,8 +546,8 @@ namespace NaruciBa.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<byte[]>("SlikaPutanja")
-                        .HasColumnType("image");
+                    b.Property<string>("SlikaPutanja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TrgovackiLanacID");
 

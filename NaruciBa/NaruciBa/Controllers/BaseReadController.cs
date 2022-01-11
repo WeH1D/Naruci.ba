@@ -20,15 +20,15 @@ namespace NaruciBa.Controllers
         }
 
         [HttpGet]
-        public virtual IEnumerable<T> Get([FromQuery] TSearch search)
+        public async virtual Task<IEnumerable<T>> Get([FromQuery] TSearch search)
         {
-            return _service.Get(search);
+            return await _service.Get(search);
         }
 
         [HttpGet("{id}")]
-        public virtual T GetById(int id)
+        public async virtual Task<T> GetById(int id)
         {
-            return _service.GetById(id);
+            return await _service.GetById(id);
         }
     }
 }

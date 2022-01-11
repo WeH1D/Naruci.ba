@@ -29,7 +29,13 @@ namespace NaruciBa.WinUI.Poslovnice
             dgvPoslovnice.AutoGenerateColumns = false;
             dgvPoslovnice.DataSource = await _poslovnicaService.Get<List<Model.Poslovnica>>();
 
-            //btnDodajPoslovnicu.BackColor = AppTheme.PrimaryColor;
+            foreach (DataGridViewRow Row in dgvPoslovnice.Rows)
+            {
+                Row.Cells[6].Value = "Detalji";
+            }
+
+            btnDodajPoslovnicu.BackColor = AppTheme.PrimaryColor;
+            btnDodajLanacPoslovnica.BackColor = AppTheme.PrimaryColor;
         }
 
         private void frmPoslovnicePrikaz_SizeChanged(object sender, EventArgs e)
@@ -48,6 +54,16 @@ namespace NaruciBa.WinUI.Poslovnice
         {
             fmrDodajLanacPoslovnica frm = new fmrDodajLanacPoslovnica();
             frm.ShowDialog();
+        }
+
+        private void dgvPoslovnice_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 6)
+            {
+                frmPoslovnicaDetalji frm = new frmPoslovnicaDetalji(dgvPoslovnice.Rows[e.RowIndex].Cells[0].Value.ToString());
+                frm.MdiParent = this.MdiParent;
+                frm.Show();
+            }
         }
     }
 }

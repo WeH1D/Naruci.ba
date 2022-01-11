@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Images\Proizvod\" />
     <Folder Include="Images\TrgovackiLanac\" />
   </ItemGroup>
 

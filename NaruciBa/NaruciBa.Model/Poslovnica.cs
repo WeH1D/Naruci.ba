@@ -14,5 +14,8 @@ namespace NaruciBa.Model
         public int? TrgovackiLanacID { get; set; }
         public DateTime? DatumKreiranja { get; set; }
         public DateTime? DatumIzmjene { get; set; }
+
+        public virtual Grad Grad { get; set; }
+        public virtual TrgovackiLanac TrgovackiLanac { get; set; }
     }
 }

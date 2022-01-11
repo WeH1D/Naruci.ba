@@ -34,7 +34,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.lblLanacPoslovnica = new System.Windows.Forms.Label();
             this.cbLanacPoslovnica = new System.Windows.Forms.ComboBox();
             this.lblAdresa = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbGrad = new System.Windows.Forms.ComboBox();
             this.lblGrad = new System.Windows.Forms.Label();
             this.lblKontaktTelefon = new System.Windows.Forms.Label();
             this.lblKontaktEmail = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.lblValidacija = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
@@ -88,14 +89,14 @@ namespace NaruciBa.WinUI.Poslovnice
             this.lblAdresa.TabIndex = 5;
             this.lblAdresa.Text = "Adresa:";
             // 
-            // comboBox2
+            // cbGrad
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(172, 85);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(163, 26);
-            this.comboBox2.TabIndex = 8;
+            this.cbGrad.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGrad.FormattingEnabled = true;
+            this.cbGrad.Location = new System.Drawing.Point(172, 85);
+            this.cbGrad.Name = "cbGrad";
+            this.cbGrad.Size = new System.Drawing.Size(163, 26);
+            this.cbGrad.TabIndex = 8;
             // 
             // lblGrad
             // 
@@ -157,7 +158,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.btnDodajPoslovnicu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDodajPoslovnicu.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajPoslovnicu.ForeColor = System.Drawing.Color.White;
-            this.btnDodajPoslovnicu.Location = new System.Drawing.Point(214, 202);
+            this.btnDodajPoslovnicu.Location = new System.Drawing.Point(214, 218);
             this.btnDodajPoslovnicu.Name = "btnDodajPoslovnicu";
             this.btnDodajPoslovnicu.Size = new System.Drawing.Size(121, 29);
             this.btnDodajPoslovnicu.TabIndex = 15;
@@ -167,6 +168,7 @@ namespace NaruciBa.WinUI.Poslovnice
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblValidacija);
             this.panel1.Controls.Add(this.lblKontaktTelefon);
             this.panel1.Controls.Add(this.btnDodajPoslovnicu);
             this.panel1.Controls.Add(this.lblLanacPoslovnica);
@@ -177,7 +179,7 @@ namespace NaruciBa.WinUI.Poslovnice
             this.panel1.Controls.Add(this.txtAdresa);
             this.panel1.Controls.Add(this.lblGrad);
             this.panel1.Controls.Add(this.lblKontaktEmail);
-            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.cbGrad);
             this.panel1.Location = new System.Drawing.Point(35, 70);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(357, 279);
@@ -193,6 +195,18 @@ namespace NaruciBa.WinUI.Poslovnice
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(434, 361);
             this.pnlMain.TabIndex = 17;
+            // 
+            // lblValidacija
+            // 
+            this.lblValidacija.AutoSize = true;
+            this.lblValidacija.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValidacija.ForeColor = System.Drawing.Color.Red;
+            this.lblValidacija.Location = new System.Drawing.Point(81, 195);
+            this.lblValidacija.Name = "lblValidacija";
+            this.lblValidacija.Size = new System.Drawing.Size(180, 15);
+            this.lblValidacija.TabIndex = 16;
+            this.lblValidacija.Text = "Sva polja moraju biti popunjena.";
+            this.lblValidacija.Visible = false;
             // 
             // frmDodajPoslovnicu
             // 
@@ -223,7 +237,7 @@ namespace NaruciBa.WinUI.Poslovnice
         private System.Windows.Forms.Label lblLanacPoslovnica;
         private System.Windows.Forms.ComboBox cbLanacPoslovnica;
         private System.Windows.Forms.Label lblAdresa;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbGrad;
         private System.Windows.Forms.Label lblGrad;
         private System.Windows.Forms.Label lblKontaktTelefon;
         private System.Windows.Forms.Label lblKontaktEmail;
@@ -233,5 +247,6 @@ namespace NaruciBa.WinUI.Poslovnice
         private System.Windows.Forms.Button btnDodajPoslovnicu;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.Label lblValidacija;
     }
 }

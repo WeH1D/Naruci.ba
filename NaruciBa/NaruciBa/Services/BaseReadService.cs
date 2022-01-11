@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using NaruciBa.Database;
 using NaruciBa.Services.Interfaces;
 using System;
@@ -19,17 +20,17 @@ namespace NaruciBa.Services
             Context = context;
         }
 
-        public virtual IEnumerable<T> Get(TSearch search = null)
+        public async virtual Task<IEnumerable<T>> Get(TSearch search = null)
         {
             var set = Context.Set<TDb>();
-            var list = set.ToList();
+            var list = await set.ToListAsync();
             return _mapper.Map<List<T>>(list);
         }
 
-        public virtual T GetById(int id)
+        public async virtual Task<T> GetById(int id)
         {
             var set = Context.Set<TDb>();
-            var entity = set.Find(id);
+            var entity = await set.FindAsync(id);
             return _mapper.Map<T>(entity);
         }
     }

@@ -32,19 +32,22 @@ namespace NaruciBa.WinUI.Poslovnice
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.dgvPoslovnice = new System.Windows.Forms.DataGridView();
-            this.LanacPoslovnica = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Adresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Grad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KontaktEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KontaktTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlActions = new System.Windows.Forms.Panel();
             this.btnDodajLanacPoslovnica = new System.Windows.Forms.Button();
             this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtPretraga = new System.Windows.Forms.TextBox();
+            this.PoslovnicaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LanacPoslovnica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Adresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Grad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KontaktEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KontaktTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Detalji = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlDgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoslovnice)).BeginInit();
             this.pnlActions.SuspendLayout();
@@ -67,7 +70,8 @@ namespace NaruciBa.WinUI.Poslovnice
             // 
             this.dgvPoslovnice.AllowUserToAddRows = false;
             this.dgvPoslovnice.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvPoslovnice.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPoslovnice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPoslovnice.BackgroundColor = System.Drawing.Color.White;
@@ -85,11 +89,13 @@ namespace NaruciBa.WinUI.Poslovnice
             this.dgvPoslovnice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPoslovnice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPoslovnice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PoslovnicaID,
             this.LanacPoslovnica,
             this.Adresa,
             this.Grad,
             this.KontaktEmail,
-            this.KontaktTel});
+            this.KontaktTel,
+            this.Detalji});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -107,46 +113,15 @@ namespace NaruciBa.WinUI.Poslovnice
             this.dgvPoslovnice.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvPoslovnice.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvPoslovnice.RowHeadersWidth = 20;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvPoslovnice.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPoslovnice.RowTemplate.DividerHeight = 1;
             this.dgvPoslovnice.RowTemplate.Height = 40;
             this.dgvPoslovnice.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPoslovnice.Size = new System.Drawing.Size(790, 377);
             this.dgvPoslovnice.TabIndex = 0;
-            // 
-            // LanacPoslovnica
-            // 
-            this.LanacPoslovnica.DataPropertyName = "trgovackiLanacID";
-            this.LanacPoslovnica.HeaderText = "Lanac poslovnica";
-            this.LanacPoslovnica.Name = "LanacPoslovnica";
-            this.LanacPoslovnica.ReadOnly = true;
-            // 
-            // Adresa
-            // 
-            this.Adresa.DataPropertyName = "adresa";
-            this.Adresa.HeaderText = "Adresa poslovnice";
-            this.Adresa.Name = "Adresa";
-            this.Adresa.ReadOnly = true;
-            // 
-            // Grad
-            // 
-            this.Grad.DataPropertyName = "GradID";
-            this.Grad.HeaderText = "Grad";
-            this.Grad.Name = "Grad";
-            this.Grad.ReadOnly = true;
-            // 
-            // KontaktEmail
-            // 
-            this.KontaktEmail.DataPropertyName = "kontaktEmail";
-            this.KontaktEmail.HeaderText = "Kontakt email";
-            this.KontaktEmail.Name = "KontaktEmail";
-            this.KontaktEmail.ReadOnly = true;
-            // 
-            // KontaktTel
-            // 
-            this.KontaktTel.DataPropertyName = "kontaktTel";
-            this.KontaktTel.HeaderText = "Kontakt telefon";
-            this.KontaktTel.Name = "KontaktTel";
-            this.KontaktTel.ReadOnly = true;
+            this.dgvPoslovnice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPoslovnice_CellClick);
             // 
             // pnlActions
             // 
@@ -218,6 +193,55 @@ namespace NaruciBa.WinUI.Poslovnice
             this.txtPretraga.Size = new System.Drawing.Size(197, 24);
             this.txtPretraga.TabIndex = 2;
             // 
+            // PoslovnicaID
+            // 
+            this.PoslovnicaID.DataPropertyName = "PoslovnicaID";
+            this.PoslovnicaID.HeaderText = "PoslovnicaID";
+            this.PoslovnicaID.Name = "PoslovnicaID";
+            this.PoslovnicaID.ReadOnly = true;
+            this.PoslovnicaID.Visible = false;
+            // 
+            // LanacPoslovnica
+            // 
+            this.LanacPoslovnica.DataPropertyName = "trgovackiLanacID";
+            this.LanacPoslovnica.HeaderText = "Lanac poslovnica";
+            this.LanacPoslovnica.Name = "LanacPoslovnica";
+            this.LanacPoslovnica.ReadOnly = true;
+            // 
+            // Adresa
+            // 
+            this.Adresa.DataPropertyName = "adresa";
+            this.Adresa.HeaderText = "Adresa poslovnice";
+            this.Adresa.Name = "Adresa";
+            this.Adresa.ReadOnly = true;
+            // 
+            // Grad
+            // 
+            this.Grad.DataPropertyName = "GradID";
+            this.Grad.HeaderText = "Grad";
+            this.Grad.Name = "Grad";
+            this.Grad.ReadOnly = true;
+            // 
+            // KontaktEmail
+            // 
+            this.KontaktEmail.DataPropertyName = "kontaktEmail";
+            this.KontaktEmail.HeaderText = "Kontakt email";
+            this.KontaktEmail.Name = "KontaktEmail";
+            this.KontaktEmail.ReadOnly = true;
+            // 
+            // KontaktTel
+            // 
+            this.KontaktTel.DataPropertyName = "kontaktTel";
+            this.KontaktTel.HeaderText = "Kontakt telefon";
+            this.KontaktTel.Name = "KontaktTel";
+            this.KontaktTel.ReadOnly = true;
+            // 
+            // Detalji
+            // 
+            this.Detalji.HeaderText = "Detalji";
+            this.Detalji.Name = "Detalji";
+            this.Detalji.ReadOnly = true;
+            // 
             // frmPoslovnicePrikaz
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -245,16 +269,18 @@ namespace NaruciBa.WinUI.Poslovnice
         #endregion
         private System.Windows.Forms.Panel pnlDgv;
         private System.Windows.Forms.DataGridView dgvPoslovnice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LanacPoslovnica;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Adresa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Grad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KontaktEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KontaktTel;
         private System.Windows.Forms.Panel pnlActions;
         private System.Windows.Forms.Button btnDodajPoslovnicu;
         private System.Windows.Forms.TextBox txtPretraga;
         private System.Windows.Forms.Panel pnlSearch;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnDodajLanacPoslovnica;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PoslovnicaID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LanacPoslovnica;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Adresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Grad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KontaktEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KontaktTel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Detalji;
     }
 }

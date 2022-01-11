@@ -39,7 +39,6 @@ namespace NaruciBa.WinUI.Kategorije
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlEditKategorija = new System.Windows.Forms.Panel();
             this.pnlUrediKategoriju = new System.Windows.Forms.Panel();
-            this.btnSacuvaj = new System.Windows.Forms.Button();
             this.btnIzbrisiPodkategoriju = new System.Windows.Forms.Button();
             this.txtOdabranaPodkategorija = new System.Windows.Forms.TextBox();
             this.lblPodkategorijaNaziv = new System.Windows.Forms.Label();
@@ -179,7 +178,6 @@ namespace NaruciBa.WinUI.Kategorije
             // 
             this.pnlUrediKategoriju.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlUrediKategoriju.Controls.Add(this.btnSacuvaj);
             this.pnlUrediKategoriju.Controls.Add(this.btnIzbrisiPodkategoriju);
             this.pnlUrediKategoriju.Controls.Add(this.txtOdabranaPodkategorija);
             this.pnlUrediKategoriju.Controls.Add(this.lblPodkategorijaNaziv);
@@ -192,20 +190,6 @@ namespace NaruciBa.WinUI.Kategorije
             this.pnlUrediKategoriju.Size = new System.Drawing.Size(408, 246);
             this.pnlUrediKategoriju.TabIndex = 1;
             // 
-            // btnSacuvaj
-            // 
-            this.btnSacuvaj.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSacuvaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnSacuvaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSacuvaj.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSacuvaj.ForeColor = System.Drawing.Color.White;
-            this.btnSacuvaj.Location = new System.Drawing.Point(227, 171);
-            this.btnSacuvaj.Name = "btnSacuvaj";
-            this.btnSacuvaj.Size = new System.Drawing.Size(177, 29);
-            this.btnSacuvaj.TabIndex = 7;
-            this.btnSacuvaj.Text = "Sacuvaj Izmjene";
-            this.btnSacuvaj.UseVisualStyleBackColor = false;
-            // 
             // btnIzbrisiPodkategoriju
             // 
             this.btnIzbrisiPodkategoriju.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -213,7 +197,7 @@ namespace NaruciBa.WinUI.Kategorije
             this.btnIzbrisiPodkategoriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIzbrisiPodkategoriju.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIzbrisiPodkategoriju.ForeColor = System.Drawing.Color.White;
-            this.btnIzbrisiPodkategoriju.Location = new System.Drawing.Point(334, 119);
+            this.btnIzbrisiPodkategoriju.Location = new System.Drawing.Point(334, 134);
             this.btnIzbrisiPodkategoriju.Name = "btnIzbrisiPodkategoriju";
             this.btnIzbrisiPodkategoriju.Size = new System.Drawing.Size(70, 29);
             this.btnIzbrisiPodkategoriju.TabIndex = 6;
@@ -225,7 +209,7 @@ namespace NaruciBa.WinUI.Kategorije
             this.txtOdabranaPodkategorija.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOdabranaPodkategorija.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOdabranaPodkategorija.Location = new System.Drawing.Point(35, 123);
+            this.txtOdabranaPodkategorija.Location = new System.Drawing.Point(35, 138);
             this.txtOdabranaPodkategorija.Name = "txtOdabranaPodkategorija";
             this.txtOdabranaPodkategorija.Size = new System.Drawing.Size(264, 21);
             this.txtOdabranaPodkategorija.TabIndex = 5;
@@ -234,7 +218,7 @@ namespace NaruciBa.WinUI.Kategorije
             // 
             this.lblPodkategorijaNaziv.AutoSize = true;
             this.lblPodkategorijaNaziv.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPodkategorijaNaziv.Location = new System.Drawing.Point(32, 104);
+            this.lblPodkategorijaNaziv.Location = new System.Drawing.Point(32, 119);
             this.lblPodkategorijaNaziv.Name = "lblPodkategorijaNaziv";
             this.lblPodkategorijaNaziv.Size = new System.Drawing.Size(85, 15);
             this.lblPodkategorijaNaziv.TabIndex = 4;
@@ -247,7 +231,7 @@ namespace NaruciBa.WinUI.Kategorije
             this.btnIzbrisiKategoriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIzbrisiKategoriju.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIzbrisiKategoriju.ForeColor = System.Drawing.Color.White;
-            this.btnIzbrisiKategoriju.Location = new System.Drawing.Point(334, 62);
+            this.btnIzbrisiKategoriju.Location = new System.Drawing.Point(334, 77);
             this.btnIzbrisiKategoriju.Name = "btnIzbrisiKategoriju";
             this.btnIzbrisiKategoriju.Size = new System.Drawing.Size(71, 29);
             this.btnIzbrisiKategoriju.TabIndex = 3;
@@ -259,7 +243,7 @@ namespace NaruciBa.WinUI.Kategorije
             this.txtOdabranaKategorija.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOdabranaKategorija.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOdabranaKategorija.Location = new System.Drawing.Point(35, 66);
+            this.txtOdabranaKategorija.Location = new System.Drawing.Point(35, 81);
             this.txtOdabranaKategorija.Name = "txtOdabranaKategorija";
             this.txtOdabranaKategorija.Size = new System.Drawing.Size(264, 21);
             this.txtOdabranaKategorija.TabIndex = 2;
@@ -268,7 +252,7 @@ namespace NaruciBa.WinUI.Kategorije
             // 
             this.lblIzabranaKategorijaNaziv.AutoSize = true;
             this.lblIzabranaKategorijaNaziv.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIzabranaKategorijaNaziv.Location = new System.Drawing.Point(32, 47);
+            this.lblIzabranaKategorijaNaziv.Location = new System.Drawing.Point(32, 62);
             this.lblIzabranaKategorijaNaziv.Name = "lblIzabranaKategorijaNaziv";
             this.lblIzabranaKategorijaNaziv.Size = new System.Drawing.Size(65, 15);
             this.lblIzabranaKategorijaNaziv.TabIndex = 1;
@@ -514,7 +498,6 @@ namespace NaruciBa.WinUI.Kategorije
         private System.Windows.Forms.ComboBox cbKategorija;
         private System.Windows.Forms.Label lblKategorija;
         private System.Windows.Forms.Panel pnlUrediKategoriju;
-        private System.Windows.Forms.Button btnSacuvaj;
         private System.Windows.Forms.Button btnIzbrisiPodkategoriju;
         private System.Windows.Forms.TextBox txtOdabranaPodkategorija;
         private System.Windows.Forms.Label lblPodkategorijaNaziv;

@@ -20,7 +20,7 @@ namespace NaruciBa.Database
         public DateTime? Datum { get; set; }
         public decimal? UkupanIznos { get; set; }
         public decimal? BonusZaDostavljaca { get; set; }
-        public byte[] SlikaRacuna { get; set; }
+        public string SlikaRacunaPutanja { get; set; }
         public int? NarudzbaStatusID { get; set; }
         public int? KuponID { get; set; }
 

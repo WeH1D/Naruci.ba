@@ -18,7 +18,7 @@ namespace NaruciBa.Services
         {
         }
 
-        public override IEnumerable<Model.Poslovnica> Get(PoslovnicaSearchObject search = null)
+        public async override Task<IEnumerable<Model.Poslovnica>> Get(PoslovnicaSearchObject search = null)
         {
             var entity = Context.Set<Database.Poslovnica>().AsQueryable();
             if(search.GradID.HasValue)
@@ -29,7 +29,14 @@ namespace NaruciBa.Services
             {
                 entity = entity.Include(a => a.TrgovackiLanac).Where(a => a.TrgovackiLanac.TrgovackiLanacID == search.TrgovackiLanacID);
             }
-            var list = entity.ToList();
+            if(search.IncludeList?.Count > 0)
+            {
+                foreach (var item in search.IncludeList)
+                {
+                    entity = entity.Include(item);
+                }
+            }
+            var list = await entity .ToListAsync();
             return _mapper.Map<List<Model.Poslovnica>>(list);
         }
     }

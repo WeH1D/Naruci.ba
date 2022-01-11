@@ -25,7 +25,7 @@ namespace NaruciBa.Database
         public DateTime? DatumIzmjene { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
-        public byte[] Slika { get; set; }
+        public string SlikaPutanja { get; set; }
         public int? GradID { get; set; }
 
         public virtual Grad Grad { get; set; }

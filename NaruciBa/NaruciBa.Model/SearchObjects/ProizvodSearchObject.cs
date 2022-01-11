@@ -11,5 +11,6 @@ namespace NaruciBa.Model.SearchObjects
         public int? PodkategorijaID { get; set; }
         public int? KategorijaID { get; set; }
         public int? PoslovnicaID { get; set; }
+        public List<string> IncludeList { get; set; }
     }
 }

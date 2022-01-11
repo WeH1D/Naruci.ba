@@ -153,7 +153,7 @@ namespace NaruciBa.Database
 
                 entity.Property(e => e.Prezime).HasMaxLength(50);
 
-                entity.Property(e => e.Slika).HasColumnType("image");
+                entity.Property(e => e.SlikaPutanja);
 
                 entity.Property(e => e.Telefon).HasMaxLength(50);
 
@@ -214,7 +214,7 @@ namespace NaruciBa.Database
 
                 entity.Property(e => e.Datum).HasColumnType("datetime");
 
-                entity.Property(e => e.SlikaRacuna).HasColumnType("image");
+                entity.Property(e => e.SlikaRacunaPutanja);
 
                 entity.Property(e => e.UkupanIznos).HasColumnType("decimal(18, 0)");
 
@@ -322,7 +322,7 @@ namespace NaruciBa.Database
 
                 entity.Property(e => e.Opis).HasMaxLength(200);
 
-                entity.Property(e => e.Slika).HasColumnType("image");
+                entity.Property(e => e.SlikaPutanja);
 
                 entity.HasOne(d => d.Podkategorija)
                     .WithMany(p => p.Proizvods)
@@ -358,7 +358,7 @@ namespace NaruciBa.Database
 
                 entity.Property(e => e.Naziv).HasMaxLength(50);
 
-                entity.Property(e => e.SlikaPutanja).HasColumnType("image");
+                entity.Property(e => e.SlikaPutanja);
             });
 
             modelBuilder.Entity<TrgovackiLanacKategorija>(entity =>

@@ -32,6 +32,8 @@ namespace NaruciBa.WinUI.Poslovnice
             {
                 request.Naziv = txtNaziv.Text;
                 await _LanacPoslovnicaService.Insert<Model.TrgovackiLanac>(request);
+
+                this.Close();
             }
         }
 

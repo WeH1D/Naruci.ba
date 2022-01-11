@@ -9,6 +9,6 @@ namespace NaruciBa.Model
         public int TrgovackiLanacID { get; set; }
         public string Naziv { get; set; }
         public string SlikaPutanja{ get; set; }
-        public byte[] Slika { get; set; }
+        public byte[] Slika{ get; set; }
     }
 }

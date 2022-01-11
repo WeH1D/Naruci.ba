@@ -7,7 +7,7 @@ namespace NaruciBa.Services.Interfaces
 {
     public interface IReadService<T, TSearch> where T: class where TSearch: class
     {
-        public IEnumerable<T> Get(TSearch search = null);
-        public T GetById(int id);
+        public Task<IEnumerable<T>> Get(TSearch search = null);
+        public Task<T> GetById(int id);
     }
 }

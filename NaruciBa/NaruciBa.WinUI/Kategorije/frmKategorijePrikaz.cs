@@ -38,7 +38,6 @@ namespace NaruciBa.WinUI.Kategorije
             btnDodajPodkateogrija.BackColor = AppTheme.PrimaryColor;
             btnIzbrisiKategoriju.BackColor = AppTheme.PrimaryColor;
             btnIzbrisiPodkategoriju.BackColor = AppTheme.PrimaryColor;
-            btnSacuvaj.BackColor = AppTheme.PrimaryColor;
 
             podkategorije = await _podkategorijeService.Get<List<Model.Podkategorija>>();
             kategorije = await _kategorijaService.Get<List<Model.Kategorija>>();

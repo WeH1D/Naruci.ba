@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using NaruciBa.Database;
 using NaruciBa.Model.Requests;
 using NaruciBa.Model.SearchObjects;
@@ -17,7 +18,7 @@ namespace NaruciBa.Services
         {
         }
 
-        public override IEnumerable<Model.Podkategorija> Get(PodkategorijaSearchObject search = null)
+        public async override Task<IEnumerable<Model.Podkategorija>> Get(PodkategorijaSearchObject search = null)
         {
             var entity = Context.Set<Database.Podkategorija>().AsQueryable();
 
@@ -31,7 +32,7 @@ namespace NaruciBa.Services
                 entity = entity.Where(a => a.KategorijaID == search.KategorijaID);
             }
 
-            var list = entity.ToList();
+            var list = await entity.ToListAsync();
             return _mapper.Map<List<Model.Podkategorija>>(list);
         }
     }
