@@ -19,6 +19,21 @@ namespace NaruciBa.WinUI.Poslovnice
         APIService _gradService = new APIService("Grad");
         APIService _proizvodiService = new APIService("Proizvod");
         APIService _kategorijaService = new APIService("Kategorija");
+        APIService _kategorijrFromProizvodiService = new APIService("Kategorija/getKategorijeFromProizvodiList");
+
+        public class ProizvodForView
+        {
+            public int ProizvodID { get; set; }
+            public int KategorijaID { get; set; }
+            public string Naziv { get; set; }
+            public string Opis { get; set; }
+            public string Cijena { get; set; }
+            public string Kg { get; set; }
+            public string Izbrisi { get; set; }
+            public string Uredi { get; set; }
+
+        }
+
         public frmPoslovnicaDetalji(string polsovnicaID)
         {
             InitializeComponent();
@@ -36,18 +51,35 @@ namespace NaruciBa.WinUI.Poslovnice
                 IncludeList = new List<string>() { "Podkategorija" }
             });
 
-            List<Model.Kategorija> kategorije = await getKategorijeFromProizvodi(proizvodi);
+            //////////////////////////////////////////////////////////////////////
+
+            List<int> kategorijeIDs = new List<int>();
+
+            foreach (var proizvod in proizvodi)
+            {
+                kategorijeIDs.Add((int)proizvod.Podkategorija.KategorijaID);
+            }
+
+            List<Model.Kategorija> kategorije = await _kategorijrFromProizvodiService.Get<List<Model.Kategorija>>(new Model.SearchObjects.KategorijaSearchObject()
+            {
+                proizvodiID = kategorijeIDs
+            });
+
+            //////////////////////////////////////////////////////////////////////
+
 
             foreach (Model.Kategorija kategorija in kategorije)
             {
                 DataGridView dgv = new DataGridView();
                 dgv.Dock = DockStyle.Top;
-                DataGridViewCellStyle style = new DataGridViewCellStyle();
-                style.BackColor = Color.White;
-                style.ForeColor = Color.FromArgb(64, 64, 64);
-                dgv.DefaultCellStyle = style;
-                dgv.ColumnHeadersDefaultCellStyle = style;
-                
+                dgv.ColumnHeadersVisible = false;
+                dgv.Name = $"dgv{kategorija.Naziv}";
+                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgv.AutoSize = true;
+                dgv.BackgroundColor = Color.White;
+                dgv.BorderStyle = BorderStyle.None;
+                dgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
                 DataGridViewTextBoxColumn columnId = new DataGridViewTextBoxColumn();
                 columnId.Visible = false;
                 columnId.DataPropertyName = "KategorijaId";
@@ -56,37 +88,130 @@ namespace NaruciBa.WinUI.Poslovnice
                 DataGridViewTextBoxColumn columnNaziv = new DataGridViewTextBoxColumn();
                 columnNaziv.HeaderText = "Naziv";
                 columnNaziv.DataPropertyName = "Naziv";
+                DataGridViewCellStyle nazivStyle = new DataGridViewCellStyle();
+                nazivStyle.BackColor = Color.White;
+                nazivStyle.ForeColor = Color.FromArgb(64, 64, 64);
+                nazivStyle.SelectionBackColor = Color.White;
+                nazivStyle.SelectionForeColor = Color.FromArgb(64, 64, 64);
+                columnNaziv.DefaultCellStyle = nazivStyle;
                 dgv.Columns.Add(columnNaziv);
 
                 DataGridViewTextBoxColumn columnOpis = new DataGridViewTextBoxColumn();
                 columnOpis.HeaderText = "Opis";
                 columnOpis.DataPropertyName = "Opis";
+                DataGridViewCellStyle opisStyle = new DataGridViewCellStyle();
+                opisStyle.BackColor = Color.White;
+                opisStyle.ForeColor = Color.FromArgb(64, 64, 64);
+                opisStyle.SelectionBackColor = Color.White;
+                opisStyle.SelectionForeColor = Color.FromArgb(64, 64, 64);
+                columnOpis.DefaultCellStyle = opisStyle;
                 dgv.Columns.Add(columnOpis);
 
                 DataGridViewTextBoxColumn columnCijena = new DataGridViewTextBoxColumn();
                 columnCijena.HeaderText = "Cijena";
                 columnCijena.DataPropertyName = "Cijena";
+                DataGridViewCellStyle cijenaStyle = new DataGridViewCellStyle();
+                cijenaStyle.BackColor = Color.White;
+                cijenaStyle.ForeColor = Color.FromArgb(64, 64, 64);
+                cijenaStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                cijenaStyle.SelectionBackColor = Color.White;
+                cijenaStyle.SelectionForeColor = Color.FromArgb(64, 64, 64);
+                columnCijena.DefaultCellStyle = cijenaStyle;
                 dgv.Columns.Add(columnCijena);
 
-                //foreach (var proizvod in proizvodi)
-                //{
-                //    if(proizvod.Podkategorija.KategorijaID == kategorija.KategorijaID)
-                //    {
-                //        dgv.Rows.Add(proizvod);
-                //    }
-                //}
+                DataGridViewTextBoxColumn columnKolicina = new DataGridViewTextBoxColumn();
+                columnKolicina.HeaderText = "Kg";
+                columnKolicina.DataPropertyName = "Kg";
+                DataGridViewCellStyle kgStyle = new DataGridViewCellStyle();
+                kgStyle.BackColor = Color.White;
+                kgStyle.ForeColor = Color.FromArgb(64, 64, 64);
+                kgStyle.SelectionBackColor = Color.White;
+                kgStyle.SelectionForeColor = Color.FromArgb(64, 64, 64);
+                columnKolicina.DefaultCellStyle = kgStyle;
+                dgv.Columns.Add(columnKolicina);
+
+                DataGridViewTextBoxColumn columnUredi = new DataGridViewTextBoxColumn();
+                columnUredi.DataPropertyName = "Uredi";
+                DataGridViewCellStyle urediStyle = new DataGridViewCellStyle();
+                urediStyle.ForeColor = Color.HotPink;
+                urediStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                urediStyle.SelectionBackColor = Color.White;
+                urediStyle.SelectionForeColor = Color.HotPink;
+                columnUredi.DefaultCellStyle = urediStyle;
+                dgv.Columns.Add(columnUredi);
+
+                DataGridViewTextBoxColumn columnIzbrisi = new DataGridViewTextBoxColumn();
+                columnIzbrisi.DataPropertyName = "Izbrisi";
+                DataGridViewCellStyle izbrisiStyle = new DataGridViewCellStyle();
+                izbrisiStyle.ForeColor = Color.HotPink;
+                izbrisiStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                izbrisiStyle.SelectionBackColor = Color.White;
+                izbrisiStyle.SelectionForeColor = Color.HotPink;
+                columnIzbrisi.DefaultCellStyle = izbrisiStyle;
+                dgv.Columns.Add(columnIzbrisi);
+
+                var odgovarajuciProizvodi = proizvodi.Where(a => a.Podkategorija.KategorijaID == kategorija.KategorijaID).ToList();
+                List<ProizvodForView> proizvodiUKategoriji = new List<ProizvodForView>();
+                foreach (var proizvod in odgovarajuciProizvodi)
+                {
+                    proizvodiUKategoriji.Add(new ProizvodForView
+                    {
+                        ProizvodID = proizvod.ProizvodID,
+                        KategorijaID = (int)proizvod.Podkategorija.KategorijaID,
+                        Cijena = $"{proizvod.Cijena} KM",
+                        Kg = (bool)proizvod.Kg ? "po Kg" : "po komadu",
+                        Naziv = proizvod.Naziv,
+                        Opis = proizvod.Opis,
+                        Uredi = "Uredi",
+                        Izbrisi = "Izbrisi"
+                    });
+                }
 
                 dgv.AutoGenerateColumns = false;
-                dgv.DataSource = proizvodi;
+                dgv.DataSource = proizvodiUKategoriji;
+                dgv.Visible = false;
+
+                dgv.CellClick += onCellClick;
 
                 pnlPorizvodiBack.Controls.Add(dgv);
 
                 Button btn = new Button();
                 btn.Text = kategorija.Naziv;
+                btn.Height = 40;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.BackColor = AppTheme.PrimaryColor;
+                btn.ForeColor = Color.White;
+                btn.Font = new Font("monteserat", 12, FontStyle.Bold);
                 btn.Dock = DockStyle.Top;
+                btn.TextAlign = ContentAlignment.MiddleLeft;
+                btn.Padding = new Padding(10, 0, 0, 0);
+                btn.Click += new EventHandler(expandKategorija);
                 pnlPorizvodiBack.Controls.Add(btn);
             }
 
+        }
+
+        private void onCellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var dgv = (DataGridView)sender;
+            var proizvodID = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+            if (e.ColumnIndex == 5)
+            {
+                frmUrediProizvod form = new frmUrediProizvod(int.Parse(proizvodID));
+                form.ShowDialog();
+            }
+            if (e.ColumnIndex == 6)
+            {
+                var confirmResult = MessageBox.Show("Jeste li sigurni da zelite izbrisati odabrani proizvod?", "", MessageBoxButtons.YesNo);
+            }
+        }
+
+        private void expandKategorija(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            var control = pnlPorizvodiBack.Controls.Find($"dgv{btn.Text}", true).First();
+            control.Visible = !control.Visible;
         }
 
         private void btnDodajNoviProizvod_Click(object sender, EventArgs e)
@@ -120,28 +245,6 @@ namespace NaruciBa.WinUI.Poslovnice
                 Image x = (Bitmap)((new ImageConverter()).ConvertFrom(trgovackiLanac.Slika));
                 pbSlika.Image = x;
             }
-        }
-
-        public async Task<List<Model.Kategorija>> getKategorijeFromProizvodi(List<Model.Proizvod> proizvodi)
-        {
-
-            List<string> kategorijeIDs = new List<string>();
-
-            foreach (var proizvod in proizvodi)
-            {
-                kategorijeIDs.Add(proizvod.Podkategorija.KategorijaID.ToString());
-            }
-
-            kategorijeIDs = kategorijeIDs.Distinct().ToList();
-
-            List<Model.Kategorija> kategorije = new List<Model.Kategorija>();
-
-            foreach (var id in kategorijeIDs)
-            {
-                kategorije.Add(await _kategorijaService.GetById<Model.Kategorija>(id));
-            }
-
-            return kategorije;
         }
     }
 }

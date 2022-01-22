@@ -206,7 +206,8 @@ namespace NaruciBa.WinUI.Poslovnice
             this.pnlPorizvodiBack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlPorizvodiBack.BackColor = System.Drawing.Color.White;
+            this.pnlPorizvodiBack.AutoScroll = true;
+            this.pnlPorizvodiBack.BackColor = System.Drawing.Color.Gainsboro;
             this.pnlPorizvodiBack.Location = new System.Drawing.Point(0, 64);
             this.pnlPorizvodiBack.Name = "pnlPorizvodiBack";
             this.pnlPorizvodiBack.Size = new System.Drawing.Size(760, 223);
@@ -214,8 +215,9 @@ namespace NaruciBa.WinUI.Poslovnice
             // 
             // btnDodajNoviProizvod
             // 
-            this.btnDodajNoviProizvod.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnDodajNoviProizvod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDodajNoviProizvod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDodajNoviProizvod.FlatAppearance.BorderSize = 0;
             this.btnDodajNoviProizvod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDodajNoviProizvod.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajNoviProizvod.ForeColor = System.Drawing.Color.White;
@@ -240,7 +242,8 @@ namespace NaruciBa.WinUI.Poslovnice
             // 
             // pnlProizvodiMain
             // 
-            this.pnlProizvodiMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlProizvodiMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlProizvodiMain.Controls.Add(this.label1);
             this.pnlProizvodiMain.Controls.Add(this.pnlPorizvodiBack);
@@ -253,6 +256,7 @@ namespace NaruciBa.WinUI.Poslovnice
             // frmPoslovnicaDetalji
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(800, 603);
             this.ControlBox = false;
             this.Controls.Add(this.pnlProizvodiMain);

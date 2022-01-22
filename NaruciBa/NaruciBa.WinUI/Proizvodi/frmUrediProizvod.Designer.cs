@@ -1,7 +1,7 @@
 ﻿
 namespace NaruciBa.WinUI.Proizvodi
 {
-    partial class frmDodajNoviProizvod
+    partial class frmUrediProizvod
     {
         /// <summary>
         /// Required designer variable.
@@ -41,14 +41,13 @@ namespace NaruciBa.WinUI.Proizvodi
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.lblValidacija = new System.Windows.Forms.Label();
             this.lblCijenaPo = new System.Windows.Forms.Label();
-            this.btnDodajPrpozvod = new System.Windows.Forms.Button();
+            this.btnSacuvaj = new System.Windows.Forms.Button();
             this.lblNaziv = new System.Windows.Forms.Label();
             this.lblOpis = new System.Windows.Forms.Label();
             this.txtOpis = new System.Windows.Forms.TextBox();
             this.lblCijena = new System.Windows.Forms.Label();
             this.lblPodkategorija = new System.Windows.Forms.Label();
-            this.lblDodajProizvod = new System.Windows.Forms.Label();
-            this.ofd = new System.Windows.Forms.OpenFileDialog();
+            this.lblUrediProizvod = new System.Windows.Forms.Label();
             this.lblKM = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).BeginInit();
@@ -68,16 +67,16 @@ namespace NaruciBa.WinUI.Proizvodi
             this.panel1.Controls.Add(this.txtNaziv);
             this.panel1.Controls.Add(this.lblValidacija);
             this.panel1.Controls.Add(this.lblCijenaPo);
-            this.panel1.Controls.Add(this.btnDodajPrpozvod);
+            this.panel1.Controls.Add(this.btnSacuvaj);
             this.panel1.Controls.Add(this.lblNaziv);
             this.panel1.Controls.Add(this.lblOpis);
             this.panel1.Controls.Add(this.txtOpis);
             this.panel1.Controls.Add(this.lblCijena);
             this.panel1.Controls.Add(this.lblPodkategorija);
-            this.panel1.Location = new System.Drawing.Point(16, 48);
+            this.panel1.Location = new System.Drawing.Point(12, 57);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(553, 342);
-            this.panel1.TabIndex = 18;
+            this.panel1.TabIndex = 19;
             // 
             // txtSifra
             // 
@@ -107,7 +106,6 @@ namespace NaruciBa.WinUI.Proizvodi
             this.cbKomad.TabIndex = 23;
             this.cbKomad.Text = "komadu";
             this.cbKomad.UseVisualStyleBackColor = true;
-            this.cbKomad.CheckedChanged += new System.EventHandler(this.cbKomad_CheckedChanged);
             // 
             // cbKg
             // 
@@ -121,7 +119,6 @@ namespace NaruciBa.WinUI.Proizvodi
             this.cbKg.TabIndex = 22;
             this.cbKg.Text = "kg";
             this.cbKg.UseVisualStyleBackColor = true;
-            this.cbKg.CheckedChanged += new System.EventHandler(this.cbKg_CheckedChanged);
             // 
             // lblDodajSliku
             // 
@@ -133,7 +130,6 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblDodajSliku.Size = new System.Drawing.Size(66, 15);
             this.lblDodajSliku.TabIndex = 21;
             this.lblDodajSliku.Text = "Dodaj sliku";
-            this.lblDodajSliku.Click += new System.EventHandler(this.lblDodajSliku_Click);
             // 
             // pbSlika
             // 
@@ -161,7 +157,6 @@ namespace NaruciBa.WinUI.Proizvodi
             this.txtCijena.Name = "txtCijena";
             this.txtCijena.Size = new System.Drawing.Size(128, 24);
             this.txtCijena.TabIndex = 18;
-            this.txtCijena.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCijena_KeyPress);
             // 
             // txtNaziv
             // 
@@ -193,19 +188,19 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblCijenaPo.TabIndex = 9;
             this.lblCijenaPo.Text = "Cijena po:";
             // 
-            // btnDodajPrpozvod
+            // btnSacuvaj
             // 
-            this.btnDodajPrpozvod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDodajPrpozvod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDodajPrpozvod.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDodajPrpozvod.ForeColor = System.Drawing.Color.White;
-            this.btnDodajPrpozvod.Location = new System.Drawing.Point(429, 287);
-            this.btnDodajPrpozvod.Name = "btnDodajPrpozvod";
-            this.btnDodajPrpozvod.Size = new System.Drawing.Size(121, 29);
-            this.btnDodajPrpozvod.TabIndex = 15;
-            this.btnDodajPrpozvod.Text = "Dodaj proizvod";
-            this.btnDodajPrpozvod.UseVisualStyleBackColor = false;
-            this.btnDodajPrpozvod.Click += new System.EventHandler(this.btnDodajPrpozvod_Click);
+            this.btnSacuvaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSacuvaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSacuvaj.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacuvaj.ForeColor = System.Drawing.Color.White;
+            this.btnSacuvaj.Location = new System.Drawing.Point(429, 287);
+            this.btnSacuvaj.Name = "btnSacuvaj";
+            this.btnSacuvaj.Size = new System.Drawing.Size(121, 29);
+            this.btnSacuvaj.TabIndex = 15;
+            this.btnSacuvaj.Text = "Sacuvaj";
+            this.btnSacuvaj.UseVisualStyleBackColor = false;
+            this.btnSacuvaj.Click += new System.EventHandler(this.btnSacuvaj_Click);
             // 
             // lblNaziv
             // 
@@ -255,20 +250,16 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblPodkategorija.TabIndex = 11;
             this.lblPodkategorija.Text = "Podkategorija:";
             // 
-            // lblDodajProizvod
+            // lblUrediProizvod
             // 
-            this.lblDodajProizvod.AutoSize = true;
-            this.lblDodajProizvod.Font = new System.Drawing.Font("Montserrat", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDodajProizvod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblDodajProizvod.Location = new System.Drawing.Point(12, 9);
-            this.lblDodajProizvod.Name = "lblDodajProizvod";
-            this.lblDodajProizvod.Size = new System.Drawing.Size(128, 21);
-            this.lblDodajProizvod.TabIndex = 17;
-            this.lblDodajProizvod.Text = "Dodaj proizvod";
-            // 
-            // ofd
-            // 
-            this.ofd.FileName = "openFileDialog1";
+            this.lblUrediProizvod.AutoSize = true;
+            this.lblUrediProizvod.Font = new System.Drawing.Font("Montserrat", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUrediProizvod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblUrediProizvod.Location = new System.Drawing.Point(12, 21);
+            this.lblUrediProizvod.Name = "lblUrediProizvod";
+            this.lblUrediProizvod.Size = new System.Drawing.Size(124, 21);
+            this.lblUrediProizvod.TabIndex = 20;
+            this.lblUrediProizvod.Text = "Uredi proizvod";
             // 
             // lblKM
             // 
@@ -277,24 +268,23 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblKM.Location = new System.Drawing.Point(521, 128);
             this.lblKM.Name = "lblKM";
             this.lblKM.Size = new System.Drawing.Size(29, 18);
-            this.lblKM.TabIndex = 26;
+            this.lblKM.TabIndex = 27;
             this.lblKM.Text = "KM";
             // 
-            // frmDodajNoviProizvod
+            // frmUrediProizvod
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(589, 411);
+            this.Controls.Add(this.lblUrediProizvod);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblDodajProizvod);
-            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(605, 450);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(605, 450);
-            this.Name = "frmDodajNoviProizvod";
+            this.Name = "frmUrediProizvod";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmDodajNoviProizvod";
-            this.Load += new System.EventHandler(this.frmDodajNoviProizvod_Load);
+            this.Text = "frmUrediProizvod";
+            this.Load += new System.EventHandler(this.frmUrediProizvod_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).EndInit();
@@ -306,25 +296,24 @@ namespace NaruciBa.WinUI.Proizvodi
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblValidacija;
+        private System.Windows.Forms.TextBox txtSifra;
+        private System.Windows.Forms.Label lblSifra;
+        private System.Windows.Forms.CheckBox cbKomad;
+        private System.Windows.Forms.CheckBox cbKg;
+        private System.Windows.Forms.Label lblDodajSliku;
+        private System.Windows.Forms.PictureBox pbSlika;
+        private System.Windows.Forms.ComboBox cbPodkategorija;
+        private System.Windows.Forms.TextBox txtCijena;
+        private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label lblCijenaPo;
-        private System.Windows.Forms.Button btnDodajPrpozvod;
+        private System.Windows.Forms.Button btnSacuvaj;
         private System.Windows.Forms.Label lblNaziv;
         private System.Windows.Forms.Label lblOpis;
         private System.Windows.Forms.TextBox txtOpis;
         private System.Windows.Forms.Label lblCijena;
         private System.Windows.Forms.Label lblPodkategorija;
-        private System.Windows.Forms.Label lblDodajProizvod;
-        private System.Windows.Forms.TextBox txtNaziv;
-        private System.Windows.Forms.TextBox txtCijena;
-        private System.Windows.Forms.ComboBox cbPodkategorija;
-        private System.Windows.Forms.Label lblDodajSliku;
-        private System.Windows.Forms.PictureBox pbSlika;
-        private System.Windows.Forms.CheckBox cbKg;
-        private System.Windows.Forms.CheckBox cbKomad;
-        private System.Windows.Forms.TextBox txtSifra;
-        private System.Windows.Forms.Label lblSifra;
-        private System.Windows.Forms.OpenFileDialog ofd;
+        private System.Windows.Forms.Label lblUrediProizvod;
+        private System.Windows.Forms.Label lblValidacija;
         private System.Windows.Forms.Label lblKM;
     }
 }

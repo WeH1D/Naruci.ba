@@ -124,6 +124,12 @@
     <Compile Include="Proizvodi\frmDodajNoviProizvod.Designer.cs">
       <DependentUpon>frmDodajNoviProizvod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Proizvodi\frmUrediProizvod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proizvodi\frmUrediProizvod.Designer.cs">
+      <DependentUpon>frmUrediProizvod.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\APIService.cs" />
     <Compile Include="Home\frmHome.cs">
       <SubType>Form</SubType>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Proizvodi\frmDodajNoviProizvod.resx">
       <DependentUpon>frmDodajNoviProizvod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proizvodi\frmUrediProizvod.resx">
+      <DependentUpon>frmUrediProizvod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

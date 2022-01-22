@@ -18,6 +18,7 @@ namespace NaruciBa.WinUI.Proizvodi
         string dodanaSlikaPutanja = "";
         byte[] dodanaSlika;
         int _poslovnicaId;
+
         public frmDodajNoviProizvod(int poslovnicaId)
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace NaruciBa.WinUI.Proizvodi
             cbPodkategorija.DataSource = await _podkategorijaService.Get<List<Model.Podkategorija>>();
             cbPodkategorija.DisplayMember = "Naziv";
             cbPodkategorija.ValueMember = "PodkategorijaId";
+
         }
 
         private void lblDodajSliku_Click(object sender, EventArgs e)
