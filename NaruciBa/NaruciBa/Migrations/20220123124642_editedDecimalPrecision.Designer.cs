@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NaruciBa.Database;
 
 namespace NaruciBa.Migrations
 {
     [DbContext(typeof(NaruciBaContext))]
-    partial class NaruciBaContextModelSnapshot : ModelSnapshot
+    [Migration("20220123124642_editedDecimalPrecision")]
+    partial class editedDecimalPrecision
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

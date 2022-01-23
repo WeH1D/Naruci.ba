@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,9 @@ namespace NaruciBa.WinUI.Proizvodi
         APIService _podkategorijaService = new APIService("Podkategorija");
         APIService _proizvodService = new APIService("Proizvod");
         private int _proizvodId;
+        string dodanaSlikaPutanja = "";
+        byte[] dodanaSlika;
+        bool _slikaUpdated = false;
 
         public frmUrediProizvod(int proizvodId)
         {
@@ -37,7 +41,9 @@ namespace NaruciBa.WinUI.Proizvodi
             txtNaziv.Text = _proizvod.Naziv;
             txtOpis.Text = _proizvod.Opis;
             txtCijena.Text = _proizvod.Cijena.ToString();
-            cbPodkategorija.SelectedIndex = (int)_proizvod.PodkategorijaID;
+            cbPodkategorija.SelectedValue = _proizvod.PodkategorijaID;
+            dodanaSlikaPutanja = _proizvod.SlikaPutanja;
+            dodanaSlika = _proizvod.Slika;
             if ((bool)_proizvod.Kg)
             {
                 cbKg.Checked = true;
@@ -81,9 +87,42 @@ namespace NaruciBa.WinUI.Proizvodi
             cbKg.Checked = false;
         }
 
-        private void btnSacuvaj_Click(object sender, EventArgs e)
+        private void lblDodajSliku_Click(object sender, EventArgs e)
         {
+            var result = ofd.ShowDialog();
 
+            if (result == DialogResult.OK)
+            {
+                var filename = ofd.FileName;
+                dodanaSlikaPutanja = filename;
+                var file = File.ReadAllBytes(filename);
+                dodanaSlika = file;
+                Image img = Image.FromFile(filename);
+                pbSlika.Image = img;
+                _slikaUpdated = true;
+            }
+        }
+
+        private async void btnSacuvaj_Click(object sender, EventArgs e)
+        {
+            if (txtSifra.Text != "" && txtNaziv.Text != "" && txtOpis.Text != "" && txtCijena.Text != "")
+            {
+                Model.Requests.ProizvodUpdateRequest request = new Model.Requests.ProizvodUpdateRequest()
+                {
+                    Naziv = txtNaziv.Text,
+                    Cijena = decimal.Parse(txtCijena.Text),
+                    DatumIzmjene = DateTime.Now,
+                    Opis = txtOpis.Text,
+                    PodkategorijaID = int.Parse(cbPodkategorija.SelectedValue.ToString()),
+                    Kg = cbKg.Checked,
+                    SlikaPutanja = dodanaSlikaPutanja,
+                    Slika = dodanaSlika
+                };
+                await _proizvodService.Update<Model.Proizvod>(_proizvodId, request);
+                this.Close();
+            }
+            else
+                lblValidacija.Visible = true;
         }
     }
 }

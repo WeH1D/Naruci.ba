@@ -16,6 +16,7 @@ namespace NaruciBa.WinUI.Poslovnice
         string poslovnicaId;
         APIService _poslovnciaApiService = new APIService("Poslovnica");
         APIService _trgovackiLanciService = new APIService("TrgovackiLanac");
+        APIService _proizvodService = new APIService("Proizvod");
         APIService _gradService = new APIService("Grad");
         APIService _proizvodiService = new APIService("Proizvod");
         APIService _kategorijaService = new APIService("Kategorija");
@@ -42,16 +43,23 @@ namespace NaruciBa.WinUI.Poslovnice
 
         private async void frmPoslovnicaDetalji_Load(object sender, EventArgs e)
         {
+            btnSacuvaj.BackColor = AppTheme.PrimaryColor;
+            btnDodajNoviProizvod.BackColor = AppTheme.PrimaryColor;
 
             await setPoslovnicaInfo();
 
+            await setProizvodiInfo();
+        }
+
+        private async Task setProizvodiInfo()
+        {
             List<Model.Proizvod> proizvodi = await _proizvodiService.Get<List<Model.Proizvod>>(new Model.SearchObjects.ProizvodSearchObject()
             {
                 PoslovnicaID = int.Parse(poslovnicaId),
                 IncludeList = new List<string>() { "Podkategorija" }
             });
 
-            //////////////////////////////////////////////////////////////////////
+            ///////////////////////// Get all availbale kategorije from list of products ///////////////////////
 
             List<int> kategorijeIDs = new List<int>();
 
@@ -60,13 +68,22 @@ namespace NaruciBa.WinUI.Poslovnice
                 kategorijeIDs.Add((int)proizvod.Podkategorija.KategorijaID);
             }
 
+            kategorijeIDs = kategorijeIDs.Distinct().ToList();
+
             List<Model.Kategorija> kategorije = await _kategorijrFromProizvodiService.Get<List<Model.Kategorija>>(new Model.SearchObjects.KategorijaSearchObject()
             {
                 proizvodiID = kategorijeIDs
             });
 
-            //////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            generateProductList(kategorije, proizvodi);
+        }
+
+        private void generateProductList(List<Model.Kategorija> kategorije, List<Model.Proizvod> proizvodi)
+        {
+
+            pnlPorizvodiBack.Controls.Clear();
 
             foreach (Model.Kategorija kategorija in kategorije)
             {
@@ -75,19 +92,20 @@ namespace NaruciBa.WinUI.Poslovnice
                 dgv.ColumnHeadersVisible = false;
                 dgv.Name = $"dgv{kategorija.Naziv}";
                 dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dgv.AutoSize = true;
+                //dgv.AutoSize = true;
                 dgv.BackgroundColor = Color.White;
                 dgv.BorderStyle = BorderStyle.None;
                 dgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
                 DataGridViewTextBoxColumn columnId = new DataGridViewTextBoxColumn();
                 columnId.Visible = false;
-                columnId.DataPropertyName = "KategorijaId";
+                columnId.DataPropertyName = "ProizvodID";
                 dgv.Columns.Add(columnId);
 
                 DataGridViewTextBoxColumn columnNaziv = new DataGridViewTextBoxColumn();
                 columnNaziv.HeaderText = "Naziv";
                 columnNaziv.DataPropertyName = "Naziv";
+                columnNaziv.FillWeight = 2;
                 DataGridViewCellStyle nazivStyle = new DataGridViewCellStyle();
                 nazivStyle.BackColor = Color.White;
                 nazivStyle.ForeColor = Color.FromArgb(64, 64, 64);
@@ -99,6 +117,7 @@ namespace NaruciBa.WinUI.Poslovnice
                 DataGridViewTextBoxColumn columnOpis = new DataGridViewTextBoxColumn();
                 columnOpis.HeaderText = "Opis";
                 columnOpis.DataPropertyName = "Opis";
+                columnOpis.FillWeight = 2;
                 DataGridViewCellStyle opisStyle = new DataGridViewCellStyle();
                 opisStyle.BackColor = Color.White;
                 opisStyle.ForeColor = Color.FromArgb(64, 64, 64);
@@ -110,6 +129,7 @@ namespace NaruciBa.WinUI.Poslovnice
                 DataGridViewTextBoxColumn columnCijena = new DataGridViewTextBoxColumn();
                 columnCijena.HeaderText = "Cijena";
                 columnCijena.DataPropertyName = "Cijena";
+                columnCijena.FillWeight = 1;
                 DataGridViewCellStyle cijenaStyle = new DataGridViewCellStyle();
                 cijenaStyle.BackColor = Color.White;
                 cijenaStyle.ForeColor = Color.FromArgb(64, 64, 64);
@@ -122,6 +142,7 @@ namespace NaruciBa.WinUI.Poslovnice
                 DataGridViewTextBoxColumn columnKolicina = new DataGridViewTextBoxColumn();
                 columnKolicina.HeaderText = "Kg";
                 columnKolicina.DataPropertyName = "Kg";
+                columnKolicina.FillWeight = 1;
                 DataGridViewCellStyle kgStyle = new DataGridViewCellStyle();
                 kgStyle.BackColor = Color.White;
                 kgStyle.ForeColor = Color.FromArgb(64, 64, 64);
@@ -132,6 +153,7 @@ namespace NaruciBa.WinUI.Poslovnice
 
                 DataGridViewTextBoxColumn columnUredi = new DataGridViewTextBoxColumn();
                 columnUredi.DataPropertyName = "Uredi";
+                columnUredi.FillWeight = 1;
                 DataGridViewCellStyle urediStyle = new DataGridViewCellStyle();
                 urediStyle.ForeColor = Color.HotPink;
                 urediStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -142,6 +164,7 @@ namespace NaruciBa.WinUI.Poslovnice
 
                 DataGridViewTextBoxColumn columnIzbrisi = new DataGridViewTextBoxColumn();
                 columnIzbrisi.DataPropertyName = "Izbrisi";
+                columnIzbrisi.FillWeight = 1;
                 DataGridViewCellStyle izbrisiStyle = new DataGridViewCellStyle();
                 izbrisiStyle.ForeColor = Color.HotPink;
                 izbrisiStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -170,6 +193,7 @@ namespace NaruciBa.WinUI.Poslovnice
                 dgv.AutoGenerateColumns = false;
                 dgv.DataSource = proizvodiUKategoriji;
                 dgv.Visible = false;
+                dgv.Height = proizvodiUKategoriji.Count * 22 + 10;
 
                 dgv.CellClick += onCellClick;
 
@@ -188,10 +212,9 @@ namespace NaruciBa.WinUI.Poslovnice
                 btn.Click += new EventHandler(expandKategorija);
                 pnlPorizvodiBack.Controls.Add(btn);
             }
-
         }
 
-        private void onCellClick(object sender, DataGridViewCellEventArgs e)
+        private async void onCellClick(object sender, DataGridViewCellEventArgs e)
         {
             var dgv = (DataGridView)sender;
             var proizvodID = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -199,12 +222,28 @@ namespace NaruciBa.WinUI.Poslovnice
             if (e.ColumnIndex == 5)
             {
                 frmUrediProizvod form = new frmUrediProizvod(int.Parse(proizvodID));
+                form.FormClosing += updateProducts;
                 form.ShowDialog();
             }
             if (e.ColumnIndex == 6)
             {
                 var confirmResult = MessageBox.Show("Jeste li sigurni da zelite izbrisati odabrani proizvod?", "", MessageBoxButtons.YesNo);
+                if(confirmResult == DialogResult.Yes)
+                {
+                    Model.Requests.ProizvodUpdateRequest request = new Model.Requests.ProizvodUpdateRequest()
+                    {
+                        DatumIzmjene = DateTime.Now,
+                        Status = false
+                    };
+                    await _proizvodService.Update<Model.Proizvod>(proizvodID, request);
+                    await setProizvodiInfo();
+                }
             }
+        }
+
+        private async void updateProducts(object sender, EventArgs e)
+        {
+            await setProizvodiInfo();
         }
 
         private void expandKategorija(object sender, EventArgs e)
@@ -217,6 +256,7 @@ namespace NaruciBa.WinUI.Poslovnice
         private void btnDodajNoviProizvod_Click(object sender, EventArgs e)
         {
             frmDodajNoviProizvod frm = new frmDodajNoviProizvod(int.Parse(poslovnicaId));
+            frm.FormClosing += updateProducts;
             frm.ShowDialog();
         }
 

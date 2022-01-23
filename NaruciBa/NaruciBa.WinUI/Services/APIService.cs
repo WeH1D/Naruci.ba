@@ -23,7 +23,6 @@ namespace NaruciBa.WinUI
             _route = route;
         }
 
-        //TODO: FINISH THE REST OF APISERVICe
         // TODO: Find a way to check for access token validtiy before making the api call
         // store hashed password and username in Properties.defaults 
        

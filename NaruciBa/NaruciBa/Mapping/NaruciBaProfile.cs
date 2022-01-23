@@ -24,11 +24,11 @@ namespace NaruciBa.Mapping
 
             CreateMap<Database.Poslovnica, Model.Poslovnica>().ReverseMap();
             CreateMap<PoslovnicaInsertRequest, Database.Poslovnica>();
-            CreateMap<PoslovnicaUpdateRequest, Database.Poslovnica>();
+            CreateMap<PoslovnicaUpdateRequest, Database.Poslovnica>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); ;
 
             CreateMap<Database.Proizvod, Model.Proizvod>().ReverseMap();
             CreateMap<ProizvodInsertRequest, Database.Proizvod>();
-            CreateMap<ProizvodUpdateRequest, Database.Proizvod>();
+            CreateMap<ProizvodUpdateRequest, Database.Proizvod>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); ;
 
             CreateMap<Database.Korisnik, Model.Korisnik>().ReverseMap();
             CreateMap<KorisnikInsertRequest, Database.Korisnik>();

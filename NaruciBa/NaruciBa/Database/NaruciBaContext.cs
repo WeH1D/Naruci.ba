@@ -80,7 +80,7 @@ namespace NaruciBa.Database
                 entity.HasKey(e => e.DostavnaKvotaID)
                     .HasName("PK__Dostavna__D746976E58B9E5D3");
 
-                entity.Property(e => e.CijenaDostave).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.CijenaDostave).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.Klijent)
                     .WithMany(p => p.DostavnaKvota)
@@ -169,7 +169,7 @@ namespace NaruciBa.Database
 
                 entity.Property(e => e.DatumKreiranja).HasColumnType("datetime");
 
-                entity.Property(e => e.Popust).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.Popust).HasColumnType("decimal(18, 2)");
             });
 
             modelBuilder.Entity<KuponPoslovnica>(entity =>
@@ -191,9 +191,9 @@ namespace NaruciBa.Database
             {
                 entity.ToTable("NaruceniProizvod");
 
-                entity.Property(e => e.Kolicina).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.Kolicina).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.UkupnaCijena).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.UkupnaCijena).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.Narudzba)
                     .WithMany(p => p.NaruceniProizvods)
@@ -210,13 +210,13 @@ namespace NaruciBa.Database
             {
                 entity.ToTable("Narudzba");
 
-                entity.Property(e => e.BonusZaDostavljaca).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.BonusZaDostavljaca).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.Datum).HasColumnType("datetime");
 
                 entity.Property(e => e.SlikaRacunaPutanja);
 
-                entity.Property(e => e.UkupanIznos).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.UkupanIznos).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.Dostavljac)
                     .WithMany(p => p.Narudzbas)
@@ -312,7 +312,7 @@ namespace NaruciBa.Database
             {
                 entity.ToTable("Proizvod");
 
-                entity.Property(e => e.Cijena).HasColumnType("decimal(18, 0)");
+                entity.Property(e => e.Cijena).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.DatumIzmjene).HasColumnType("datetime");
 

@@ -64,6 +64,7 @@ namespace NaruciBa.Services
                     entity = entity.Include(item);
                 }
             }
+            entity = entity.Where(a => a.Status != false);
             var list = await entity.ToListAsync();
             var result = _mapper.Map<List<Model.Proizvod>>(list);
 

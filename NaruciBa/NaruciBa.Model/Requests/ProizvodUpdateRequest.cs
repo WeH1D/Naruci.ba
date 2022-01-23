@@ -13,6 +13,7 @@ namespace NaruciBa.Model.Requests
         public int? PodkategorijaID { get; set; }
         public bool? Status { get; set; }
         public byte[] Slika { get; set; }
+        public string SlikaPutanja { get; set; }
         public DateTime? DatumIzmjene { get; set; }
     }
 }

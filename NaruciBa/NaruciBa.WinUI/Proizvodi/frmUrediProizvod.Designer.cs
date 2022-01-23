@@ -30,6 +30,7 @@ namespace NaruciBa.WinUI.Proizvodi
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblKM = new System.Windows.Forms.Label();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.lblSifra = new System.Windows.Forms.Label();
             this.cbKomad = new System.Windows.Forms.CheckBox();
@@ -48,7 +49,7 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblCijena = new System.Windows.Forms.Label();
             this.lblPodkategorija = new System.Windows.Forms.Label();
             this.lblUrediProizvod = new System.Windows.Forms.Label();
-            this.lblKM = new System.Windows.Forms.Label();
+            this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +79,16 @@ namespace NaruciBa.WinUI.Proizvodi
             this.panel1.Size = new System.Drawing.Size(553, 342);
             this.panel1.TabIndex = 19;
             // 
+            // lblKM
+            // 
+            this.lblKM.AutoSize = true;
+            this.lblKM.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKM.Location = new System.Drawing.Point(521, 128);
+            this.lblKM.Name = "lblKM";
+            this.lblKM.Size = new System.Drawing.Size(29, 18);
+            this.lblKM.TabIndex = 27;
+            this.lblKM.Text = "KM";
+            // 
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Montserrat Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,6 +117,7 @@ namespace NaruciBa.WinUI.Proizvodi
             this.cbKomad.TabIndex = 23;
             this.cbKomad.Text = "komadu";
             this.cbKomad.UseVisualStyleBackColor = true;
+            this.cbKomad.CheckedChanged += new System.EventHandler(this.cbKomad_CheckedChanged);
             // 
             // cbKg
             // 
@@ -119,6 +131,7 @@ namespace NaruciBa.WinUI.Proizvodi
             this.cbKg.TabIndex = 22;
             this.cbKg.Text = "kg";
             this.cbKg.UseVisualStyleBackColor = true;
+            this.cbKg.CheckedChanged += new System.EventHandler(this.cbKg_CheckedChanged);
             // 
             // lblDodajSliku
             // 
@@ -130,6 +143,7 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblDodajSliku.Size = new System.Drawing.Size(66, 15);
             this.lblDodajSliku.TabIndex = 21;
             this.lblDodajSliku.Text = "Dodaj sliku";
+            this.lblDodajSliku.Click += new System.EventHandler(this.lblDodajSliku_Click);
             // 
             // pbSlika
             // 
@@ -261,15 +275,9 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblUrediProizvod.TabIndex = 20;
             this.lblUrediProizvod.Text = "Uredi proizvod";
             // 
-            // lblKM
+            // ofd
             // 
-            this.lblKM.AutoSize = true;
-            this.lblKM.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKM.Location = new System.Drawing.Point(521, 128);
-            this.lblKM.Name = "lblKM";
-            this.lblKM.Size = new System.Drawing.Size(29, 18);
-            this.lblKM.TabIndex = 27;
-            this.lblKM.Text = "KM";
+            this.ofd.FileName = "ofd";
             // 
             // frmUrediProizvod
             // 
@@ -315,5 +323,6 @@ namespace NaruciBa.WinUI.Proizvodi
         private System.Windows.Forms.Label lblUrediProizvod;
         private System.Windows.Forms.Label lblValidacija;
         private System.Windows.Forms.Label lblKM;
+        private System.Windows.Forms.OpenFileDialog ofd;
     }
 }
