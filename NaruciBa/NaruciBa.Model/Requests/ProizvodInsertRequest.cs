@@ -14,8 +14,8 @@ namespace NaruciBa.Model.Requests
         public int? PodkategorijaID { get; set; }
         public int? PoslovnicaID { get; set; }
         public bool Status = true;
-        public byte[] Slika { get; set; }
-        public string SlikaPutanja { get; set; }
+        public byte[]? Slika { get; set; }
+        public string? SlikaPutanja { get; set; }
         public DateTime? DatumKreiranja { get; set; }
         public DateTime? DatumIzmjene { get; set; }
     }

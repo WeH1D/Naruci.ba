@@ -102,5 +102,25 @@ namespace NaruciBa.WinUI
 
             return obj;
         }
+
+        public async Task<T> Delete<T>(object id)
+        {
+            var url = $"{_url}/{_route}/{id}";
+
+            _apiClient.SetBearerToken(Properties.Settings.Default.AccessToken);
+
+            var response = await _apiClient.DeleteAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Connection error");
+            }
+
+            var content = await response.Content.ReadAsStringAsync();
+            var obj = JsonConvert.DeserializeObject<T>(content);
+
+            return obj;
+        }
+
     }
 }

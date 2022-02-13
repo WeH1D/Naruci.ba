@@ -7,5 +7,6 @@ namespace NaruciBa.Model.SearchObjects
     public class KategorijaSearchObject
     {
         public List<int> proizvodiID { get; set; }
+        public string Naziv { get; set; }
     }
 }

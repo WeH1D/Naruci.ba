@@ -16,8 +16,7 @@ abstract class BaseAPIProvider<T> {
     provider = context.read<AppConfigProvider>();
   }
 
-  Future getInternal(
-      {dynamic id, String? actionName, Map? additionalData}) async {
+  Future get({dynamic id, String? actionName, Map? searchParams}) async {
     var path = '${await basePath()}/${resourceName()}';
 
     if (id != null) {
@@ -28,8 +27,8 @@ abstract class BaseAPIProvider<T> {
       path = path + "/$actionName";
     }
 
-    if (additionalData != null) {
-      String queryString = getQueryString(additionalData);
+    if (searchParams != null) {
+      String queryString = getQueryString(searchParams);
       path = path + "?" + queryString;
     }
     print("running GET: $path");
@@ -48,6 +47,10 @@ abstract class BaseAPIProvider<T> {
 
     if (response.statusCode == 200) {
       print("RESPONSE $data");
+      List<T> result = [];
+      data.forEach((a) => result.add(convertFromJSON(a)));
+      var val = Future.value(result);
+      return val;
     } else if (response.statusCode == 400) {
       throw Exception(data);
     } else if (response.statusCode == 401) {
@@ -58,7 +61,38 @@ abstract class BaseAPIProvider<T> {
     } else {
       throw Exception("Server side error");
     }
-    return data;
+  }
+
+  Future getById({dynamic id}) async {
+    var path = '${await basePath()}/${resourceName()}/${id.toString()}';
+
+    print("running GET BY ID: $path");
+    // final response = await http.get(path, headers: await createHeaders());
+    var uriPath = Uri.parse(path);
+    final response = await http.get(uriPath, headers: {
+      "Accept": "application/json",
+      "content-type": "application/json"
+    });
+    print(response.body);
+    if (response.body == null || response.body == "") {
+      throw Exception("Connectivity issue");
+    }
+
+    var data = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+      print("RESPONSE $data");
+      return convertFromJSON(data);
+    } else if (response.statusCode == 400) {
+      throw Exception(data);
+    } else if (response.statusCode == 401) {
+      //logout();
+    } else if (response.statusCode == 403) {
+      //logout();
+      throw Exception('Sorry, you are not authorized for this action');
+    } else {
+      throw Exception("Server side error");
+    }
   }
 
   T convertFromJSON(dynamic json);

@@ -207,5 +207,27 @@ namespace NaruciBa.WinUI.Kategorije
             }
 
         }
+
+        private async void btnIzbrisiKategoriju_ClickAsync(object sender, EventArgs e)
+        {
+            var kat = await _kategorijaService.Get<Model.Kategorija>(new Model.SearchObjects.KategorijaSearchObject()
+            {
+                Naziv = txtOdabranaKategorija.Text
+            });
+            await _kategorijaService.Delete<Model.Kategorija>(kat.KategorijaID);
+            clearKategorije();
+            loadKategorije();
+        }
+
+        private async void btnIzbrisiPodkategoriju_Click(object sender, EventArgs e)
+        {
+            var podKat = await _podkategorijeService.Get<Model.Podkategorija>(new Model.SearchObjects.PodkategorijaSearchObject()
+            {
+                Naziv = txtOdabranaPodkategorija.Text
+            });
+            await _podkategorijeService.Delete<Model.Podkategorija>(podKat.PodkategorijaID);
+            clearKategorije();
+            loadKategorije();
+        }
     }
 }

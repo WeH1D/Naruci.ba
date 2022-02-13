@@ -10,8 +10,8 @@ using NaruciBa.Database;
 namespace NaruciBa.Migrations
 {
     [DbContext(typeof(NaruciBaContext))]
-    [Migration("20211229113306_ProizvodSifraAdded")]
-    partial class ProizvodSifraAdded
+    [Migration("20220213122031_startpoint")]
+    partial class startpoint
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,7 +71,7 @@ namespace NaruciBa.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal?>("CijenaDostave")
-                        .HasColumnType("decimal(18,0)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("KlijentID")
                         .HasColumnType("int");
@@ -208,8 +208,8 @@ namespace NaruciBa.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<byte[]>("Slika")
-                        .HasColumnType("image");
+                    b.Property<string>("SlikaPutanja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefon")
                         .HasMaxLength(50)
@@ -239,7 +239,7 @@ namespace NaruciBa.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<decimal?>("Popust")
-                        .HasColumnType("decimal(18,0)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool?>("Postotak")
                         .HasColumnType("bit");
@@ -279,7 +279,7 @@ namespace NaruciBa.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal?>("Kolicina")
-                        .HasColumnType("decimal(18,0)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("NarudzbaID")
                         .HasColumnType("int");
@@ -288,7 +288,7 @@ namespace NaruciBa.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("UkupnaCijena")
-                        .HasColumnType("decimal(18,0)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("NaruceniProizvodID");
 
@@ -307,7 +307,7 @@ namespace NaruciBa.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal?>("BonusZaDostavljaca")
-                        .HasColumnType("decimal(18,0)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("Datum")
                         .HasColumnType("datetime");
@@ -330,11 +330,11 @@ namespace NaruciBa.Migrations
                     b.Property<int?>("PoslovnicaID")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("SlikaRacuna")
-                        .HasColumnType("image");
+                    b.Property<string>("SlikaRacunaPutanja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("UkupanIznos")
-                        .HasColumnType("decimal(18,0)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("NarudzbaID");
 
@@ -418,6 +418,9 @@ namespace NaruciBa.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("TrgovackiLanacID")
                         .HasColumnType("int");
 
@@ -463,7 +466,7 @@ namespace NaruciBa.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal?>("Cijena")
-                        .HasColumnType("decimal(18,0)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("DatumIzmjene")
                         .HasColumnType("datetime");
@@ -491,8 +494,8 @@ namespace NaruciBa.Migrations
                     b.Property<string>("Sifra")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Slika")
-                        .HasColumnType("image");
+                    b.Property<string>("SlikaPutanja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("Status")
                         .HasColumnType("bit");
@@ -546,8 +549,8 @@ namespace NaruciBa.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<byte[]>("Slika")
-                        .HasColumnType("image");
+                    b.Property<string>("SlikaPutanja")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TrgovackiLanacID");
 

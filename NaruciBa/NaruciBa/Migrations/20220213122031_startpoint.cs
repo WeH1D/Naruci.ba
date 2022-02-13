@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NaruciBa.Migrations
 {
-    public partial class proizvodSlikaPutanja : Migration
+    public partial class startpoint : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,7 @@ namespace NaruciBa.Migrations
                 {
                     KuponID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Popust = table.Column<decimal>(type: "decimal(18,0)", nullable: true),
+                    Popust = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Postotak = table.Column<bool>(type: "bit", nullable: true),
                     BrojKupovina = table.Column<int>(type: "int", nullable: true),
                     Aktivan = table.Column<bool>(type: "bit", nullable: true),
@@ -149,6 +149,7 @@ namespace NaruciBa.Migrations
                     Adresa = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     GradID = table.Column<int>(type: "int", nullable: true),
                     KontaktTel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
                     KontaktEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     TrgovackiLanacID = table.Column<int>(type: "int", nullable: true),
                     DatumKreiranja = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -298,7 +299,7 @@ namespace NaruciBa.Migrations
                     Sifra = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Naziv = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Opis = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    Cijena = table.Column<decimal>(type: "decimal(18,0)", nullable: true),
+                    Cijena = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Kg = table.Column<bool>(type: "bit", nullable: true),
                     PodkategorijaID = table.Column<int>(type: "int", nullable: true),
                     PoslovnicaID = table.Column<int>(type: "int", nullable: true),
@@ -332,7 +333,7 @@ namespace NaruciBa.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PoslovnicaID = table.Column<int>(type: "int", nullable: true),
                     KlijentID = table.Column<int>(type: "int", nullable: true),
-                    CijenaDostave = table.Column<decimal>(type: "decimal(18,0)", nullable: true),
+                    CijenaDostave = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     TrajanjeDostave = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: true)
                 },
@@ -419,8 +420,8 @@ namespace NaruciBa.Migrations
                     KoordinatorID = table.Column<int>(type: "int", nullable: true),
                     PoslovnicaID = table.Column<int>(type: "int", nullable: true),
                     Datum = table.Column<DateTime>(type: "datetime", nullable: true),
-                    UkupanIznos = table.Column<decimal>(type: "decimal(18,0)", nullable: true),
-                    BonusZaDostavljaca = table.Column<decimal>(type: "decimal(18,0)", nullable: true),
+                    UkupanIznos = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    BonusZaDostavljaca = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     SlikaRacunaPutanja = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NarudzbaStatusID = table.Column<int>(type: "int", nullable: true),
                     KuponID = table.Column<int>(type: "int", nullable: true)
@@ -474,8 +475,8 @@ namespace NaruciBa.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProizvodID = table.Column<int>(type: "int", nullable: true),
                     NarudzbaID = table.Column<int>(type: "int", nullable: true),
-                    Kolicina = table.Column<decimal>(type: "decimal(18,0)", nullable: true),
-                    UkupnaCijena = table.Column<decimal>(type: "decimal(18,0)", nullable: true)
+                    Kolicina = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    UkupnaCijena = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {

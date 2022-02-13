@@ -29,5 +29,11 @@ namespace NaruciBa.Controllers
         {
             return await _crudService.Update(id, request);
         }
+        
+        [HttpDelete("{id}")]
+        public async Task<T> Delete(int id)
+        {
+            return await _crudService.Delete(id);
+        }
     }
 }

@@ -32,5 +32,14 @@ namespace NaruciBa.Services
             await Context.SaveChangesAsync();
             return _mapper.Map<T>(entity);
         }
+
+        public async virtual Task<T> Delete(int id)
+        {
+            var set = Context.Set<TDb>();
+            var entity = await set.FindAsync(id);
+            set.Remove(entity);
+            await Context.SaveChangesAsync();
+            return _mapper.Map<T>(entity);
+        }
     }
 }

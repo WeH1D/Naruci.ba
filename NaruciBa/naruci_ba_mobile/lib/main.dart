@@ -6,6 +6,7 @@ import 'package:naruci_ba_mobile/providers/base_api_provider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/screens/home_screen.dart';
 import 'package:naruci_ba_mobile/screens/login_screen.dart';
+import 'package:naruci_ba_mobile/screens/poslovnica_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -76,10 +77,16 @@ class _MyHomePageState extends State<MyHomePage> {
             create: (ctx) => PoslovnicaProvider(ctx))
       ],
       child: MaterialApp(
-          theme: ThemeData(),
-          home: Scaffold(
-            body: LoginScreen(),
-          )),
+        theme: ThemeData(),
+        home: Scaffold(
+          body: LoginScreen(),
+        ),
+        routes: {
+          HomeScreen.routeName: (context) => const HomeScreen(),
+          LoginScreen.routeName: (context) => const LoginScreen(),
+          PoslovnicaScreen.routeName: (context) => const PoslovnicaScreen()
+        },
+      ),
     );
   }
 }

@@ -14,13 +14,14 @@ namespace NaruciBa.WinUI.Poslovnice
     public partial class frmPoslovnicaDetalji : Form
     {
         string poslovnicaId;
+        Model.TrgovackiLanac trgovackiLanac;
         APIService _poslovnciaApiService = new APIService("Poslovnica");
         APIService _trgovackiLanciService = new APIService("TrgovackiLanac");
         APIService _proizvodService = new APIService("Proizvod");
         APIService _gradService = new APIService("Grad");
         APIService _proizvodiService = new APIService("Proizvod");
         APIService _kategorijaService = new APIService("Kategorija");
-        APIService _kategorijrFromProizvodiService = new APIService("Kategorija/getKategorijeFromProizvodiList");
+        APIService _trgovackiLanacKategorijaService = new APIService("TrgovackiLanacKategorija");
 
         public class ProizvodForView
         {
@@ -59,34 +60,41 @@ namespace NaruciBa.WinUI.Poslovnice
                 IncludeList = new List<string>() { "Podkategorija" }
             });
 
-            ///////////////////////// Get all availbale kategorije from list of products ///////////////////////
-
-            List<int> kategorijeIDs = new List<int>();
-
-            foreach (var proizvod in proizvodi)
+            if (proizvodi.Any())
             {
-                kategorijeIDs.Add((int)proizvod.Podkategorija.KategorijaID);
+                ///////////////////////// Get all availbale kategorije from list of products ///////////////////////
+
+                List<int> kategorijeIDs = new List<int>();
+
+                foreach (var proizvod in proizvodi)
+                {
+                    kategorijeIDs.Add((int)proizvod.Podkategorija.KategorijaID);
+                }
+
+                kategorijeIDs = kategorijeIDs.Distinct().ToList();
+
+                List<Model.Kategorija> kategorije = await _trgovackiLanacKategorijaService.Get<List<Model.Kategorija>>(new Model.SearchObjects.TrgovackiLanacKategorijaSearchObject()
+                {
+                    TrgovackiLanacID = trgovackiLanac.TrgovackiLanacID
+                });
+
+                ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                generateProductList(kategorije, proizvodi);
             }
-
-            kategorijeIDs = kategorijeIDs.Distinct().ToList();
-
-            List<Model.Kategorija> kategorije = await _kategorijrFromProizvodiService.Get<List<Model.Kategorija>>(new Model.SearchObjects.KategorijaSearchObject()
-            {
-                proizvodiID = kategorijeIDs
-            });
-
-            ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            generateProductList(kategorije, proizvodi);
+            else
+                pnlPorizvodiBack.Controls.Clear();
         }
 
-        private void generateProductList(List<Model.Kategorija> kategorije, List<Model.Proizvod> proizvodi)
+        private async void generateProductList(List<Model.Kategorija> kategorije, List<Model.Proizvod> proizvodi)
         {
 
             pnlPorizvodiBack.Controls.Clear();
 
-            foreach (Model.Kategorija kategorija in kategorije)
+            foreach (Model.Kategorija kat in kategorije)
             {
+                Model.Kategorija kategorija = await _kategorijaService.GetById<Model.Kategorija>(kat.KategorijaID);
+
                 DataGridView dgv = new DataGridView();
                 dgv.Dock = DockStyle.Top;
                 dgv.ColumnHeadersVisible = false;
@@ -230,12 +238,7 @@ namespace NaruciBa.WinUI.Poslovnice
                 var confirmResult = MessageBox.Show("Jeste li sigurni da zelite izbrisati odabrani proizvod?", "", MessageBoxButtons.YesNo);
                 if(confirmResult == DialogResult.Yes)
                 {
-                    Model.Requests.ProizvodUpdateRequest request = new Model.Requests.ProizvodUpdateRequest()
-                    {
-                        DatumIzmjene = DateTime.Now,
-                        Status = false
-                    };
-                    await _proizvodService.Update<Model.Proizvod>(proizvodID, request);
+                    await _proizvodService.Delete<Model.Proizvod>(proizvodID);
                     await setProizvodiInfo();
                 }
             }
@@ -274,7 +277,7 @@ namespace NaruciBa.WinUI.Poslovnice
             cbGrad.ValueMember = "GradId";
             cbGrad.SelectedValue = poslovnica.GradID;
 
-            var trgovackiLanac = await _trgovackiLanciService.GetById<Model.TrgovackiLanac>(poslovnica.TrgovackiLanacID);
+            trgovackiLanac = await _trgovackiLanciService.GetById<Model.TrgovackiLanac>(poslovnica.TrgovackiLanacID);
             cbLanacPoslovnica.DataSource = await _trgovackiLanciService.Get<List<Model.TrgovackiLanac>>();
             cbLanacPoslovnica.DisplayMember = "Naziv";
             cbLanacPoslovnica.ValueMember = "trgovackiLanacId";

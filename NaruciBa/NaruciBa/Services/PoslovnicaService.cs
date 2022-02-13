@@ -36,8 +36,24 @@ namespace NaruciBa.Services
                     entity = entity.Include(item);
                 }
             }
+            entity = entity.Where(a => a.Status == true);
             var list = await entity .ToListAsync();
             return _mapper.Map<List<Model.Poslovnica>>(list);
+        }
+        public async override Task<Model.Poslovnica> GetById(int id)
+        {
+            var entity = await Context.Poslovnicas.FindAsync(id);
+            if (entity.Status)
+                return await base.GetById(id);
+            else
+                throw new Exception("No available poslovnica with given id.");
+        }
+        public async override Task<Model.Poslovnica> Delete(int id)
+        {
+            var entity = Context.Set<Database.Poslovnica>().Find(id);
+            entity.Status = false;
+            await Context.SaveChangesAsync();
+            return _mapper.Map<Model.Poslovnica>(entity);
         }
     }
 }

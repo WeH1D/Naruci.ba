@@ -9,5 +9,6 @@ namespace NaruciBa.Services.Interfaces
     {
         Task<T> Insert(TInsert request);
         Task<T> Update(int id, TUpdate request);
+        Task<T> Delete(int id);
     }
 }

@@ -21,7 +21,7 @@ namespace NaruciBa.Database
         public int? PodkategorijaID { get; set; }
         public int? PoslovnicaID { get; set; }
         public bool? Status { get; set; }
-        public string SlikaPutanja { get; set; }
+        public string? SlikaPutanja { get; set; }
         public DateTime? DatumKreiranja { get; set; }
         public DateTime? DatumIzmjene { get; set; }
 

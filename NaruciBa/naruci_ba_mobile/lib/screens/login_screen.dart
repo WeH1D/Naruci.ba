@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
+import 'package:naruci_ba_mobile/screens/home_screen.dart';
+import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:naruci_ba_mobile/widgets/logo.dart';
 import 'package:provider/src/provider.dart';
 
 class LoginScreen extends StatefulWidget {
+  static String routeName = "login";
+
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -11,17 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late PoslovnicaProvider _poslovnicaProvider;
-
-  @override
-  void initState() {
-    super.initState();
-    _poslovnicaProvider = context.read<PoslovnicaProvider>();
-  }
-
   void login() {
-    var poslovnice = _poslovnicaProvider.getInternal();
-    print(poslovnice);
+    Navigator.pushNamed(context, HomeScreen.routeName);
   }
 
   @override
