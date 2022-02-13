@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:naruci_ba_mobile/providers/app_config_provider.dart';
 import 'package:naruci_ba_mobile/providers/base_api_provider.dart';
+import 'package:naruci_ba_mobile/providers/kategorijaProvider.dart';
+import 'package:naruci_ba_mobile/providers/podkategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
+import 'package:naruci_ba_mobile/providers/proizvodProvider.dart';
 import 'package:naruci_ba_mobile/screens/home_screen.dart';
 import 'package:naruci_ba_mobile/screens/login_screen.dart';
 import 'package:naruci_ba_mobile/screens/poslovnica_screen.dart';
@@ -74,18 +77,24 @@ class _MyHomePageState extends State<MyHomePage> {
           create: (ctx) => AppConfigProvider(context: ctx),
         ),
         ChangeNotifierProvider<PoslovnicaProvider>(
-            create: (ctx) => PoslovnicaProvider(ctx))
+            create: (ctx) => PoslovnicaProvider(ctx)),
+        ChangeNotifierProvider<KategorijaProvider>(
+            create: (ctx) => KategorijaProvider(ctx)),
+        ChangeNotifierProvider<PodkategorijaProvider>(
+            create: (ctx) => PodkategorijaProvider(ctx)),
+        ChangeNotifierProvider<ProizvodProvider>(
+            create: (ctx) => ProizvodProvider(ctx)),
       ],
       child: MaterialApp(
         theme: ThemeData(),
         home: Scaffold(
           body: LoginScreen(),
         ),
-        routes: {
+        /*  routes: {
           HomeScreen.routeName: (context) => const HomeScreen(),
           LoginScreen.routeName: (context) => const LoginScreen(),
           PoslovnicaScreen.routeName: (context) => const PoslovnicaScreen()
-        },
+        }, */
       ),
     );
   }

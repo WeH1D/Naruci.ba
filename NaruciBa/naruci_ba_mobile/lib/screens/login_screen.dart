@@ -16,7 +16,12 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   void login() {
-    Navigator.pushNamed(context, HomeScreen.routeName);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ),
+    );
   }
 
   @override

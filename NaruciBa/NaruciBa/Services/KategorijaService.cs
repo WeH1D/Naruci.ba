@@ -11,11 +11,34 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Services
 {
-    public class KategorijaService : BaseCRUDService<Model.Kategorija, Database.Kategorija, object, KategorijaUpsertRequest, KategorijaUpsertRequest>, IKategorijaService
+    public class KategorijaService : BaseCRUDService<Model.Kategorija, Database.Kategorija, KategorijaSearchObject, KategorijaUpsertRequest, KategorijaUpsertRequest>, IKategorijaService
     {
         public KategorijaService(NaruciBaContext context, IMapper mapper) 
             : base(context, mapper)
         {
+        }
+
+        public async override Task<Model.Kategorija> Delete(int id)
+        {
+            var podkategorije = Context.Podkategorijas.Where(a => a.KategorijaID == id);
+            foreach (var podkategorija in podkategorije)
+            {
+                Context.Podkategorijas.Remove(podkategorija);
+            }
+            await Context.SaveChangesAsync();
+            return await base.Delete(id);
+        }
+
+        public async override Task<IEnumerable<Model.Kategorija>> Get(KategorijaSearchObject search = null)
+        {
+            var entity = Context.Set<Database.Kategorija>().AsQueryable();
+            if (!string.IsNullOrEmpty(search.Naziv))
+            {
+                entity = entity.Where(a => a.Naziv == search.Naziv);
+            }
+           
+            var list = await entity.ToListAsync();
+            return _mapper.Map<List<Model.Kategorija>>(list);
         }
 
         public async Task<List<Model.Kategorija>> getKategorijeFromProizvodiList(KategorijaSearchObject search) {

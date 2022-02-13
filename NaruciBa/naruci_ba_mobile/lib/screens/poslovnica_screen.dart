@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:naruci_ba_mobile/models/Kategorija.dart';
+import 'package:naruci_ba_mobile/models/Podkategorija.dart';
 import 'package:naruci_ba_mobile/models/Poslovnica.dart';
+import 'package:naruci_ba_mobile/providers/kategorijaProvider.dart';
+import 'package:naruci_ba_mobile/providers/podkategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
+import 'package:naruci_ba_mobile/providers/proizvodProvider.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:provider/src/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class PoslovnicaScreenArguments {
-  final String poslovnicaID;
-
-  PoslovnicaScreenArguments(this.poslovnicaID);
-}
-
 class PoslovnicaScreen extends StatefulWidget {
   static String routeName = "poslovnica";
+  final String poslovnicaId;
 
-  const PoslovnicaScreen({Key? key}) : super(key: key);
+  const PoslovnicaScreen({Key? key, required this.poslovnicaId})
+      : super(key: key);
 
   @override
   _PoslovnicaState createState() => _PoslovnicaState();
@@ -22,12 +23,15 @@ class PoslovnicaScreen extends StatefulWidget {
 
 class _PoslovnicaState extends State<PoslovnicaScreen> {
   late PoslovnicaProvider _poslovnicaProvider;
-  late String poslovnicaId;
+  late PodkategorijaProvider _podkategorijaProvider;
+  late ProizvodProvider _proizvodProvider;
   Poslovnica? poslovnica;
+  List<Podkategorija> podkategorije = List.empty();
 
   void initComponent(String poslovnicaID) async {
     poslovnica = await _poslovnicaProvider.getById(id: poslovnicaID);
-    print(poslovnica);
+    podkategorije = await _podkategorijaProvider.get();
+    await setProizvodi();
     setState(() {});
   }
 
@@ -35,13 +39,16 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
   void initState() {
     super.initState();
     _poslovnicaProvider = context.read<PoslovnicaProvider>();
+    _podkategorijaProvider = context.read<PodkategorijaProvider>();
+    _proizvodProvider = context.read<ProizvodProvider>();
+    initComponent(widget.poslovnicaId);
   }
+
+  Future setProizvodi() async {}
 
   @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as PoslovnicaScreenArguments;
-    poslovnica == null ? initComponent(args.poslovnicaID) : null;
+    poslovnica == null ? initComponent(widget.poslovnicaId) : null;
     return MainTemplate(
         child: SlidingUpPanel(
       defaultPanelState: PanelState.CLOSED,
@@ -54,16 +61,29 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
         child: Text(poslovnica != null ? poslovnica!.adresa : ""),
       ),
       panel: Container(
-        child: Column(
-          children: [
-            Container(
-              height: 4,
-              width: 60,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Color.fromARGB(200, 64, 64, 64)),
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+          child: Column(
+            children: [
+              Container(
+                height: 4,
+                width: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Color.fromARGB(200, 64, 64, 64)),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ...podkategorije.map<Widget>((podkategorija) {
+                return (ElevatedButton(
+                    child: Text(podkategorija.naziv),
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: Size(MediaQuery.of(context).size.width, 20)),
+                    onPressed: () => {}));
+              })
+            ],
+          ),
         ),
       ),
     ));

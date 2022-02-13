@@ -7,7 +7,7 @@ using NaruciBa.Model.SearchObjects;
 
 namespace NaruciBa.Services.Interfaces
 {
-    public interface IKategorijaService : ICRUDService<Model.Kategorija, object, KategorijaUpsertRequest, KategorijaUpsertRequest>
+    public interface IKategorijaService : ICRUDService<Model.Kategorija, KategorijaSearchObject, KategorijaUpsertRequest, KategorijaUpsertRequest>
     {
         public Task<List<Model.Kategorija>> getKategorijeFromProizvodiList(KategorijaSearchObject search);
     }

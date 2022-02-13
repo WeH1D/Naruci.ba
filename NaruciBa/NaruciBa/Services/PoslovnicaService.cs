@@ -18,6 +18,16 @@ namespace NaruciBa.Services
         {
         }
 
+        public async override Task<Model.Poslovnica> Insert(PoslovnicaInsertRequest request)
+        {
+            var set = Context.Set<Poslovnica>();
+            Poslovnica entity = _mapper.Map<Poslovnica>(request);
+            entity.Status = true;
+            await set.AddAsync(entity);
+            await Context.SaveChangesAsync();
+            return _mapper.Map<Model.Poslovnica>(entity);
+        }
+
         public async override Task<IEnumerable<Model.Poslovnica>> Get(PoslovnicaSearchObject search = null)
         {
             var entity = Context.Set<Database.Poslovnica>().AsQueryable();

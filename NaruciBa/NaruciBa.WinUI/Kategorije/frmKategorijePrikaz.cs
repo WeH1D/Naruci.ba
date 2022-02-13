@@ -39,6 +39,12 @@ namespace NaruciBa.WinUI.Kategorije
             btnIzbrisiKategoriju.BackColor = AppTheme.PrimaryColor;
             btnIzbrisiPodkategoriju.BackColor = AppTheme.PrimaryColor;
 
+            await loadKategorijeControls();
+        }
+
+
+        private async Task loadKategorijeControls()
+        {
             podkategorije = await _podkategorijeService.Get<List<Model.Podkategorija>>();
             kategorije = await _kategorijaService.Get<List<Model.Kategorija>>();
 
@@ -59,6 +65,8 @@ namespace NaruciBa.WinUI.Kategorije
                 var height = dgv.Rows.GetRowsHeight(DataGridViewElementStates.None);
                 dgv.ClientSize = new Size(dgv.ClientSize.Width, height + 30);
             }
+            txtOdabranaKategorija.Text = dgv.Name;
+            txtOdabranaPodkategorija.Text = "";
 
         }
 
@@ -210,24 +218,24 @@ namespace NaruciBa.WinUI.Kategorije
 
         private async void btnIzbrisiKategoriju_ClickAsync(object sender, EventArgs e)
         {
-            var kat = await _kategorijaService.Get<Model.Kategorija>(new Model.SearchObjects.KategorijaSearchObject()
+            var kat = await _kategorijaService.Get<List<Model.Kategorija>>(new Model.SearchObjects.KategorijaSearchObject()
             {
                 Naziv = txtOdabranaKategorija.Text
             });
-            await _kategorijaService.Delete<Model.Kategorija>(kat.KategorijaID);
+            await _kategorijaService.Delete<Model.Kategorija>(kat.First().KategorijaID);
             clearKategorije();
-            loadKategorije();
+            await loadKategorijeControls();
         }
 
         private async void btnIzbrisiPodkategoriju_Click(object sender, EventArgs e)
         {
-            var podKat = await _podkategorijeService.Get<Model.Podkategorija>(new Model.SearchObjects.PodkategorijaSearchObject()
+            var podKat = await _podkategorijeService.Get<List<Model.Podkategorija>>(new Model.SearchObjects.PodkategorijaSearchObject()
             {
                 Naziv = txtOdabranaPodkategorija.Text
             });
-            await _podkategorijeService.Delete<Model.Podkategorija>(podKat.PodkategorijaID);
+            await _podkategorijeService.Delete<Model.Podkategorija>(podKat.First().PodkategorijaID);
             clearKategorije();
-            loadKategorije();
+            await loadKategorijeControls();
         }
     }
 }

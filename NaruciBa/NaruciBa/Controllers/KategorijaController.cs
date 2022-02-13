@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Controllers
 {
-    public class KategorijaController : BaseCRUDController<Model.Kategorija, object, KategorijaUpsertRequest, KategorijaUpsertRequest>
+    public class KategorijaController : BaseCRUDController<Model.Kategorija, KategorijaSearchObject, KategorijaUpsertRequest, KategorijaUpsertRequest>
     {
         public IKategorijaService kategorijaService;
         public KategorijaController(IKategorijaService service) 

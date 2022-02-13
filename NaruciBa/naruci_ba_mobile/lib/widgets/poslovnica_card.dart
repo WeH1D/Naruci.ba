@@ -21,11 +21,11 @@ class _PoslovnicaCardState extends State<PoslovnicaCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
+        Navigator.push(
           context,
-          PoslovnicaScreen.routeName,
-          arguments: PoslovnicaScreenArguments(
-            widget.poslovnicaId,
+          MaterialPageRoute(
+            builder: (context) =>
+                PoslovnicaScreen(poslovnicaId: widget.poslovnicaId),
           ),
         );
       },
