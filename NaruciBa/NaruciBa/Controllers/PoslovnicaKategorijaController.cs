@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Controllers
 {
-    public class TrgovackiLanacKategorijaController : BaseReadController<TrgovackiLanacKategorija, TrgovackiLanacKategorijaSearchObject>
+    public class PoslovnicaKategorijaController : BaseReadController<PoslovnicaKategorija, PoslovnicaKategorijaSearchObject>
     {
-        public TrgovackiLanacKategorijaController(ITrgovackiLanacKategorijaService service) : base(service)
+        public PoslovnicaKategorijaController(IPoslovnicaKategorijaService service) : base(service)
         {
         }
     }

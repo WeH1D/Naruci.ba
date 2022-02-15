@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Services.Interfaces
 {
-    public interface ITrgovackiLanacKategorijaService : IReadService<TrgovackiLanacKategorija, TrgovackiLanacKategorijaSearchObject>
+    public interface IPoslovnicaKategorijaService : IReadService<PoslovnicaKategorija, PoslovnicaKategorijaSearchObject>
     {
     }
 }

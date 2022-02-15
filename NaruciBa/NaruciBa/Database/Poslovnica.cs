@@ -15,6 +15,7 @@ namespace NaruciBa.Database
             PoslovnicaFavorits = new HashSet<PoslovnicaFavorit>();
             Proizvods = new HashSet<Proizvod>();
             Recenzijas = new HashSet<Recenzija>();
+            PoslovnicaKategorijas = new HashSet<PoslovnicaKategorija>();
         }
 
         public int PoslovnicaID { get; set; }
@@ -35,5 +36,6 @@ namespace NaruciBa.Database
         public virtual ICollection<PoslovnicaFavorit> PoslovnicaFavorits { get; set; }
         public virtual ICollection<Proizvod> Proizvods { get; set; }
         public virtual ICollection<Recenzija> Recenzijas { get; set; }
+        public virtual ICollection<PoslovnicaKategorija> PoslovnicaKategorijas { get; set; }
     }
 }

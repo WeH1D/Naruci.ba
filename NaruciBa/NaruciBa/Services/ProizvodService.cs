@@ -38,19 +38,19 @@ namespace NaruciBa.Services
             Podkategorija podKategorijaProizvoda = await Context.Podkategorijas.FindAsync(request.PodkategorijaID);
             Poslovnica poslovnica = await Context.Poslovnicas.FindAsync(request.PoslovnicaID);
 
-            var daliPostoji = Context.TrgovackiLanacKategorijas
-                .Where(a => a.KategorijaID == podKategorijaProizvoda.KategorijaID && a.TrgovackiLanacID == poslovnica.TrgovackiLanacID)
+            var daliPostoji = Context.PoslovnicaKategorijas
+                .Where(a => a.KategorijaID == podKategorijaProizvoda.KategorijaID && a.PoslovnicaID == poslovnica.PoslovnicaID)
                 .Count();
 
             // Dodaj kategoriju za odredeni trgovacki lanac samo ukoliko ta kategorija vec nije dodjeljena tom trgovackom lancu
             if (daliPostoji == 0)
             {
-                TrgovackiLanacKategorija trgovackiLanacKategorija = new TrgovackiLanacKategorija()
+                PoslovnicaKategorija poslovnicaKategorija = new PoslovnicaKategorija()
                 {
                     KategorijaID = podKategorijaProizvoda.KategorijaID,
-                    TrgovackiLanacID = poslovnica.TrgovackiLanacID
+                    PoslovnicaID = poslovnica.PoslovnicaID
                 };
-                await Context.TrgovackiLanacKategorijas.AddAsync(trgovackiLanacKategorija);
+                await Context.PoslovnicaKategorijas.AddAsync(poslovnicaKategorija);
                 await Context.SaveChangesAsync();
             }
 
@@ -126,15 +126,15 @@ namespace NaruciBa.Services
             var products = await Context.Proizvods
                 .Include(a => a.Poslovnica)
                 .Include(a => a.Podkategorija)
-                .Where(a => a.Poslovnica.TrgovackiLanacID == entity.Poslovnica.TrgovackiLanacID && a.Podkategorija.KategorijaID == entity.Podkategorija.KategorijaID)
+                .Where(a => a.Poslovnica.PoslovnicaID == entity.Poslovnica.PoslovnicaID && a.Podkategorija.KategorijaID == entity.Podkategorija.KategorijaID)
                 .ToListAsync();
 
             // Ako nema vise proizvoda u toj kategoriji za dati trgovacki lanac, izbrisi odgovarajuci data u TrgovackiLanacKategorija
             if(products.Count() == 0){
-                var trgovackiLanacKategorija = await Context.TrgovackiLanacKategorijas
-                    .Where(a => a.KategorijaID == entity.Podkategorija.KategorijaID && a.TrgovackiLanacID == entity.Poslovnica.TrgovackiLanacID)
+                var poslovnicaKategorija = await Context.PoslovnicaKategorijas
+                    .Where(a => a.KategorijaID == entity.Podkategorija.KategorijaID && a.PoslovnicaID == entity.Poslovnica.PoslovnicaID)
                     .FirstOrDefaultAsync();
-                Context.TrgovackiLanacKategorijas.Remove(trgovackiLanacKategorija);
+                Context.PoslovnicaKategorijas.Remove(poslovnicaKategorija);
                 await Context.SaveChangesAsync();
             }
 

@@ -36,7 +36,7 @@ namespace NaruciBa.Database
         public virtual DbSet<Proizvod> Proizvods { get; set; }
         public virtual DbSet<Recenzija> Recenzijas { get; set; }
         public virtual DbSet<TrgovackiLanac> TrgovackiLanacs { get; set; }
-        public virtual DbSet<TrgovackiLanacKategorija> TrgovackiLanacKategorijas { get; set; }
+        public virtual DbSet<PoslovnicaKategorija> PoslovnicaKategorijas { get; set; }
 
 //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //        {
@@ -361,19 +361,19 @@ namespace NaruciBa.Database
                 entity.Property(e => e.SlikaPutanja);
             });
 
-            modelBuilder.Entity<TrgovackiLanacKategorija>(entity =>
+            modelBuilder.Entity<PoslovnicaKategorija>(entity =>
             {
-                entity.ToTable("TrgovackiLanacKategorija");
+                entity.ToTable("PoslovnicaKategorija");
 
                 entity.HasOne(d => d.Kategorija)
-                    .WithMany(p => p.TrgovackiLanacKategorijas)
+                    .WithMany(p => p.PoslovnicaKategorijas)
                     .HasForeignKey(d => d.KategorijaID)
                     .HasConstraintName("FK__Trgovacki__Kateg__634EBE90");
 
-                entity.HasOne(d => d.TrgovackiLanac)
-                    .WithMany(p => p.TrgovackiLanacKategorijas)
-                    .HasForeignKey(d => d.TrgovackiLanacID)
-                    .HasConstraintName("FK__Trgovacki__Trgov__625A9A57");
+                entity.HasOne(d => d.Poslovnica)
+                    .WithMany(p => p.PoslovnicaKategorijas)
+                    .HasForeignKey(d => d.PoslovnicaID)
+                    .HasConstraintName("FK_poslovnicaKategorija_Poslovnica");
             });
 
             OnModelCreatingPartial(modelBuilder);

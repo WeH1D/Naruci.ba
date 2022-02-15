@@ -4,10 +4,10 @@ using System.Text;
 
 namespace NaruciBa.Model
 {
-    public class TrgovackiLanacKategorija
+    public class PoslovnicaKategorija
     {
-        public int TrgovackiLanacKategorijaID { get; set; }
-        public int? TrgovackiLanacID { get; set; }
+        public int PoslovnicaKategorijaID { get; set; }
+        public int? PoslovnicaID { get; set; }
         public int? KategorijaID { get; set; }
     }
 }

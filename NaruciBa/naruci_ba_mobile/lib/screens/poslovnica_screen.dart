@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:naruci_ba_mobile/models/Kategorija.dart';
 import 'package:naruci_ba_mobile/models/Podkategorija.dart';
 import 'package:naruci_ba_mobile/models/Poslovnica.dart';
+import 'package:naruci_ba_mobile/models/PoslovnicaKategorija.dart';
+import 'package:naruci_ba_mobile/models/Proizvod.dart';
 import 'package:naruci_ba_mobile/providers/kategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/podkategorijaProvider.dart';
+import 'package:naruci_ba_mobile/providers/poslovnicaKategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/providers/proizvodProvider.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
@@ -24,13 +27,20 @@ class PoslovnicaScreen extends StatefulWidget {
 class _PoslovnicaState extends State<PoslovnicaScreen> {
   late PoslovnicaProvider _poslovnicaProvider;
   late PodkategorijaProvider _podkategorijaProvider;
+  late PoslovnicaKategorijaProvider _poslovnicaKategorijaProvider;
   late ProizvodProvider _proizvodProvider;
   Poslovnica? poslovnica;
   List<Podkategorija> podkategorije = List.empty();
+  List<PoslovnicaKategorija> kategorije = List.empty();
+  List<Proizvod> proizvodi = List.empty();
 
   void initComponent(String poslovnicaID) async {
     poslovnica = await _poslovnicaProvider.getById(id: poslovnicaID);
     podkategorije = await _podkategorijaProvider.get();
+    proizvodi = await _proizvodProvider
+        .get(searchParams: {"PoslovnicaID": poslovnica!.poslovnicaID});
+    kategorije = await _poslovnicaKategorijaProvider
+        .get(searchParams: {"PoslovnicaID": poslovnica!.poslovnicaID});
     await setProizvodi();
     setState(() {});
   }
@@ -40,6 +50,8 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
     super.initState();
     _poslovnicaProvider = context.read<PoslovnicaProvider>();
     _podkategorijaProvider = context.read<PodkategorijaProvider>();
+    _poslovnicaKategorijaProvider =
+        context.read<PoslovnicaKategorijaProvider>();
     _proizvodProvider = context.read<ProizvodProvider>();
     initComponent(widget.poslovnicaId);
   }
@@ -75,9 +87,9 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
               SizedBox(
                 height: 20,
               ),
-              ...podkategorije.map<Widget>((podkategorija) {
+              ...kategorije.map<Widget>((podkategorija) {
                 return (ElevatedButton(
-                    child: Text(podkategorija.naziv),
+                    child: Text(podkategorija.kategorijaID.toString()),
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(MediaQuery.of(context).size.width, 20)),
                     onPressed: () => {}));

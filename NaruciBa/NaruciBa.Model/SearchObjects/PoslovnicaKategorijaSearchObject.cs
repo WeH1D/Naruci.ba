@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NaruciBa.Model.SearchObjects
 {
-    public class TrgovackiLanacKategorijaSearchObject
+    public class PoslovnicaKategorijaSearchObject
     {
-        public int? TrgovackiLanacID { get; set; }
+        public int? PoslovnicaID { get; set; }
         public int? KategorijaID { get; set; }
     }
 }

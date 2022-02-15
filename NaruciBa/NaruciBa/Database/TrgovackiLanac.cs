@@ -10,7 +10,6 @@ namespace NaruciBa.Database
         public TrgovackiLanac()
         {
             Poslovnicas = new HashSet<Poslovnica>();
-            TrgovackiLanacKategorijas = new HashSet<TrgovackiLanacKategorija>();
         }
 
         public int TrgovackiLanacID { get; set; }
@@ -18,6 +17,5 @@ namespace NaruciBa.Database
         public string SlikaPutanja { get; set; }
 
         public virtual ICollection<Poslovnica> Poslovnicas { get; set; }
-        public virtual ICollection<TrgovackiLanacKategorija> TrgovackiLanacKategorijas { get; set; }
     }
 }

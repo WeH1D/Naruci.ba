@@ -21,7 +21,7 @@ namespace NaruciBa.WinUI.Poslovnice
         APIService _gradService = new APIService("Grad");
         APIService _proizvodiService = new APIService("Proizvod");
         APIService _kategorijaService = new APIService("Kategorija");
-        APIService _trgovackiLanacKategorijaService = new APIService("TrgovackiLanacKategorija");
+        APIService _poslovnicaKategorijaService = new APIService("PoslovnicaKategorija");
 
         public class ProizvodForView
         {
@@ -73,9 +73,9 @@ namespace NaruciBa.WinUI.Poslovnice
 
                 kategorijeIDs = kategorijeIDs.Distinct().ToList();
 
-                List<Model.Kategorija> kategorije = await _trgovackiLanacKategorijaService.Get<List<Model.Kategorija>>(new Model.SearchObjects.TrgovackiLanacKategorijaSearchObject()
+                List<Model.Kategorija> kategorije = await _poslovnicaKategorijaService.Get<List<Model.Kategorija>>(new Model.SearchObjects.PoslovnicaKategorijaSearchObject()
                 {
-                    TrgovackiLanacID = trgovackiLanac.TrgovackiLanacID
+                    PoslovnicaID = int.Parse(poslovnicaId)
                 });
 
                 ////////////////////////////////////////////////////////////////////////////////////////////////////

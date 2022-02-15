@@ -99,7 +99,7 @@ namespace NaruciBa
             services.AddScoped<ITrgovackiLanacService, TrgovackiLanacService>();
             services.AddScoped<IPoslovnicaService, PoslovnicaService>();
             services.AddScoped<IProizvodService, ProizvodService>();
-            services.AddScoped<ITrgovackiLanacKategorijaService, TrgovackiLanacKategorijaService>();
+            services.AddScoped<IPoslovnicaKategorijaService, PoslovnicaKategorijaService>();
 
             //========================================================================//
 

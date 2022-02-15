@@ -10,13 +10,13 @@ namespace NaruciBa.Database
         public Kategorija()
         {
             Podkategorijas = new HashSet<Podkategorija>();
-            TrgovackiLanacKategorijas = new HashSet<TrgovackiLanacKategorija>();
+            PoslovnicaKategorijas = new HashSet<PoslovnicaKategorija>();
         }
 
         public int KategorijaID { get; set; }
         public string Naziv { get; set; }
 
         public virtual ICollection<Podkategorija> Podkategorijas { get; set; }
-        public virtual ICollection<TrgovackiLanacKategorija> TrgovackiLanacKategorijas { get; set; }
+        public virtual ICollection<PoslovnicaKategorija> PoslovnicaKategorijas { get; set; }
     }
 }

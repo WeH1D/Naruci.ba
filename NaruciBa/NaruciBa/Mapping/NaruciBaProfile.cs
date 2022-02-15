@@ -35,7 +35,7 @@ namespace NaruciBa.Mapping
 
             CreateMap<Database.Grad, Model.Grad>().ReverseMap();
 
-            CreateMap<Database.TrgovackiLanacKategorija, Model.TrgovackiLanacKategorija>().ReverseMap();
+            CreateMap<Database.PoslovnicaKategorija, Model.PoslovnicaKategorija>().ReverseMap();
 
         }
     }
