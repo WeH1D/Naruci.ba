@@ -16,6 +16,7 @@ Proizvod _$ProizvodFromJson(Map<String, dynamic> json) => Proizvod(
       podkategorijaID: json['podkategorijaID'] as int?,
       poslovnicaID: json['poslovnicaID'] as int?,
       status: json['status'] as bool?,
+      slika: json['slika'] as String?,
       slikaPutanja: json['slikaPutanja'] as String?,
       datumKreiranja: json['datumKreiranja'] == null
           ? null
@@ -35,6 +36,7 @@ Map<String, dynamic> _$ProizvodToJson(Proizvod instance) => <String, dynamic>{
       'podkategorijaID': instance.podkategorijaID,
       'poslovnicaID': instance.poslovnicaID,
       'status': instance.status,
+      'slika': instance.slika,
       'slikaPutanja': instance.slikaPutanja,
       'datumKreiranja': instance.datumKreiranja?.toIso8601String(),
       'datumIzmjene': instance.datumIzmjene?.toIso8601String(),

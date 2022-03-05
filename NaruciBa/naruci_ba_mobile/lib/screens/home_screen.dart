@@ -3,7 +3,7 @@ import 'package:naruci_ba_mobile/models/Poslovnica.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:naruci_ba_mobile/widgets/filters_top_card.dart';
-import 'package:naruci_ba_mobile/widgets/poslovnica_card.dart';
+import 'package:naruci_ba_mobile/widgets/poslovnica/poslovnica_card.dart';
 import 'package:provider/src/provider.dart';
 
 class HomeScreen extends StatefulWidget {

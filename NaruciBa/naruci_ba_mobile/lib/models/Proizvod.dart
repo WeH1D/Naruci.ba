@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'Proizvod.g.dart';
@@ -13,6 +15,7 @@ class Proizvod {
   final int? podkategorijaID;
   final int? poslovnicaID;
   final bool? status;
+  final String? slika;
   final String? slikaPutanja;
   final DateTime? datumKreiranja;
   final DateTime? datumIzmjene;
@@ -27,6 +30,7 @@ class Proizvod {
       required this.podkategorijaID,
       required this.poslovnicaID,
       required this.status,
+      required this.slika,
       required this.slikaPutanja,
       required this.datumKreiranja,
       required this.datumIzmjene});

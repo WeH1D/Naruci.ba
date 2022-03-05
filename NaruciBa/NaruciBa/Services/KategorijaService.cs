@@ -36,7 +36,7 @@ namespace NaruciBa.Services
             {
                 entity = entity.Where(a => a.Naziv == search.Naziv);
             }
-           
+
             var list = await entity.ToListAsync();
             return _mapper.Map<List<Model.Kategorija>>(list);
         }
