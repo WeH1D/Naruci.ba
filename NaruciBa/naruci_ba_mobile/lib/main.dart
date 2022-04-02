@@ -8,6 +8,7 @@ import 'package:naruci_ba_mobile/providers/podkategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaKategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/providers/proizvodProvider.dart';
+import 'package:naruci_ba_mobile/providers/trgovackiLanacProvider.dart';
 import 'package:naruci_ba_mobile/screens/home_screen.dart';
 import 'package:naruci_ba_mobile/screens/login_screen.dart';
 import 'package:naruci_ba_mobile/screens/poslovnica_screen.dart';
@@ -87,6 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
             create: (ctx) => ProizvodProvider(ctx)),
         ChangeNotifierProvider<PoslovnicaKategorijaProvider>(
             create: (ctx) => PoslovnicaKategorijaProvider(ctx)),
+        ChangeNotifierProvider<TrgovackiLanacProvider>(
+            create: (ctx) => TrgovackiLanacProvider(ctx)),
       ],
       child: MaterialApp(
         theme: ThemeData(),
