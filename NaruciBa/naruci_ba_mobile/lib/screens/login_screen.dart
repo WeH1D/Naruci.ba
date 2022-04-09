@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/screens/home_screen.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
@@ -15,13 +16,27 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  void login() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HomeScreen(),
-      ),
-    );
+  late AuthentificationProvider _authentication;
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _authentication = context.read<AuthentificationProvider>();
+  }
+
+  Future<void> login() async {
+    bool login = await _authentication.login(
+        usernameController.text, passwordController.text);
+    if (login) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    }
   }
 
   @override
@@ -37,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 40,
             ),
             TextField(
+              controller: usernameController,
               decoration: InputDecoration(
                   hintText: "Email address",
                   border: OutlineInputBorder(
@@ -48,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 10,
             ),
             TextField(
+              controller: passwordController,
               decoration: InputDecoration(
                   hintText: "Password",
                   border: OutlineInputBorder(

@@ -32,25 +32,25 @@ namespace NaruciBa.WinUI.Login
 
         private async void frmLogin_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.AccessToken))
-            {
-                try
-                {
-                    await service.setRefreshToken();
+            //if (!string.IsNullOrEmpty(Properties.Settings.Default.AccessToken))
+            //{
+            //    try
+            //    {
+            //        await service.setRefreshToken();
 
-                    this.Hide();
-                    frmHome frm = new frmHome();
-                    frm.ShowDialog();
-                }
-                catch (Exception)
-                {
-                    Properties.Settings.Default.AccessToken = "";
-                    Properties.Settings.Default.RefreshToken = "";
-                    Properties.Settings.Default.email = "";
-                    Properties.Settings.Default.passwordHash = "";
-                }
+            //        this.Hide();
+            //        frmHome frm = new frmHome();
+            //        frm.ShowDialog();
+            //    }
+            //    catch (Exception)
+            //    {
+            //        Properties.Settings.Default.AccessToken = "";
+            //        Properties.Settings.Default.RefreshToken = "";
+            //        Properties.Settings.Default.email = "";
+            //        Properties.Settings.Default.passwordHash = "";
+            //    }
 
-            }
+            //}
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)

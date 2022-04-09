@@ -64,31 +64,32 @@ namespace NaruciBa
             services.AddDbContext<NaruciBaContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddAuthentication("Bearer")
-            //.AddJwtBearer("Bearer", options =>
-            //{
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
 
-            //    options.Authority = Configuration.GetValue<string>("IndentityServerUrl");
+                options.Authority = Configuration.GetValue<string>("IndentityServerUrl");
 
-            //    options.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateAudience = false
-            //    };
-            //});
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false // Mora se onemoguciti zbog flutter aplikacije na android emulatoru
+                };
+            });
 
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("WinApp", policy =>
-            //    {
-            //        policy.RequireAuthenticatedUser();
-            //        policy.RequireClaim("scope", "WinAppScope");
-            //    });
-            //    options.AddPolicy("MobileApp", policy =>
-            //    {
-            //        policy.RequireAuthenticatedUser();
-            //        policy.RequireClaim("scope", "MobileAppScope");
-            //    });
-            //});
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("WinApp", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "WinAppScope");
+                });
+                options.AddPolicy("MobileApp", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "MobileAppScope");
+                });
+            });
 
             //================== Specific service implementations ======================//
 
@@ -117,7 +118,7 @@ namespace NaruciBa
 
             app.UseRouting();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();
@@ -129,8 +130,8 @@ namespace NaruciBa
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-                    //.RequireAuthorization();
+                endpoints.MapControllers()
+                    .RequireAuthorization();
             });
         }
     }

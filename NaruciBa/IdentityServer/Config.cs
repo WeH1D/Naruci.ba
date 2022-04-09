@@ -63,9 +63,14 @@ namespace IdentityServer
                     {
                         new Secret("MobileAppPassword".Sha256())
                     },
-                    AllowedGrantTypes = IdentityServer4.Models.GrantTypes.ClientCredentials,
+                    AllowedGrantTypes = IdentityServer4.Models.GrantTypes.ResourceOwnerPassword,
+
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "MobileAppScope" }
+                    AccessTokenLifetime = 1700,
+                    RefreshTokenExpiration = TokenExpiration.Sliding,
+                    RefreshTokenUsage = TokenUsage.OneTimeOnly,
+
+                    AllowedScopes = { "MobileAppScope", StandardScopes.OpenId }
                 }
             };
     }

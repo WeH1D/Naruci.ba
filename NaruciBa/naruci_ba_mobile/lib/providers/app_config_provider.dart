@@ -20,7 +20,11 @@ class AppConfigProvider {
 
     // convert our JSON into an instance of our AppConfig class
     return Future.value(AppConfig(
-      baseUrl: config['baseUrl'],
-    ));
+        baseUrl: config['baseUrl'],
+        accessTokenTimeLimit: config['accessTokenTimeLimit'],
+        clientId: config['clientId'],
+        tokenEndpoint: config['tokenEndpoint'],
+        redirectURL: config['redirectURL'],
+        clientSecret: config['clientSecret']));
   }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:naruci_ba_mobile/providers/app_config_provider.dart';
+import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
 import 'package:naruci_ba_mobile/providers/base_api_provider.dart';
 import 'package:naruci_ba_mobile/providers/kategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/podkategorijaProvider.dart';
@@ -77,6 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
       providers: [
         Provider<AppConfigProvider>(
           create: (ctx) => AppConfigProvider(context: ctx),
+        ),
+        ChangeNotifierProvider<AuthentificationProvider>(
+          create: (ctx) => AuthentificationProvider(ctx),
         ),
         ChangeNotifierProvider<PoslovnicaProvider>(
             create: (ctx) => PoslovnicaProvider(ctx)),

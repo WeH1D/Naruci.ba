@@ -1,19 +1,24 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:naruci_ba_mobile/models/app_config.dart';
 import 'package:naruci_ba_mobile/providers/app_config_provider.dart';
+import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
 import 'package:provider/provider.dart';
 
 abstract class BaseAPIProvider<T> {
   BuildContext context;
   late AppConfigProvider provider;
+  late AuthentificationProvider _authentication;
   Future<String> basePath();
   String resourceName();
 
   BaseAPIProvider(this.context) {
     provider = context.read<AppConfigProvider>();
+    _authentication = context.read<AuthentificationProvider>();
   }
 
   Future get({dynamic id, String? actionName, Map? searchParams}) async {
@@ -32,13 +37,11 @@ abstract class BaseAPIProvider<T> {
       path = path + "?" + queryString;
     }
     print("running GET: $path");
-    // final response = await http.get(path, headers: await createHeaders());
+
     var uriPath = Uri.parse(path);
-    final response = await http.get(uriPath, headers: {
-      "Accept": "application/json",
-      "content-type": "application/json"
-    });
-    print(response.body);
+    final response =
+        await http.get(uriPath, headers: await createTokenHeader());
+
     if (response.body == null || response.body == "") {
       throw Exception("Connectivity issue");
     }
@@ -67,12 +70,9 @@ abstract class BaseAPIProvider<T> {
     var path = '${await basePath()}/${resourceName()}/${id.toString()}';
 
     print("running GET BY ID: $path");
-    // final response = await http.get(path, headers: await createHeaders());
     var uriPath = Uri.parse(path);
-    final response = await http.get(uriPath, headers: {
-      "Accept": "application/json",
-      "content-type": "application/json"
-    });
+    final response =
+        await http.get(uriPath, headers: await createTokenHeader());
     print(response.body);
     if (response.body == null || response.body == "") {
       throw Exception("Connectivity issue");
@@ -96,6 +96,13 @@ abstract class BaseAPIProvider<T> {
   }
 
   T convertFromJSON(dynamic json);
+
+  AuthentificationProvider get authentication {
+    if (_authentication == null) {
+      _authentication = context.read<AuthentificationProvider>();
+    }
+    return _authentication;
+  }
 
   Future<AppConfig> getAppConfigProvider() async {
     if (provider == null) {
@@ -137,33 +144,21 @@ abstract class BaseAPIProvider<T> {
     return query;
   }
 
-  // Future<dynamic> createHeaders() async {
-  //   print('creeating headers');
-  //   var accessToken = Authentication.AccessToken;
-  //   print("access token: $accessToken");
-  //   var config = await getAppConfigProvider();
+  Future<Map<String, String>> createTokenHeader() async {
+    print('creeating headers');
+    var accessToken = authentication.accessToken;
+    var config = await getAppConfigProvider();
 
-  //   if (Authentication.AccessTokenExpirationDateTime != null &&
-  //       !Authentication.GettingNewToken) {
-  //     var accessTokenExpirationDateTime =
-  //         Authentication.AccessTokenExpirationDateTime;
-  //     if (config.accessTokenTimeLimit * 1000 -
-  //                 accessTokenExpirationDateTime
-  //                     .difference(DateTime.now())
-  //                     .inMilliseconds >=
-  //             0 &&
-  //         accessTokenExpirationDateTime
-  //                 .difference(DateTime.now())
-  //                 .inMilliseconds >
-  //             0) {
-  //       print("getting new token...");
-  //       _authentication.getNewAccessToken();
-  //       accessToken = Authentication.AccessToken;
-  //     } else if (accessTokenExpirationDateTime
-  //         .difference(DateTime.now())
-  //         .isNegative) {
-  //       logout();
-  //     }
-  //   }
-  // }
+    if (!_authentication.gettingNewToken) {
+      // token expired
+      if (_authentication.accessTokenExpirationDateTime
+          .difference(DateTime.now())
+          .isNegative) {
+        print('getting new token...');
+        await _authentication.getNewToken();
+      }
+      return {"Authorization": "Bearer ${_authentication.accessToken}"};
+    }
+    return {};
+  }
 }
