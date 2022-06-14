@@ -189,6 +189,42 @@ abstract class BaseAPIProvider<T> {
     }
   }
 
+  Future<T> delete({required int id}) async {
+    var path = '${await basePath()}/${resourceName()}/$id';
+
+    var start = DateTime.now();
+    print("running DELETE $path");
+    var uriPath = Uri.parse(path);
+    var headers = await createTokenHeader();
+    print("HEADERS $headers");
+    final response = await http.delete(uriPath, headers: headers);
+    print("done");
+    var end = DateTime.now();
+    var diff = end.difference(start).inMilliseconds;
+
+    print('Finished DELETE: $path executedin: ${diff}');
+
+    var data;
+
+    if (response.body != null && response.body != "") {
+      data = json.decode(response.body);
+    }
+
+    if (response.statusCode == 200) {
+      if (data != null && response.body != "") {
+        return convertFromJSON(jsonDecode(response.body));
+      } else {
+        throw Exception("No response");
+      }
+    } else if (response.statusCode == 307) {
+      final uri = Uri.parse(response.headers["location"]!);
+      final redirectData = await http.delete(uri, headers: headers);
+      return convertFromJSON(jsonDecode(redirectData.body));
+    } else {
+      throw Exception("Server side error");
+    }
+  }
+
   T convertFromJSON(dynamic json);
 
   AuthentificationProvider get authentication {

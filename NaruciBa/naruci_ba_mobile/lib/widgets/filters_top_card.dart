@@ -8,16 +8,16 @@ class FiltersTopCard extends StatefulWidget {
 }
 
 class _FiltersTopCardState extends State<FiltersTopCard> {
-  double filterContainerHeight = 150;
+  double filterContainerHeight = 120;
   bool filterContainerIsOpen = false;
 
   void openFilters() {
     setState(() {
       if (filterContainerIsOpen) {
-        filterContainerHeight = MediaQuery.of(context).size.height / 1.5;
+        filterContainerHeight = MediaQuery.of(context).size.height / 3;
         filterContainerIsOpen = false;
       } else {
-        filterContainerHeight = 150;
+        filterContainerHeight = 120;
         filterContainerIsOpen = true;
       }
     });
@@ -29,7 +29,7 @@ class _FiltersTopCardState extends State<FiltersTopCard> {
       height: filterContainerHeight,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 23, 255, 255),
+          color: Colors.grey,
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20))),
@@ -46,7 +46,10 @@ class _FiltersTopCardState extends State<FiltersTopCard> {
                       fillColor: Colors.white,
                       hintText: "Search",
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          )),
                       contentPadding: EdgeInsets.all(10),
                     ),
                   ),
@@ -60,7 +63,6 @@ class _FiltersTopCardState extends State<FiltersTopCard> {
                       openFilters();
                     },
                     child: Text("Filter")),
-                Text("Filters")
               ],
             )
           ],

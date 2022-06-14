@@ -160,7 +160,7 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
           defaultPanelState: PanelState.CLOSED,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          minHeight: MediaQuery.of(context).size.height / 5 * 3,
+          minHeight: MediaQuery.of(context).size.height / 5 * 2.8,
           maxHeight: MediaQuery.of(context).size.height,
           padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
           body: Stack(children: [

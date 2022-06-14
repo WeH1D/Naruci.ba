@@ -4,18 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:naruci_ba_mobile/models/NaruceniProizvod.dart';
 import 'package:naruci_ba_mobile/models/Narudzba.dart';
+import 'package:naruci_ba_mobile/models/Poslovnica.dart';
 import 'package:naruci_ba_mobile/models/Proizvod.dart';
 import 'package:naruci_ba_mobile/providers/KlijentProvider.dart';
 import 'package:naruci_ba_mobile/providers/NaruceniProizvod.dart';
 import 'package:naruci_ba_mobile/providers/NarudzbaProvider.dart';
+import 'package:naruci_ba_mobile/screens/basket_screen.dart';
+import 'package:naruci_ba_mobile/screens/poslovnica_screen.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:provider/src/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ProizvodInfo extends StatefulWidget {
   final Proizvod proizvod;
+  final bool navigateToBasket;
 
-  const ProizvodInfo({Key? key, required this.proizvod}) : super(key: key);
+  const ProizvodInfo(
+      {Key? key, required this.proizvod, required this.navigateToBasket})
+      : super(key: key);
 
   @override
   State<ProizvodInfo> createState() => _ProizvodInfoState();
@@ -40,9 +46,11 @@ class _ProizvodInfoState extends State<ProizvodInfo> {
     List<Narudzba> basket = await _narudzbaProvider
         .get(searchParams: {"KlijentID": _klijenProvider.klijendID});
 
-    if (basket.isNotEmpty) {
-      List<NaruceniProizvod> proizvodiUKorpi = await _naruceniProizvodProvider
-          .get(searchParams: {"NarudzbaID": basket.first.narudzbaID});
+    List<NaruceniProizvod> proizvodiUKorpi = await _naruceniProizvodProvider
+        .get(searchParams: {"NarudzbaID": basket.first.narudzbaID});
+
+    // Da li basket pripada ovoj poslovnici, ako NE, izbrisi proizvode i updateaj basket, ako DA dodaj proizvod
+    if (basket.first.poslovnicaID == widget.proizvod.poslovnicaID) {
       Iterable<NaruceniProizvod> postojeciProizvod = proizvodiUKorpi
           .where((prod) => prod.proizvodID == widget.proizvod.proizvodID);
       if (postojeciProizvod.isEmpty) {
@@ -54,12 +62,67 @@ class _ProizvodInfoState extends State<ProizvodInfo> {
           "ukupnaCijena": ukupnaCijena
         });
         print("Proizvod dodan u korpu");
+        navigateNext();
       } else {
         NaruceniProizvod naruceniProd = await _naruceniProizvodProvider.put(
-            id: proizvodiUKorpi.first.naruceniProizvodID,
+            id: proizvodiUKorpi
+                .where((prod) => prod.proizvodID == widget.proizvod.proizvodID)
+                .first
+                .naruceniProizvodID,
             request: {"kolicina": _kolicina, "ukupnaCijena": ukupnaCijena});
         print("Updatean postojeci proizvod u korpi");
+        navigateNext();
       }
+    } else {
+      bool action = await showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(
+                "Dodajete proizvod iz poslovnice koja se ne podudara sa poslovnicom vase trenutne korpe. Ukoliko nastavite, postojeci proizvodi ce biti izbrisani iz korpe. Da li zelite nastaviti?",
+              ),
+              actions: [
+                ElevatedButton(
+                    onPressed: () => {
+                          Navigator.pop(context, true),
+                        },
+                    child: Text("Da")),
+                ElevatedButton(
+                    onPressed: () => {
+                          Navigator.pop(context, false),
+                        },
+                    child: Text("Ne"))
+              ],
+            );
+          });
+      if (action) {
+        proizvodiUKorpi.forEach((prod) async {
+          await _naruceniProizvodProvider.delete(id: prod.naruceniProizvodID);
+        });
+        await _narudzbaProvider.put(
+            id: basket.first.narudzbaID,
+            request: {"PoslovnicaID": widget.proizvod.poslovnicaID});
+        NaruceniProizvod naruceniProd =
+            await _naruceniProizvodProvider.post(request: {
+          "proizvodID": widget.proizvod.proizvodID,
+          "narudzbaID": basket.first.narudzbaID,
+          "kolicina": _kolicina,
+          "ukupnaCijena": ukupnaCijena
+        });
+        print("Proizvod dodan u korpu");
+        navigateNext();
+      }
+    }
+  }
+
+  void navigateNext() {
+    if (widget.navigateToBasket) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Basket()),
+      );
+    } else {
+      Navigator.pop(context);
     }
   }
 

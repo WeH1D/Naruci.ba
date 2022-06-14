@@ -20,7 +20,10 @@ class _ProizvodShowcaseState extends State<ProizvodShowcase> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProizvodInfo(proizvod: widget.proizvod),
+            builder: (context) => ProizvodInfo(
+              proizvod: widget.proizvod,
+              navigateToBasket: false,
+            ),
           ),
         );
       },
