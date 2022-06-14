@@ -16,13 +16,13 @@ class AuthentificationProvider with ChangeNotifier {
 
   final FlutterAppAuth _appauth = FlutterAppAuth();
 
-  late String _accessToken;
-  String get accessToken {
+  String? _accessToken;
+  String? get accessToken {
     return _accessToken;
   }
 
-  late String _refreshToken;
-  String get refreshToken {
+  String? _refreshToken;
+  String? get refreshToken {
     return _refreshToken;
   }
 
@@ -31,8 +31,8 @@ class AuthentificationProvider with ChangeNotifier {
   //   return _user;
   // }
 
-  late DateTime _accessTokenExpirationDateTime;
-  DateTime get accessTokenExpirationDateTime {
+  DateTime? _accessTokenExpirationDateTime;
+  DateTime? get accessTokenExpirationDateTime {
     return _accessTokenExpirationDateTime;
   }
 
@@ -50,7 +50,6 @@ class AuthentificationProvider with ChangeNotifier {
   }
 
   getNewToken() async {
-    print("GETTING NEW TOKEN");
     _gettingNewToken = true;
     var config = await getAppConfigProvider();
     var clientId = config.clientId;
@@ -64,6 +63,7 @@ class AuthentificationProvider with ChangeNotifier {
       "scope": "MobileAppScope openid offline_access",
       "grant_type": "refresh_token",
     }).then((response) {
+      print("RESPONSE $response");
       if (response.statusCode == 200) {
         print('Issued token: ${response.body}');
         final Map parsed = jsonDecode(response.body);
@@ -71,7 +71,7 @@ class AuthentificationProvider with ChangeNotifier {
         _refreshToken = parsed["refresh_token"];
         _accessTokenExpirationDateTime = DateTime.now();
         _accessTokenExpirationDateTime = _accessTokenExpirationDateTime
-            .add(Duration(seconds: parsed["expires_in"] ?? 0));
+            ?.add(Duration(seconds: parsed["expires_in"] ?? 0));
       } else {
         _accessToken = "";
         _refreshToken = "";
@@ -104,7 +104,44 @@ class AuthentificationProvider with ChangeNotifier {
         _refreshToken = parsed["refresh_token"];
         _accessTokenExpirationDateTime = DateTime.now();
         _accessTokenExpirationDateTime = _accessTokenExpirationDateTime
-            .add(Duration(seconds: parsed["expires_in"] ?? 0));
+            ?.add(Duration(seconds: parsed["expires_in"] ?? 0));
+      } else {
+        _accessToken = "";
+        _refreshToken = "";
+        _accessTokenExpirationDateTime = DateTime.now();
+      }
+      return response;
+    });
+
+    _gettingNewToken = false;
+    if (resultToken.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  createNewToken() async {
+    _gettingNewToken = true;
+    var config = await getAppConfigProvider();
+    var clientId = config.clientId;
+    var clientSecret = config.clientSecret;
+    var tokenEndpoint = config.tokenEndpoint;
+    final http.Response resultToken =
+        await http.post(Uri.parse(tokenEndpoint), body: {
+      "client_id": clientId,
+      "client_secret": clientSecret,
+      "scope": "NotRegisteredAccess",
+      "grant_type": "client_credentials",
+    }).then((response) {
+      if (response.statusCode == 200) {
+        print('Issued token: ${response.body}');
+        final Map parsed = jsonDecode(response.body);
+        _accessToken = parsed["access_token"];
+        _refreshToken = parsed["refresh_token"];
+        _accessTokenExpirationDateTime = DateTime.now();
+        _accessTokenExpirationDateTime = _accessTokenExpirationDateTime
+            ?.add(Duration(seconds: parsed["expires_in"] ?? 0));
       } else {
         _accessToken = "";
         _refreshToken = "";

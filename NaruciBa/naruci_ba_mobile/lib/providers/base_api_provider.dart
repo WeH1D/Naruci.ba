@@ -51,7 +51,7 @@ abstract class BaseAPIProvider<T> {
     if (response.statusCode == 200) {
       print("RESPONSE $data");
       List<T> result = [];
-      data.forEach((a) => result.add(convertFromJSON(a)));
+      data.forEach((a) => {result.add(convertFromJSON(a))});
       var val = Future.value(result);
       return val;
     } else if (response.statusCode == 400) {
@@ -90,6 +90,100 @@ abstract class BaseAPIProvider<T> {
     } else if (response.statusCode == 403) {
       //logout();
       throw Exception('Sorry, you are not authorized for this action');
+    } else {
+      throw Exception("Server side error");
+    }
+  }
+
+  Future<T> post(
+      {required dynamic request,
+      String jsonRequest = "",
+      String actionName = ""}) async {
+    var path = '${await basePath()}/${resourceName()}';
+    if (actionName != "") {
+      path = path + "/$actionName";
+    }
+    String tmp;
+    if (request != null) {
+      tmp = json.encode(request);
+    } else {
+      tmp = jsonRequest;
+    }
+
+    var start = DateTime.now();
+    print("running POST $path");
+    var uriPath = Uri.parse(path);
+    var headers = await createTokenHeader();
+    print("HEADERS $headers");
+    final response = await http.post(uriPath, body: tmp, headers: headers);
+    print("done");
+    var end = DateTime.now();
+    var diff = end.difference(start).inMilliseconds;
+
+    print('Finished POST: $path executedin: ${diff}');
+
+    var data;
+
+    if (response.body != null && response.body != "") {
+      data = json.decode(response.body);
+    }
+
+    if (response.statusCode == 200) {
+      if (data != null && response.body != "") {
+        return convertFromJSON(jsonDecode(response.body));
+      } else {
+        throw Exception("No response");
+      }
+    } else if (response.statusCode == 307) {
+      final uri = Uri.parse(response.headers["location"]!);
+      final redirectData = await http.post(uri, body: tmp, headers: headers);
+      return convertFromJSON(jsonDecode(redirectData.body));
+    } else {
+      throw Exception("Server side error");
+    }
+  }
+
+  Future<T> put(
+      {required int id,
+      required dynamic request,
+      String jsonRequest = ""}) async {
+    var path = '${await basePath()}/${resourceName()}/$id';
+
+    String tmp;
+    if (request != null) {
+      tmp = json.encode(request);
+    } else {
+      tmp = jsonRequest;
+    }
+
+    var start = DateTime.now();
+    print("running PUT $path");
+    var uriPath = Uri.parse(path);
+    var headers = await createTokenHeader();
+    print("HEADERS $headers");
+    final response = await http.put(uriPath, body: tmp, headers: headers);
+    print("done");
+    var end = DateTime.now();
+    var diff = end.difference(start).inMilliseconds;
+
+    print('Finished PUT: $path executedin: ${diff}');
+
+    var data;
+
+    if (response.body != null && response.body != "") {
+      data = json.decode(response.body);
+    }
+
+    if (response.statusCode == 200) {
+      if (data != null && response.body != "") {
+        return convertFromJSON(jsonDecode(response.body));
+      } else {
+        throw Exception("No response");
+      }
+    } else if (response.statusCode == 307) {
+      final uri = Uri.parse(response.headers["location"]!);
+      final redirectData = await http.put(uri, body: tmp, headers: headers);
+      return convertFromJSON(jsonDecode(redirectData.body));
     } else {
       throw Exception("Server side error");
     }
@@ -146,19 +240,33 @@ abstract class BaseAPIProvider<T> {
 
   Future<Map<String, String>> createTokenHeader() async {
     print('creeating headers');
+    //If there is no access token then create new token
     var accessToken = authentication.accessToken;
     var config = await getAppConfigProvider();
 
-    if (!_authentication.gettingNewToken) {
+    if (accessToken != null && !_authentication.gettingNewToken) {
       // token expired
-      if (_authentication.accessTokenExpirationDateTime
+      if (_authentication.accessTokenExpirationDateTime!
           .difference(DateTime.now())
           .isNegative) {
         print('getting new token...');
         await _authentication.getNewToken();
       }
-      return {"Authorization": "Bearer ${_authentication.accessToken}"};
+      return {
+        "Authorization": "Bearer ${_authentication.accessToken}",
+        "Accept": "application/json",
+        "content-type": "application/json"
+      };
+    } else if (accessToken == null) {
+      print("CREATING NEW TOKEN");
+      await _authentication.createNewToken();
+      return {
+        "Authorization": "Bearer ${_authentication.accessToken}",
+        "Accept": "application/json",
+        "content-type": "application/json"
+      };
     }
+    print("RETURNING NOTHING");
     return {};
   }
 }

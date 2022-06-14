@@ -1,10 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:naruci_ba_mobile/providers/KlijentProvider.dart';
+import 'package:naruci_ba_mobile/providers/NaruceniProizvod.dart';
+import 'package:naruci_ba_mobile/providers/NarudzbaProvider.dart';
 import 'package:naruci_ba_mobile/providers/app_config_provider.dart';
 import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
 import 'package:naruci_ba_mobile/providers/base_api_provider.dart';
+import 'package:naruci_ba_mobile/providers/gradProvider.dart';
 import 'package:naruci_ba_mobile/providers/kategorijaProvider.dart';
+import 'package:naruci_ba_mobile/providers/korisnikPorvider.dart';
 import 'package:naruci_ba_mobile/providers/podkategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaKategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
@@ -94,6 +99,16 @@ class _MyHomePageState extends State<MyHomePage> {
             create: (ctx) => PoslovnicaKategorijaProvider(ctx)),
         ChangeNotifierProvider<TrgovackiLanacProvider>(
             create: (ctx) => TrgovackiLanacProvider(ctx)),
+        ChangeNotifierProvider<KorisnikProvider>(
+            create: (ctx) => KorisnikProvider(ctx)),
+        ChangeNotifierProvider<GradProvider>(
+            create: (ctx) => GradProvider(ctx)),
+        ChangeNotifierProvider<NarudzbaProvider>(
+            create: (ctx) => NarudzbaProvider(ctx)),
+        ChangeNotifierProvider<KlijentProvider>(
+            create: (ctx) => KlijentProvider(ctx)),
+        ChangeNotifierProvider<NaruceniProizvodProvider>(
+            create: (ctx) => NaruceniProizvodProvider(ctx)),
       ],
       child: MaterialApp(
         theme: ThemeData(),

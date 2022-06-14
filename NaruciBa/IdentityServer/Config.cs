@@ -22,6 +22,7 @@ namespace IdentityServer
             {
                 new ApiScope("WinAppScope", "WinAppScope"),
                 new ApiScope("MobileAppScope", "MobileAppScope"),
+                new ApiScope("NotRegisteredAccess", "NotRegisteredAccess"),
             };
 
         public static IEnumerable<ApiResource> ApiResources =>
@@ -29,7 +30,7 @@ namespace IdentityServer
          {
                 new ApiResource("NaruciBaApi", "Naruci.ba api")
                 {
-                    Scopes = { "WinAppScope", "MobileAppScope" }
+                    Scopes = { "WinAppScope", "MobileAppScope", "NotRegisteredAccess" }
                 },
          };
 
@@ -63,15 +64,18 @@ namespace IdentityServer
                     {
                         new Secret("MobileAppPassword".Sha256())
                     },
-                    AllowedGrantTypes = IdentityServer4.Models.GrantTypes.ResourceOwnerPassword,
+                    AllowedGrantTypes = {
+                       GrantType.ClientCredentials,
+                       GrantType.ResourceOwnerPassword
+                    },
 
                     AllowOfflineAccess = true,
                     AccessTokenLifetime = 1700,
                     RefreshTokenExpiration = TokenExpiration.Sliding,
                     RefreshTokenUsage = TokenUsage.OneTimeOnly,
 
-                    AllowedScopes = { "MobileAppScope", StandardScopes.OpenId }
-                }
+                    AllowedScopes = { "MobileAppScope", StandardScopes.OpenId, "NotRegisteredAccess" }
+                },
             };
     }
 }

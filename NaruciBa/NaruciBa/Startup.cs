@@ -101,6 +101,10 @@ namespace NaruciBa
             services.AddScoped<IPoslovnicaService, PoslovnicaService>();
             services.AddScoped<IProizvodService, ProizvodService>();
             services.AddScoped<IPoslovnicaKategorijaService, PoslovnicaKategorijaService>();
+            services.AddScoped<INarudzbaService, NarudzbaService>();
+            services.AddScoped<INarudzbaStatusService, NarudzbaStatusService>();
+            services.AddScoped<INaruceniProizvod, NaruceniProizvodService>();
+            services.AddScoped<IKlijentService, KlijentService>();
 
             //========================================================================//
 

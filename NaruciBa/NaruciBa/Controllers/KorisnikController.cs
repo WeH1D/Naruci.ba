@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Controllers
 {
-    public class KorisnikController: BaseCRUDController<Model.Korisnik, object, KorisnikInsertRequest, object>
+    public class KorisnikController: BaseCRUDController<Model.Korisnik, Model.SearchObjects.KorisnikSearchObject, KorisnikInsertRequest, object>
     {
         public KorisnikController(IKorisnikService service)
             : base(service)

@@ -15,6 +15,7 @@ import 'package:naruci_ba_mobile/providers/poslovnicaKategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/providers/proizvodProvider.dart';
 import 'package:naruci_ba_mobile/providers/trgovackiLanacProvider.dart';
+import 'package:naruci_ba_mobile/screens/basket_screen.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:naruci_ba_mobile/widgets/poslovnica/kategorijaDropdown.dart';
 import 'package:provider/src/provider.dart';
@@ -121,12 +122,21 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
     });
   }
 
+  void openBasket() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Basket(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     poslovnica == null ? initComponent(widget.poslovnicaId) : null;
     return MainTemplate(
         floatingButton: ElevatedButton(
-            onPressed: () => {},
+            onPressed: () => {openBasket()},
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Icon(
                 Icons.shopping_cart,

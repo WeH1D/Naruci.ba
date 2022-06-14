@@ -37,6 +37,16 @@ namespace NaruciBa.Mapping
 
             CreateMap<Database.PoslovnicaKategorija, Model.PoslovnicaKategorija>().ReverseMap();
 
+            CreateMap<Database.Narudzba, Model.Narudzba>().ReverseMap();
+            CreateMap<NarudzbaUpsertRequest, Database.Narudzba>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); ;
+
+            CreateMap<Database.NarudzbaStatus, Model.NarudzbaStatus>().ReverseMap();
+            CreateMap<NarudzbaStatusUpsertRequest, Database.NarudzbaStatus>();
+
+            CreateMap<Database.NaruceniProizvod, Model.NaruceniProizvod>().ReverseMap();
+            CreateMap<NaruceniProizvodUpsertRequest, Database.NaruceniProizvod>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); ;
+
+            CreateMap<Database.Klijent, Model.Klijent>().ReverseMap();
         }
     }
 }

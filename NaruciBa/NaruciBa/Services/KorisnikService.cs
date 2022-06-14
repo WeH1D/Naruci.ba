@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
+using NaruciBa.Model.SearchObjects;
 
 namespace NaruciBa.Services
 {
-    public class KorisnikService : BaseCRUDService<Model.Korisnik, Database.Korisnik, object, KorisnikInsertRequest, object>, IKorisnikService
+    public class KorisnikService : BaseCRUDService<Model.Korisnik, Database.Korisnik, Model.SearchObjects.KorisnikSearchObject, KorisnikInsertRequest, object>, IKorisnikService
     {
         public KorisnikService(NaruciBaContext context, IMapper mapper)
             :base(context, mapper)
@@ -75,6 +76,18 @@ namespace NaruciBa.Services
             return _mapper.Map<Model.Korisnik>(korisnik);
         }
 
+        public async override Task<IEnumerable<Model.Korisnik>> Get(KorisnikSearchObject search = null)
+        {
+            var entity = Context.Set<Database.Korisnik>().AsQueryable();
+            if (!string.IsNullOrEmpty(search.Email))
+            {
+                entity = entity.Where(a => a.Email.Contains(search.Email));
+            }
+            var list = await entity.ToListAsync();
+            var result = _mapper.Map<List<Model.Korisnik>>(list);
+
+            return result;
+        }
 
         public static string GenerateSalt()
         {

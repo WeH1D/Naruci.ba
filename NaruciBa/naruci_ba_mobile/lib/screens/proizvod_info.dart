@@ -2,8 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:naruci_ba_mobile/models/NaruceniProizvod.dart';
+import 'package:naruci_ba_mobile/models/Narudzba.dart';
 import 'package:naruci_ba_mobile/models/Proizvod.dart';
+import 'package:naruci_ba_mobile/providers/KlijentProvider.dart';
+import 'package:naruci_ba_mobile/providers/NaruceniProizvod.dart';
+import 'package:naruci_ba_mobile/providers/NarudzbaProvider.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
+import 'package:provider/src/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ProizvodInfo extends StatefulWidget {
@@ -16,7 +22,46 @@ class ProizvodInfo extends StatefulWidget {
 }
 
 class _ProizvodInfoState extends State<ProizvodInfo> {
+  late NarudzbaProvider _narudzbaProvider;
+  late NaruceniProizvodProvider _naruceniProizvodProvider;
+  late KlijentProvider _klijenProvider;
   double ukupnaCijena = 0;
+  double _kolicina = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _naruceniProizvodProvider = context.read<NaruceniProizvodProvider>();
+    _narudzbaProvider = context.read<NarudzbaProvider>();
+    _klijenProvider = context.read<KlijentProvider>();
+  }
+
+  void addToBasket() async {
+    List<Narudzba> basket = await _narudzbaProvider
+        .get(searchParams: {"KlijentID": _klijenProvider.klijendID});
+
+    if (basket.isNotEmpty) {
+      List<NaruceniProizvod> proizvodiUKorpi = await _naruceniProizvodProvider
+          .get(searchParams: {"NarudzbaID": basket.first.narudzbaID});
+      Iterable<NaruceniProizvod> postojeciProizvod = proizvodiUKorpi
+          .where((prod) => prod.proizvodID == widget.proizvod.proizvodID);
+      if (postojeciProizvod.isEmpty) {
+        NaruceniProizvod naruceniProd =
+            await _naruceniProizvodProvider.post(request: {
+          "proizvodID": widget.proizvod.proizvodID,
+          "narudzbaID": basket.first.narudzbaID,
+          "kolicina": _kolicina,
+          "ukupnaCijena": ukupnaCijena
+        });
+        print("Proizvod dodan u korpu");
+      } else {
+        NaruceniProizvod naruceniProd = await _naruceniProizvodProvider.put(
+            id: proizvodiUKorpi.first.naruceniProizvodID,
+            request: {"kolicina": _kolicina, "ukupnaCijena": ukupnaCijena});
+        print("Updatean postojeci proizvod u korpi");
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +115,7 @@ class _ProizvodInfoState extends State<ProizvodInfo> {
                       onChanged: (kolicina) {
                         setState(() {
                           if (kolicina != null && kolicina != "") {
+                            _kolicina = double.tryParse(kolicina)!;
                             ukupnaCijena = double.tryParse(kolicina)! *
                                 widget.proizvod.cijena!;
                           } else {
@@ -104,7 +150,7 @@ class _ProizvodInfoState extends State<ProizvodInfo> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () => {addToBasket()},
                   child: Text(
                     "Dodaj u korpu",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),

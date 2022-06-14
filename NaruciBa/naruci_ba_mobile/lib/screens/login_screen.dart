@@ -1,7 +1,13 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:naruci_ba_mobile/models/Klijent.dart';
+import 'package:naruci_ba_mobile/models/Korisnik.dart';
+import 'package:naruci_ba_mobile/providers/KlijentProvider.dart';
 import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
+import 'package:naruci_ba_mobile/providers/korisnikPorvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/screens/home_screen.dart';
+import 'package:naruci_ba_mobile/screens/register_screen.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:naruci_ba_mobile/widgets/logo.dart';
 import 'package:provider/src/provider.dart';
@@ -17,6 +23,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late AuthentificationProvider _authentication;
+  late KorisnikProvider _korisnik;
+  late KlijentProvider _klijent;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -24,12 +32,22 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _authentication = context.read<AuthentificationProvider>();
+    _korisnik = context.read<KorisnikProvider>();
+    _klijent = context.read<KlijentProvider>();
   }
 
   Future<void> login() async {
     bool login = await _authentication.login(
         usernameController.text, passwordController.text);
     if (login) {
+      List<Korisnik> korisnik =
+          await _korisnik.get(searchParams: {"Email": usernameController.text});
+      _korisnik.korisnikID = korisnik.first.korisnikID;
+      List<Klijent> klijent = await _klijent
+          .get(searchParams: {"KorisnikID": korisnik.first.korisnikID});
+      if (klijent.isNotEmpty) {
+        _klijent.klijendID = klijent.first.klijentID;
+      }
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -110,10 +128,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: TextSpan(
                     text: "Not a user yet?",
                     style: TextStyle(color: Color.fromARGB(150, 64, 64, 64)),
-                    children: const [
+                    children: [
                   TextSpan(
                       text: " Sign up here",
-                      style: TextStyle(color: Color.fromARGB(255, 255, 83, 73)))
+                      style: TextStyle(color: Color.fromARGB(255, 255, 83, 73)),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RegisterScreen(),
+                            ),
+                          );
+                        })
                 ]))
           ],
         ),
