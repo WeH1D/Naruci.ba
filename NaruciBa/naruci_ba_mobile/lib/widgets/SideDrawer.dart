@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:naruci_ba_mobile/models/Korisnik.dart';
+import 'package:naruci_ba_mobile/providers/korisnikPorvider.dart';
 import 'package:naruci_ba_mobile/screens/basket_screen.dart';
 import 'package:naruci_ba_mobile/screens/home_screen.dart';
 import 'package:naruci_ba_mobile/screens/mojeNarudzbe.dart';
+import 'package:provider/src/provider.dart';
 
 class SideDrawer extends StatefulWidget {
   const SideDrawer({Key? key}) : super(key: key);
@@ -10,6 +13,26 @@ class SideDrawer extends StatefulWidget {
 }
 
 class _SideDrawerState extends State<SideDrawer> {
+  late KorisnikProvider _korisnikProvider;
+
+  String? email;
+  String? imePrezime;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _korisnikProvider = context.read<KorisnikProvider>();
+    getKorisnik();
+  }
+
+  void getKorisnik() {
+    setState(() {
+      email = _korisnikProvider.email;
+      imePrezime = _korisnikProvider.imePrezime;
+    });
+  }
+
   void goToMojeNarudzbe() {
     Navigator.push(
       context,
@@ -61,9 +84,9 @@ class _SideDrawerState extends State<SideDrawer> {
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text("Ime i prezime"),
-                      Text("ime@gmail.com"),
+                    children: [
+                      Text(imePrezime ?? " "),
+                      Text(email ?? " "),
                     ]),
               ),
             ],

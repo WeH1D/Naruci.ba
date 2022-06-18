@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NaruciBa.Model.Requests
 {
-    public class DostavljacInsertRequest
+    public class DostavljacUpsertRequest
     {
         public DateTime? DatumZaposlenja { get; set; }
         public int? DostavljacStatus { get; set; }

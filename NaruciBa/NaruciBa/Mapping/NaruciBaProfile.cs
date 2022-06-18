@@ -47,6 +47,13 @@ namespace NaruciBa.Mapping
             CreateMap<NaruceniProizvodUpsertRequest, Database.NaruceniProizvod>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); ;
 
             CreateMap<Database.Klijent, Model.Klijent>().ReverseMap();
+
+            CreateMap<Database.Dostavljac, Model.Dostavljac>().ReverseMap();
+
+            CreateMap<Database.DostavljacStatus, Model.DostavljacStatus>().ReverseMap();
+            CreateMap<DostavljacStatusUpsertRequest, Database.DostavljacStatus>();
+
+
         }
     }
 }

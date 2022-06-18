@@ -3,5 +3,6 @@
   "accessTokenTimeLimit" : 60,
   "clientId" : "MobileApp",
   "clientSecret" : "MobileAppPassword",
-  "tokenEndpoint" : "https://10.0.2.2:5002/connect/token"
+  "tokenEndpoint" : "https://10.0.2.2:5002/connect/token",
+  "signalRHubEndpoint" : "https://10.0.2.2:5001/NaruciBaHub"
 }

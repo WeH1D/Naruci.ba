@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:naruci_ba_mobile/providers/KlijentProvider.dart';
 import 'package:naruci_ba_mobile/providers/NaruceniProizvod.dart';
 import 'package:naruci_ba_mobile/providers/NarudzbaProvider.dart';
+import 'package:naruci_ba_mobile/providers/NarudzbaStatus.dart';
 import 'package:naruci_ba_mobile/providers/app_config_provider.dart';
 import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
 import 'package:naruci_ba_mobile/providers/base_api_provider.dart';
@@ -105,6 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
             create: (ctx) => GradProvider(ctx)),
         ChangeNotifierProvider<NarudzbaProvider>(
             create: (ctx) => NarudzbaProvider(ctx)),
+        ChangeNotifierProvider<NarudzbaStatusProvider>(
+            create: (ctx) => NarudzbaStatusProvider(ctx)),
         ChangeNotifierProvider<KlijentProvider>(
             create: (ctx) => KlijentProvider(ctx)),
         ChangeNotifierProvider<NaruceniProizvodProvider>(

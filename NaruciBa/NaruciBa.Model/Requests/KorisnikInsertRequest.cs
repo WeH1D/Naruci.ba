@@ -17,7 +17,7 @@ namespace NaruciBa.Model.Requests
         public string Password { get; set; }
         public byte[] Slika { get; set; }
         public int? GradID { get; set; }
-        public DostavljacInsertRequest? dostavljacInsert { get; set; }
+        public DostavljacUpsertRequest? dostavljacInsert { get; set; }
         public KoordinatorInsertRequest? koordinatorInsert { get; set; }
     }
 }

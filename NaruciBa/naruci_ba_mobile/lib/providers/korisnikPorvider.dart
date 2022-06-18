@@ -15,6 +15,24 @@ class KorisnikProvider extends BaseAPIProvider<Korisnik> with ChangeNotifier {
     _korisnikID = value;
   }
 
+  String? _imePrezime;
+  String? get imePrezime {
+    return _imePrezime;
+  }
+
+  set imePrezime(value) {
+    _imePrezime = value;
+  }
+
+  String? _email;
+  String? get email {
+    return _email;
+  }
+
+  set email(value) {
+    _email = value;
+  }
+
   @override
   Future<String> basePath() async => (await getAppConfigProvider()).baseUrl;
 

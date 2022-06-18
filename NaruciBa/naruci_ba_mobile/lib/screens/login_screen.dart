@@ -43,6 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
       List<Korisnik> korisnik =
           await _korisnik.get(searchParams: {"Email": usernameController.text});
       _korisnik.korisnikID = korisnik.first.korisnikID;
+      _korisnik.email = _korisnik.email;
+      _korisnik.imePrezime = _korisnik.imePrezime;
       List<Klijent> klijent = await _klijent
           .get(searchParams: {"KorisnikID": korisnik.first.korisnikID});
       if (klijent.isNotEmpty) {

@@ -1,5 +1,6 @@
 ﻿using NaruciBa.WinUI.Kategorije;
 using NaruciBa.WinUI.Login;
+using NaruciBa.WinUI.Narudzbe;
 using NaruciBa.WinUI.Poslovnice;
 using NaruciBa.WinUI.utils;
 using System;
@@ -77,9 +78,9 @@ namespace NaruciBa.WinUI
 
         private void narudzbeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //frmPoslovnicePrikaz frm = new frmPoslovnicePrikaz();
-            //frm.MdiParent = this;
-            //frm.Show();
+            frmNarudzbePrikaz frm = new frmNarudzbePrikaz();
+            frm.MdiParent = this;
+            frm.Show();
             SetActiveMenuItem(narudzbeToolStripMenuItem);
             lblNaslov.Text = narudzbeToolStripMenuItem.Text;
 

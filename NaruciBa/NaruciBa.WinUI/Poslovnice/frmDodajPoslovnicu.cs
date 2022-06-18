@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.SignalR.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace NaruciBa.WinUI.Poslovnice
         APIService _poslovniceService = new APIService("Poslovnica");
         APIService _lanacPOslovnicaService = new APIService("TrgovackiLanac");
         APIService _gradService = new APIService("Grad");
+
         public frmDodajPoslovnicu()
         {
             InitializeComponent();

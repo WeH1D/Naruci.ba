@@ -43,16 +43,25 @@ class _ProizvodInfoState extends State<ProizvodInfo> {
   }
 
   void addToBasket() async {
-    List<Narudzba> basket = await _narudzbaProvider
-        .get(searchParams: {"KlijentID": _klijenProvider.klijendID});
+    List<Narudzba> basket = await _narudzbaProvider.get(searchParams: {
+      "KlijentID": _klijenProvider.klijendID,
+      "NarudzbaStatusID": 1
+    });
 
     List<NaruceniProizvod> proizvodiUKorpi = await _naruceniProizvodProvider
         .get(searchParams: {"NarudzbaID": basket.first.narudzbaID});
 
     // Da li basket pripada ovoj poslovnici, ako NE, izbrisi proizvode i updateaj basket, ako DA dodaj proizvod
-    if (basket.first.poslovnicaID == widget.proizvod.poslovnicaID) {
+    if (basket.first.poslovnicaID == null ||
+        basket.first.poslovnicaID == widget.proizvod.poslovnicaID) {
       Iterable<NaruceniProizvod> postojeciProizvod = proizvodiUKorpi
           .where((prod) => prod.proizvodID == widget.proizvod.proizvodID);
+
+      if (basket.first.poslovnicaID == null) {
+        await _narudzbaProvider.put(
+            id: basket.first.narudzbaID,
+            request: {"PoslovnicaID": widget.proizvod.poslovnicaID});
+      }
       if (postojeciProizvod.isEmpty) {
         NaruceniProizvod naruceniProd =
             await _naruceniProizvodProvider.post(request: {

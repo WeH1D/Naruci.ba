@@ -8,17 +8,22 @@ import 'package:naruci_ba_mobile/models/Narudzba.dart';
 import 'package:naruci_ba_mobile/models/Poslovnica.dart';
 import 'package:naruci_ba_mobile/models/Proizvod.dart';
 import 'package:naruci_ba_mobile/models/TrgovackiLanac.dart';
+import 'package:naruci_ba_mobile/models/app_config.dart';
 import 'package:naruci_ba_mobile/providers/KlijentProvider.dart';
 import 'package:naruci_ba_mobile/providers/NaruceniProizvod.dart';
 import 'package:naruci_ba_mobile/providers/NarudzbaProvider.dart';
+import 'package:naruci_ba_mobile/providers/app_config_provider.dart';
 import 'package:naruci_ba_mobile/providers/korisnikPorvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/providers/proizvodProvider.dart';
 import 'package:naruci_ba_mobile/providers/trgovackiLanacProvider.dart';
+import 'package:naruci_ba_mobile/screens/mojeNarudzbe.dart';
 import 'package:naruci_ba_mobile/screens/proizvod_info.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:naruci_ba_mobile/widgets/poslovnica/PorizvodShowcase.dart';
 import 'package:provider/src/provider.dart';
+import 'package:signalr_netcore/hub_connection.dart';
+import 'package:signalr_netcore/hub_connection_builder.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Basket extends StatefulWidget {
@@ -36,6 +41,10 @@ class _Basket extends State<Basket> {
   late ProizvodProvider _proizvodProvider;
   late PoslovnicaProvider _poslovnicaProvider;
   late TrgovackiLanacProvider _trgovackiLanacProvider;
+  late AppConfigProvider _configProvider;
+
+  late AppConfigProvider provider =
+      Provider.of<AppConfigProvider>(context, listen: false);
 
   List<Proizvod> itemsInBasket = List.empty();
   List<NaruceniProizvod> proizvodiUNarudzbi = List.empty();
@@ -44,6 +53,7 @@ class _Basket extends State<Basket> {
   Poslovnica? _poslovnica;
   TrgovackiLanac? _trgovackiLanac;
 
+  late HubConnection hubConnection;
   @override
   void initState() {
     super.initState();
@@ -54,12 +64,32 @@ class _Basket extends State<Basket> {
     _proizvodProvider = context.read<ProizvodProvider>();
     _poslovnicaProvider = context.read<PoslovnicaProvider>();
     _trgovackiLanacProvider = context.read<TrgovackiLanacProvider>();
+    _configProvider = context.read<AppConfigProvider>();
+    setHub();
+
     fetchBasket();
   }
 
+  Future<void> setHub() async {
+    var config = await getAppConfigProvider();
+    hubConnection =
+        HubConnectionBuilder().withUrl(config.signalRHubEndpoint).build();
+    await hubConnection.start();
+  }
+
+  Future<AppConfig> getAppConfigProvider() async {
+    if (provider == null) {
+      var config = Provider.of<AppConfigProvider>(context, listen: false);
+      provider = config;
+    }
+    return await provider.getConfig();
+  }
+
   void fetchBasket() async {
-    List<Narudzba> basket = await _narudzbaProvider
-        .get(searchParams: {"KlijentID": _klijenProvider.klijendID});
+    List<Narudzba> basket = await _narudzbaProvider.get(searchParams: {
+      "KlijentID": _klijenProvider.klijendID,
+      "NarudzbaStatusID": 1
+    });
     if (basket.isNotEmpty) {
       _myBasket = basket.first;
       await fetchProizvodiFromBasket();
@@ -126,6 +156,20 @@ class _Basket extends State<Basket> {
       await _naruceniProizvodProvider.delete(id: prod.naruceniProizvodID);
       fetchBasket();
     }
+  }
+
+  Future<void> naruci() async {
+    await _narudzbaProvider.put(id: _myBasket!.narudzbaID, request: {
+      "NarudzbaStatusID": 2,
+      "Datum": DateTime.now().toIso8601String()
+    });
+
+    final result = await hubConnection.invoke("NarudzbaUpdateovana");
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MojeNarudzbe()),
+    );
   }
 
   @override
@@ -265,7 +309,7 @@ class _Basket extends State<Basket> {
             ],
           ),
           ElevatedButton(
-              onPressed: () => {},
+              onPressed: () => {naruci()},
               child: Text(
                 "Naruci",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),

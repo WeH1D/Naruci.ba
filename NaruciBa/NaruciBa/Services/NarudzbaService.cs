@@ -38,6 +38,29 @@ namespace NaruciBa.Services
                 }
             }
 
+            if (search.NarudzbaStatusID.HasValue && search.NarudzbaStatusID == 1)
+            {
+                var postojecaNarudzba = Context.Narudzbas.Where(a => a.KlijentID == search.KlijentID && a.NarudzbaStatusID == search.NarudzbaStatusID);
+                if (!postojecaNarudzba.Any())
+                {
+                    Database.Narudzba novaNarudzba = new Narudzba()
+                    {
+                        KlijentID = search.KlijentID,
+                        BonusZaDostavljaca = null,
+                        Datum = DateTime.Now,
+                        DostavljacID = null,
+                        KoordinatorID = null,
+                        KuponID = null,
+                        NarudzbaStatusID = 1,
+                        PoslovnicaID = null,
+                        SlikaRacunaPutanja = null,
+                        UkupanIznos = 0
+                    };
+                    await Context.Narudzbas.AddAsync(novaNarudzba);
+                    await Context.SaveChangesAsync();
+                }
+            }
+
             var entity = Context.Set<Database.Narudzba>().AsQueryable();
             if (search.KlijentID.HasValue)
             {

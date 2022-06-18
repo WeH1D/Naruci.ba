@@ -25,6 +25,7 @@ class AppConfigProvider {
         clientId: config['clientId'],
         tokenEndpoint: config['tokenEndpoint'],
         redirectURL: config['redirectURL'],
-        clientSecret: config['clientSecret']));
+        clientSecret: config['clientSecret'],
+        signalRHubEndpoint: config['signalRHubEndpoint']));
   }
 }

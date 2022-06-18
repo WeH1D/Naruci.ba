@@ -75,7 +75,7 @@ namespace NaruciBa.WinUI.Login
                 frmHome frm = new frmHome();
                 frm.ShowDialog();
             }
-            catch(Exception)
+            catch(Exception err)
             {
                 txtValidation.Visible = true;
                 txtEmail.Text = "";

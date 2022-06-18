@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NaruciBa.Database;
+using NaruciBa.Hubs;
 using NaruciBa.Services;
 using NaruciBa.Services.Interfaces;
 using System;
@@ -35,6 +36,7 @@ namespace NaruciBa
             IdentityModelEventSource.ShowPII = true;
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
+            services.AddSignalR();
             services.AddSwaggerGen(options =>
             {
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
@@ -105,6 +107,8 @@ namespace NaruciBa
             services.AddScoped<INarudzbaStatusService, NarudzbaStatusService>();
             services.AddScoped<INaruceniProizvod, NaruceniProizvodService>();
             services.AddScoped<IKlijentService, KlijentService>();
+            services.AddScoped<IDostavljacService, DostavljacService>();
+            services.AddScoped<IDostavljacStatus, DostavljacStatusService>();
 
             //========================================================================//
 
@@ -122,9 +126,6 @@ namespace NaruciBa
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
-
             app.UseSwagger();
 
             app.UseSwaggerUI(options =>
@@ -134,9 +135,10 @@ namespace NaruciBa
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers()
-                    .RequireAuthorization();
-            });
+                endpoints.MapHub<NaruciBaHub>("NaruciBaHub");
+                endpoints.MapControllers();
+            }); 
+
         }
     }
 }
