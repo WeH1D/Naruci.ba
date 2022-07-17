@@ -34,21 +34,20 @@ namespace NaruciBa.WinUI
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.narudzbeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.poslovniceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kuponiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dostavljaciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kategorijeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlTopBar = new System.Windows.Forms.Panel();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.pnlDivider = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.lblNaslov = new System.Windows.Forms.Label();
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.pnlLogoContainer = new System.Windows.Forms.Panel();
             this.txtLogo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.pnlDivider = new System.Windows.Forms.Panel();
-            this.lblUserName = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlRight.SuspendLayout();
@@ -66,7 +65,6 @@ namespace NaruciBa.WinUI
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.narudzbeToolStripMenuItem,
             this.poslovniceToolStripMenuItem,
-            this.kuponiToolStripMenuItem,
             this.dostavljaciToolStripMenuItem,
             this.kategorijeToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 107);
@@ -96,16 +94,6 @@ namespace NaruciBa.WinUI
             this.poslovniceToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
             this.poslovniceToolStripMenuItem.Text = "Poslovnice";
             this.poslovniceToolStripMenuItem.Click += new System.EventHandler(this.poslovniceToolStripMenuItem_Click);
-            // 
-            // kuponiToolStripMenuItem
-            // 
-            this.kuponiToolStripMenuItem.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kuponiToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.kuponiToolStripMenuItem.Name = "kuponiToolStripMenuItem";
-            this.kuponiToolStripMenuItem.Padding = new System.Windows.Forms.Padding(15);
-            this.kuponiToolStripMenuItem.Size = new System.Drawing.Size(199, 50);
-            this.kuponiToolStripMenuItem.Text = "Kuponi";
-            this.kuponiToolStripMenuItem.Click += new System.EventHandler(this.kuponiToolStripMenuItem_Click);
             // 
             // dostavljaciToolStripMenuItem
             // 
@@ -163,6 +151,43 @@ namespace NaruciBa.WinUI
             this.pnlTopBar.Size = new System.Drawing.Size(1044, 67);
             this.pnlTopBar.TabIndex = 0;
             // 
+            // lblUserName
+            // 
+            this.lblUserName.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblUserName.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(645, 23);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblUserName.Size = new System.Drawing.Size(259, 23);
+            this.lblUserName.TabIndex = 4;
+            this.lblUserName.Text = "nekipravodugemail@gmial.co.uk..com";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // pnlDivider
+            // 
+            this.pnlDivider.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pnlDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pnlDivider.ForeColor = System.Drawing.Color.Silver;
+            this.pnlDivider.Location = new System.Drawing.Point(910, 10);
+            this.pnlDivider.Name = "pnlDivider";
+            this.pnlDivider.Size = new System.Drawing.Size(2, 48);
+            this.pnlDivider.TabIndex = 3;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Location = new System.Drawing.Point(925, 17);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(102, 31);
+            this.btnLogout.TabIndex = 2;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // lblNaslov
             // 
             this.lblNaslov.AutoSize = true;
@@ -218,43 +243,6 @@ namespace NaruciBa.WinUI
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // btnLogout
-            // 
-            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(925, 17);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(102, 31);
-            this.btnLogout.TabIndex = 2;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // pnlDivider
-            // 
-            this.pnlDivider.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pnlDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.pnlDivider.ForeColor = System.Drawing.Color.Silver;
-            this.pnlDivider.Location = new System.Drawing.Point(910, 10);
-            this.pnlDivider.Name = "pnlDivider";
-            this.pnlDivider.Size = new System.Drawing.Size(2, 48);
-            this.pnlDivider.TabIndex = 3;
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblUserName.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(645, 23);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblUserName.Size = new System.Drawing.Size(259, 23);
-            this.lblUserName.TabIndex = 4;
-            this.lblUserName.Text = "nekipravodugemail@gmial.co.uk..com";
-            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,7 +288,6 @@ namespace NaruciBa.WinUI
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.Panel pnlTopBar;
         private System.Windows.Forms.ToolStripMenuItem narudzbeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem kuponiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dostavljaciToolStripMenuItem;
         private System.Windows.Forms.Label lblNaslov;
         private System.Windows.Forms.Button btnLogout;

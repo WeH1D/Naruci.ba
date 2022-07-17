@@ -29,18 +29,12 @@ namespace NaruciBa.WinUI.Poslovnice
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.dgvPoslovnice = new System.Windows.Forms.DataGridView();
-            this.pnlActions = new System.Windows.Forms.Panel();
-            this.btnDodajLanacPoslovnica = new System.Windows.Forms.Button();
-            this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
-            this.pnlSearch = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtPretraga = new System.Windows.Forms.TextBox();
             this.PoslovnicaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LanacPoslovnica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Adresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +42,12 @@ namespace NaruciBa.WinUI.Poslovnice
             this.KontaktEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KontaktTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalji = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlActions = new System.Windows.Forms.Panel();
+            this.btnDodajLanacPoslovnica = new System.Windows.Forms.Button();
+            this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtPretraga = new System.Windows.Forms.TextBox();
             this.pnlDgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoslovnice)).BeginInit();
             this.pnlActions.SuspendLayout();
@@ -70,23 +70,23 @@ namespace NaruciBa.WinUI.Poslovnice
             // 
             this.dgvPoslovnice.AllowUserToAddRows = false;
             this.dgvPoslovnice.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvPoslovnice.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvPoslovnice.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPoslovnice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPoslovnice.BackgroundColor = System.Drawing.Color.White;
             this.dgvPoslovnice.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPoslovnice.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvPoslovnice.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPoslovnice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 15, 0, 15);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPoslovnice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvPoslovnice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPoslovnice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PoslovnicaID,
@@ -96,14 +96,14 @@ namespace NaruciBa.WinUI.Poslovnice
             this.KontaktEmail,
             this.KontaktTel,
             this.Detalji});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPoslovnice.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPoslovnice.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvPoslovnice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPoslovnice.EnableHeadersVisualStyles = false;
             this.dgvPoslovnice.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -113,15 +113,64 @@ namespace NaruciBa.WinUI.Poslovnice
             this.dgvPoslovnice.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvPoslovnice.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvPoslovnice.RowHeadersWidth = 20;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvPoslovnice.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvPoslovnice.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvPoslovnice.RowTemplate.DividerHeight = 1;
             this.dgvPoslovnice.RowTemplate.Height = 40;
             this.dgvPoslovnice.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPoslovnice.Size = new System.Drawing.Size(790, 377);
             this.dgvPoslovnice.TabIndex = 0;
             this.dgvPoslovnice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPoslovnice_CellClick);
+            // 
+            // PoslovnicaID
+            // 
+            this.PoslovnicaID.DataPropertyName = "PoslovnicaID";
+            this.PoslovnicaID.HeaderText = "PoslovnicaID";
+            this.PoslovnicaID.Name = "PoslovnicaID";
+            this.PoslovnicaID.ReadOnly = true;
+            this.PoslovnicaID.Visible = false;
+            // 
+            // LanacPoslovnica
+            // 
+            this.LanacPoslovnica.DataPropertyName = "trgovackiLanacID";
+            this.LanacPoslovnica.HeaderText = "Lanac poslovnica";
+            this.LanacPoslovnica.Name = "LanacPoslovnica";
+            this.LanacPoslovnica.ReadOnly = true;
+            // 
+            // Adresa
+            // 
+            this.Adresa.DataPropertyName = "adresa";
+            this.Adresa.HeaderText = "Adresa poslovnice";
+            this.Adresa.Name = "Adresa";
+            this.Adresa.ReadOnly = true;
+            // 
+            // Grad
+            // 
+            this.Grad.DataPropertyName = "GradID";
+            this.Grad.HeaderText = "Grad";
+            this.Grad.Name = "Grad";
+            this.Grad.ReadOnly = true;
+            // 
+            // KontaktEmail
+            // 
+            this.KontaktEmail.DataPropertyName = "kontaktEmail";
+            this.KontaktEmail.HeaderText = "Kontakt email";
+            this.KontaktEmail.Name = "KontaktEmail";
+            this.KontaktEmail.ReadOnly = true;
+            // 
+            // KontaktTel
+            // 
+            this.KontaktTel.DataPropertyName = "kontaktTel";
+            this.KontaktTel.HeaderText = "Kontakt telefon";
+            this.KontaktTel.Name = "KontaktTel";
+            this.KontaktTel.ReadOnly = true;
+            // 
+            // Detalji
+            // 
+            this.Detalji.HeaderText = "Detalji";
+            this.Detalji.Name = "Detalji";
+            this.Detalji.ReadOnly = true;
             // 
             // pnlActions
             // 
@@ -192,55 +241,6 @@ namespace NaruciBa.WinUI.Poslovnice
             this.txtPretraga.Name = "txtPretraga";
             this.txtPretraga.Size = new System.Drawing.Size(197, 24);
             this.txtPretraga.TabIndex = 2;
-            // 
-            // PoslovnicaID
-            // 
-            this.PoslovnicaID.DataPropertyName = "PoslovnicaID";
-            this.PoslovnicaID.HeaderText = "PoslovnicaID";
-            this.PoslovnicaID.Name = "PoslovnicaID";
-            this.PoslovnicaID.ReadOnly = true;
-            this.PoslovnicaID.Visible = false;
-            // 
-            // LanacPoslovnica
-            // 
-            this.LanacPoslovnica.DataPropertyName = "trgovackiLanacID";
-            this.LanacPoslovnica.HeaderText = "Lanac poslovnica";
-            this.LanacPoslovnica.Name = "LanacPoslovnica";
-            this.LanacPoslovnica.ReadOnly = true;
-            // 
-            // Adresa
-            // 
-            this.Adresa.DataPropertyName = "adresa";
-            this.Adresa.HeaderText = "Adresa poslovnice";
-            this.Adresa.Name = "Adresa";
-            this.Adresa.ReadOnly = true;
-            // 
-            // Grad
-            // 
-            this.Grad.DataPropertyName = "GradID";
-            this.Grad.HeaderText = "Grad";
-            this.Grad.Name = "Grad";
-            this.Grad.ReadOnly = true;
-            // 
-            // KontaktEmail
-            // 
-            this.KontaktEmail.DataPropertyName = "kontaktEmail";
-            this.KontaktEmail.HeaderText = "Kontakt email";
-            this.KontaktEmail.Name = "KontaktEmail";
-            this.KontaktEmail.ReadOnly = true;
-            // 
-            // KontaktTel
-            // 
-            this.KontaktTel.DataPropertyName = "kontaktTel";
-            this.KontaktTel.HeaderText = "Kontakt telefon";
-            this.KontaktTel.Name = "KontaktTel";
-            this.KontaktTel.ReadOnly = true;
-            // 
-            // Detalji
-            // 
-            this.Detalji.HeaderText = "Detalji";
-            this.Detalji.Name = "Detalji";
-            this.Detalji.ReadOnly = true;
             // 
             // frmPoslovnicePrikaz
             // 

@@ -94,7 +94,11 @@ namespace NaruciBa.WinUI.Narudzbe
        async Task loadNarudzbeAsync()
         {
             dgvNarudzbe.AutoGenerateColumns = false;
-            List<Model.Narudzba> narudzbe = await _narudzbeService.Get<List<Model.Narudzba>>();
+            List<Model.Narudzba> narudzbe = await _narudzbeService.Get<List<Model.Narudzba>>(new Model.SearchObjects.NarudzbaSearchObject()
+            {
+                excludeNarudzbaWithStatusId = 1
+            });
+            narudzbe = narudzbe.OrderBy(a => a.NarudzbaStatusID).ToList();
             List<DataGridNarudzbeRow> rows = new List<DataGridNarudzbeRow>();
 
             List<Model.Poslovnica> poslovnice = await _poslovnicaService.Get<List<Model.Poslovnica>>();
@@ -103,9 +107,9 @@ namespace NaruciBa.WinUI.Narudzbe
 
             foreach (var narudzba in narudzbe)
             {
-                Model.Poslovnica poslovnica = poslovnice.Where(a => a.PoslovnicaID == narudzba.PoslovnicaID).First();
-                Model.TrgovackiLanac trgovackiLanac = trgovackiLanaci.Where(a => a.TrgovackiLanacID == poslovnica.TrgovackiLanacID).First();
-                Model.NarudzbaStatus status = statusi.Where(a => a.NarudzbaStatusID == narudzba.NarudzbaStatusID).First();
+                Model.Poslovnica poslovnica = poslovnice.Where(a => a.PoslovnicaID == narudzba.PoslovnicaID).FirstOrDefault();
+                Model.TrgovackiLanac trgovackiLanac = trgovackiLanaci.Where(a => a.TrgovackiLanacID == poslovnica.TrgovackiLanacID).FirstOrDefault();
+                Model.NarudzbaStatus status = statusi.Where(a => a.NarudzbaStatusID == narudzba.NarudzbaStatusID).FirstOrDefault();
 
                 rows.Add(new DataGridNarudzbeRow()
                 {
@@ -116,8 +120,17 @@ namespace NaruciBa.WinUI.Narudzbe
                     dostavljac = narudzba.DostavljacID == null ? "Dodaj" : await getDostavljac(narudzba.DostavljacID)
                 });
             }
-
             dgvNarudzbe.DataSource = rows;
+            foreach(DataGridViewRow row in dgvNarudzbe.Rows)
+            {
+                if(row.Cells[3].Value.ToString() == "Aktivna")
+                {
+                    dgvNarudzbe.Rows[row.Index].DefaultCellStyle = new DataGridViewCellStyle() { 
+                        BackColor = AppTheme.PrimaryColor,
+                        ForeColor = Color.White
+                    };
+                }
+            }
         }
         async Task<string> getDostavljac(int? dostavljacID)
         {

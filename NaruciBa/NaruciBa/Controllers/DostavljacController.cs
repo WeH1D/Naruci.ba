@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Controllers
 {
-    public class DostavljacController : BaseCRUDController<Model.Dostavljac, object, Model.Requests.DostavljacUpsertRequest, Model.Requests.DostavljacUpsertRequest>
+    public class DostavljacController : BaseCRUDController<Model.Dostavljac, Model.SearchObjects.DostavljacSearchObject, Model.Requests.DostavljacUpsertRequest, Model.Requests.DostavljacUpsertRequest>
     {
         public DostavljacController(IDostavljacService service) : base(service)
         {

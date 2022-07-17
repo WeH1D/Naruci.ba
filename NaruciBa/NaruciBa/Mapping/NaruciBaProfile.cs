@@ -49,6 +49,7 @@ namespace NaruciBa.Mapping
             CreateMap<Database.Klijent, Model.Klijent>().ReverseMap();
 
             CreateMap<Database.Dostavljac, Model.Dostavljac>().ReverseMap();
+            CreateMap<DostavljacUpsertRequest, Database.Dostavljac>().ReverseMap();
 
             CreateMap<Database.DostavljacStatus, Model.DostavljacStatus>().ReverseMap();
             CreateMap<DostavljacStatusUpsertRequest, Database.DostavljacStatus>();

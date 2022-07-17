@@ -15,7 +15,7 @@ namespace NaruciBa.Model.Requests
         public DateTime? DatumKreiranja { get; set; }
         public DateTime? DatumIzmjene { get; set; }
         public string Password { get; set; }
-        public byte[] Slika { get; set; }
+        public byte[]? Slika { get; set; }
         public int? GradID { get; set; }
         public DostavljacUpsertRequest? dostavljacInsert { get; set; }
         public KoordinatorInsertRequest? koordinatorInsert { get; set; }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Services.Interfaces
 {
-    public interface IDostavljacService: ICRUDService<Model.Dostavljac, object, Model.Requests.DostavljacUpsertRequest, Model.Requests.DostavljacUpsertRequest>
+    public interface IDostavljacService: ICRUDService<Model.Dostavljac, Model.SearchObjects.DostavljacSearchObject, Model.Requests.DostavljacUpsertRequest, Model.Requests.DostavljacUpsertRequest>
     {
     }
 }

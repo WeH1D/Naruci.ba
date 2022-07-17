@@ -1,4 +1,5 @@
-﻿using NaruciBa.WinUI.Kategorije;
+﻿using NaruciBa.WinUI.Dostavljac;
+using NaruciBa.WinUI.Kategorije;
 using NaruciBa.WinUI.Login;
 using NaruciBa.WinUI.Narudzbe;
 using NaruciBa.WinUI.Poslovnice;
@@ -23,8 +24,8 @@ namespace NaruciBa.WinUI
         public frmHome()
         {
             InitializeComponent();
-            SetActiveMenuItem(poslovniceToolStripMenuItem);
-            lblNaslov.Text = poslovniceToolStripMenuItem.Text;
+            SetActiveMenuItem(narudzbeToolStripMenuItem);
+            lblNaslov.Text = narudzbeToolStripMenuItem.Text;
             menuStrip.Renderer = new MyRenderer(AppTheme.PrimaryColor, Color.White);
         }
 
@@ -45,10 +46,9 @@ namespace NaruciBa.WinUI
 
             lblUserName.Text = Properties.Settings.Default.email;
 
-            frmPoslovnicePrikaz frm = new frmPoslovnicePrikaz();
+            frmNarudzbePrikaz frm = new frmNarudzbePrikaz();
             frm.MdiParent = this;
             frm.Show();
-
         }
         private void poslovniceToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -57,8 +57,6 @@ namespace NaruciBa.WinUI
             frm.Show();
             SetActiveMenuItem(poslovniceToolStripMenuItem);
             lblNaslov.Text = poslovniceToolStripMenuItem.Text;
-
-
         }
 
         private void frmHome_SizeChanged(object sender, EventArgs e)
@@ -86,21 +84,11 @@ namespace NaruciBa.WinUI
 
         }
 
-        private void kuponiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //frmPoslovnicePrikaz frm = new frmPoslovnicePrikaz();
-            //frm.MdiParent = this;
-            //frm.Show();
-            SetActiveMenuItem(kuponiToolStripMenuItem);
-            lblNaslov.Text = kuponiToolStripMenuItem.Text;
-
-        }
-
         private void dostavljaciToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //frmPoslovnicePrikaz frm = new frmPoslovnicePrikaz();
-            //frm.MdiParent = this;
-            //frm.Show();
+            fmrDostavljaciPrikaz frm = new fmrDostavljaciPrikaz();
+            frm.MdiParent = this;
+            frm.Show();
             SetActiveMenuItem(dostavljaciToolStripMenuItem);
             lblNaslov.Text = dostavljaciToolStripMenuItem.Text;
 

@@ -13,5 +13,6 @@ namespace NaruciBa.Model.SearchObjects
         public DateTime? Datum { get; set; }
         public int? NarudzbaStatusID { get; set; }
         public List<string> IncludeList { get; set; }
+        public int? excludeNarudzbaWithStatusId { get; set; }
     }
 }

@@ -8,6 +8,7 @@ import 'package:naruci_ba_mobile/providers/NarudzbaStatus.dart';
 import 'package:naruci_ba_mobile/providers/app_config_provider.dart';
 import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
 import 'package:naruci_ba_mobile/providers/base_api_provider.dart';
+import 'package:naruci_ba_mobile/providers/dostavljacProvider.dart';
 import 'package:naruci_ba_mobile/providers/gradProvider.dart';
 import 'package:naruci_ba_mobile/providers/kategorijaProvider.dart';
 import 'package:naruci_ba_mobile/providers/korisnikPorvider.dart';
@@ -112,6 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
             create: (ctx) => KlijentProvider(ctx)),
         ChangeNotifierProvider<NaruceniProizvodProvider>(
             create: (ctx) => NaruceniProizvodProvider(ctx)),
+        ChangeNotifierProvider<DostavljacProvider>(
+            create: (ctx) => DostavljacProvider(ctx)),
       ],
       child: MaterialApp(
         theme: ThemeData(),

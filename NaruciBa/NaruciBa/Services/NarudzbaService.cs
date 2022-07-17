@@ -86,6 +86,10 @@ namespace NaruciBa.Services
             {
                 entity = entity.Where(a => a.NarudzbaStatusID == search.NarudzbaStatusID);
             }
+            if (search.excludeNarudzbaWithStatusId.HasValue)
+            {
+                entity = entity.Where(a => a.NarudzbaStatusID != search.excludeNarudzbaWithStatusId);
+            }
             if (search.IncludeList?.Count > 0)
             {
                 foreach (var item in search.IncludeList)

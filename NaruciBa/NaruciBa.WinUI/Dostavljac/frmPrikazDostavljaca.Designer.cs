@@ -115,6 +115,7 @@ namespace NaruciBa.WinUI.Dostavljac
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPrikazDostavljaca";
+            this.Load += new System.EventHandler(this.frmPrikazDostavljaca_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

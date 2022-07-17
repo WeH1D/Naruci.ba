@@ -10,6 +10,8 @@ import 'package:naruci_ba_mobile/providers/app_config_provider.dart';
 import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/providers/trgovackiLanacProvider.dart';
+import 'package:naruci_ba_mobile/screens/mojeNarudzbe.dart';
+import 'package:naruci_ba_mobile/screens/narudzba_info_screen.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:naruci_ba_mobile/widgets/NarudzbaTracker.dart';
 import 'package:provider/src/provider.dart';
@@ -17,8 +19,11 @@ import 'package:signalr_netcore/hub_connection.dart';
 import 'package:signalr_netcore/hub_connection_builder.dart';
 
 class NarudzbaScreen extends StatefulWidget {
-  const NarudzbaScreen({Key? key, required this.narudzbaId}) : super(key: key);
+  const NarudzbaScreen(
+      {Key? key, required this.narudzbaId, this.dostavljacView = false})
+      : super(key: key);
   final int narudzbaId;
+  final bool dostavljacView;
 
   @override
   State<NarudzbaScreen> createState() => _NarudzbaScreenState();
@@ -36,6 +41,7 @@ class _NarudzbaScreenState extends State<NarudzbaScreen> {
   Poslovnica? _poslovnica;
   TrgovackiLanac? _trgovackiLanac;
   List<NarudzbaStatus>? _statusi = List.empty();
+  String? _sljStatus;
 
   late AppConfigProvider provider =
       Provider.of<AppConfigProvider>(context, listen: false);
@@ -80,11 +86,40 @@ class _NarudzbaScreenState extends State<NarudzbaScreen> {
         await _trgovackiLanacProvider.getById(id: poslovnica.trgovackiLanacID);
     List<NarudzbaStatus> statusi = await _narudzbaStatusProvider.get();
     setState(() {
+      _statusi = statusi;
+      Iterable<NarudzbaStatus>? tempStauts = _statusi?.where((st) =>
+          st.narudzbaStatusID ==
+          (_narudzba?.narudzbaStatusID != null
+              ? (_narudzba!.narudzbaStatusID == 6
+                  ? 6
+                  : _narudzba!.narudzbaStatusID! + 1)
+              : 0));
       _narudzba = narudzba;
       _poslovnica = poslovnica;
       _trgovackiLanac = trgovackiLanac;
-      _statusi = statusi;
+      _sljStatus = tempStauts != null && tempStauts.isNotEmpty
+          ? tempStauts.first.naziv
+          : "";
     });
+  }
+
+  void openMoreInfo() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NarudzbaInfoScreen(
+          narudzbaId: widget.narudzbaId,
+        ),
+      ),
+    );
+  }
+
+  void setToNextStatus() async {
+    await _narudzbaProvider.put(
+        id: widget.narudzbaId,
+        request: {"NarudzbaStatusID": (_narudzba!.narudzbaStatusID! + 1)});
+    setInfo();
+    await hubConnection.invoke("NarudzbaUpdateovana");
   }
 
   @override
@@ -136,7 +171,7 @@ class _NarudzbaScreenState extends State<NarudzbaScreen> {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: ElevatedButton(
-                onPressed: () => {},
+                onPressed: () => {openMoreInfo()},
                 child: Text(
                   "Vise informacija",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -148,21 +183,42 @@ class _NarudzbaScreenState extends State<NarudzbaScreen> {
                   primary: Color.fromARGB(255, 255, 83, 73),
                 )),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-            child: ElevatedButton(
-                onPressed: () => {},
-                child: Text(
-                  "Lokacija dostavljaca",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          widget.dostavljacView
+              ? _narudzba?.narudzbaStatusID != 6
+                  ? Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      child: ElevatedButton(
+                          onPressed: () => {setToNextStatus()},
+                          child: Text(
+                            "Postavi na status $_sljStatus",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            fixedSize:
+                                Size(MediaQuery.of(context).size.width, 50),
+                            primary: Color.fromARGB(255, 255, 83, 73),
+                          )),
+                    )
+                  : Container()
+              : Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: ElevatedButton(
+                      onPressed: () => {},
+                      child: Text(
+                        "Lokacija dostavljaca",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        fixedSize: Size(MediaQuery.of(context).size.width, 50),
+                        primary: Color.fromARGB(255, 255, 83, 73),
+                      )),
                 ),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  fixedSize: Size(MediaQuery.of(context).size.width, 50),
-                  primary: Color.fromARGB(255, 255, 83, 73),
-                )),
-          ),
         ],
       ),
     );

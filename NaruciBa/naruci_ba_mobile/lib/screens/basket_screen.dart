@@ -74,7 +74,7 @@ class _Basket extends State<Basket> {
     var config = await getAppConfigProvider();
     hubConnection =
         HubConnectionBuilder().withUrl(config.signalRHubEndpoint).build();
-    await hubConnection.start();
+    // await hubConnection.start();
   }
 
   Future<AppConfig> getAppConfigProvider() async {

@@ -1,12 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:naruci_ba_mobile/models/Dostavljac.dart';
 import 'package:naruci_ba_mobile/models/Klijent.dart';
 import 'package:naruci_ba_mobile/models/Korisnik.dart';
 import 'package:naruci_ba_mobile/providers/KlijentProvider.dart';
 import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
+import 'package:naruci_ba_mobile/providers/dostavljacProvider.dart';
 import 'package:naruci_ba_mobile/providers/korisnikPorvider.dart';
 import 'package:naruci_ba_mobile/providers/poslovnicaProvider.dart';
 import 'package:naruci_ba_mobile/screens/home_screen.dart';
+import 'package:naruci_ba_mobile/screens/home_screen_dostavljac.dart';
 import 'package:naruci_ba_mobile/screens/register_screen.dart';
 import 'package:naruci_ba_mobile/templates/main_template.dart';
 import 'package:naruci_ba_mobile/widgets/logo.dart';
@@ -25,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late AuthentificationProvider _authentication;
   late KorisnikProvider _korisnik;
   late KlijentProvider _klijent;
+  late DostavljacProvider _dostavljac;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -34,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _authentication = context.read<AuthentificationProvider>();
     _korisnik = context.read<KorisnikProvider>();
     _klijent = context.read<KlijentProvider>();
+    _dostavljac = context.read<DostavljacProvider>();
   }
 
   Future<void> login() async {
@@ -47,15 +52,25 @@ class _LoginScreenState extends State<LoginScreen> {
       _korisnik.imePrezime = _korisnik.imePrezime;
       List<Klijent> klijent = await _klijent
           .get(searchParams: {"KorisnikID": korisnik.first.korisnikID});
+      List<Dostavljac> dostavljac = await _dostavljac
+          .get(searchParams: {"KorisnikID": korisnik.first.korisnikID});
       if (klijent.isNotEmpty) {
         _klijent.klijendID = klijent.first.klijentID;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+        );
+      } else if (dostavljac.isNotEmpty) {
+        _dostavljac.dostavljacID = dostavljac.first.dostavljacID;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreenDostavljac(),
+          ),
+        );
       }
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(),
-        ),
-      );
     }
   }
 

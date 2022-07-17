@@ -42,7 +42,9 @@ namespace NaruciBa.WinUI.Dostavljac
 
         async Task loadDostavljaciAsync()
         {
-            List<Model.Dostavljac> dostavljaci = await _dostavljacService.Get<List<Model.Dostavljac>>();
+            List<Model.Dostavljac> dostavljaci = await _dostavljacService.Get<List<Model.Dostavljac>>(new Model.SearchObjects.DostavljacSearchObject(){ 
+                dostavljacStatusId = 1
+            });
             List<Model.DostavljacStatus> statusi = await _dostavljacStatusService.Get<List<Model.DostavljacStatus>>();
 
             foreach (Model.Dostavljac dostavljac in dostavljaci)
@@ -67,12 +69,20 @@ namespace NaruciBa.WinUI.Dostavljac
 
         private async void btnDodaj_ClickAsync(object sender, EventArgs e)
         {
+            int dostavljacID = int.Parse(cbDostavljaci.SelectedValue.ToString());
             Model.Requests.NarudzbaUpsertRequest request = new Model.Requests.NarudzbaUpsertRequest
             {
-                DostavljacID = int.Parse(cbDostavljaci.SelectedValue.ToString()),
+                DostavljacID = dostavljacID,
                 NarudzbaStatusID = 3
             };
             await _narudzbaService.Update<Model.Narudzba>(_narudzbaId, request);
+
+            Model.Requests.DostavljacUpsertRequest dostavljacRequest = new Model.Requests.DostavljacUpsertRequest
+            {
+                DostavljacStatus = 2
+            };
+
+            await _dostavljacService.Update<Model.Dostavljac>(dostavljacID, dostavljacRequest);
 
             try
             {
@@ -106,6 +116,11 @@ namespace NaruciBa.WinUI.Dostavljac
             public String Ime { get; set; }
             public String status { get; set; }
             public int? statusId { get; set; }
+        }
+
+        private void frmPrikazDostavljaca_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

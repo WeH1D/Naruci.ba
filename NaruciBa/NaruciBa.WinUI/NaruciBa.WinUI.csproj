@@ -198,6 +198,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dostavljac\fmrDostavljaciPrikaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dostavljac\fmrDostavljaciPrikaz.Designer.cs">
+      <DependentUpon>fmrDostavljaciPrikaz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dostavljac\frmDodajDostavljaca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dostavljac\frmDodajDostavljaca.Designer.cs">
+      <DependentUpon>frmDodajDostavljaca.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dostavljac\frmPrikazDostavljaca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +284,12 @@
     <Compile Include="Services\TokenService.cs" />
     <Compile Include="utils\MdiParrentWithoutBevel.cs" />
     <Compile Include="utils\MyRenderer.cs" />
+    <EmbeddedResource Include="Dostavljac\fmrDostavljaciPrikaz.resx">
+      <DependentUpon>fmrDostavljaciPrikaz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dostavljac\frmDodajDostavljaca.resx">
+      <DependentUpon>frmDodajDostavljaca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dostavljac\frmPrikazDostavljaca.resx">
       <DependentUpon>frmPrikazDostavljaca.cs</DependentUpon>
     </EmbeddedResource>
