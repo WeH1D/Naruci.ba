@@ -116,6 +116,7 @@ abstract class BaseAPIProvider<T> {
     var headers = await createTokenHeader();
     print("HEADERS $headers");
     final response = await http.post(uriPath, body: tmp, headers: headers);
+
     print("done");
     var end = DateTime.now();
     var diff = end.difference(start).inMilliseconds;
@@ -162,6 +163,7 @@ abstract class BaseAPIProvider<T> {
     var headers = await createTokenHeader();
     print("HEADERS $headers");
     final response = await http.put(uriPath, body: tmp, headers: headers);
+
     print("done");
     var end = DateTime.now();
     var diff = end.difference(start).inMilliseconds;
@@ -198,6 +200,7 @@ abstract class BaseAPIProvider<T> {
     var headers = await createTokenHeader();
     print("HEADERS $headers");
     final response = await http.delete(uriPath, headers: headers);
+
     print("done");
     var end = DateTime.now();
     var diff = end.difference(start).inMilliseconds;

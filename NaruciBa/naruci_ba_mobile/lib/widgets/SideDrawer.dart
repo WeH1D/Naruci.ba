@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:naruci_ba_mobile/models/Korisnik.dart';
+import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
 import 'package:naruci_ba_mobile/providers/korisnikPorvider.dart';
 import 'package:naruci_ba_mobile/screens/basket_screen.dart';
 import 'package:naruci_ba_mobile/screens/home_screen.dart';
+import 'package:naruci_ba_mobile/screens/home_screen_dostavljac.dart';
+import 'package:naruci_ba_mobile/screens/login_screen.dart';
 import 'package:naruci_ba_mobile/screens/mojeNarudzbe.dart';
+import 'package:naruci_ba_mobile/screens/my_informations.dart';
 import 'package:provider/src/provider.dart';
 
 class SideDrawer extends StatefulWidget {
@@ -14,6 +18,7 @@ class SideDrawer extends StatefulWidget {
 
 class _SideDrawerState extends State<SideDrawer> {
   late KorisnikProvider _korisnikProvider;
+  late AuthentificationProvider _authentificationProvider;
 
   String? email;
   String? imePrezime;
@@ -23,6 +28,7 @@ class _SideDrawerState extends State<SideDrawer> {
     // TODO: implement initState
     super.initState();
     _korisnikProvider = context.read<KorisnikProvider>();
+    _authentificationProvider = context.read<AuthentificationProvider>();
     getKorisnik();
   }
 
@@ -60,6 +66,43 @@ class _SideDrawerState extends State<SideDrawer> {
     );
   }
 
+  void goToMojeInformacije() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MyInformationsScreen(),
+      ),
+    );
+  }
+
+  void goToTrenutnaNarudzba() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MojeNarudzbe(),
+      ),
+    );
+  }
+
+  goToDostavljacHomeScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomeScreenDostavljac(),
+      ),
+    );
+  }
+
+  void odjava() {
+    _authentificationProvider.logout();
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+        (Route<dynamic> route) => route is LoginScreen);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -86,6 +129,9 @@ class _SideDrawerState extends State<SideDrawer> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(imePrezime ?? " "),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Text(email ?? " "),
                     ]),
               ),
@@ -94,22 +140,34 @@ class _SideDrawerState extends State<SideDrawer> {
           SizedBox(
             height: 50,
           ),
+          if (!_korisnikProvider.isDostavljac!)
+            GestureDetector(
+                child: Text("Pocetni ekran"), onTap: () => {goToHomeScreen()}),
+          if (!_korisnikProvider.isDostavljac!)
+            SizedBox(
+              height: 25,
+            ),
           GestureDetector(
-              child: Text("Pocetni ekran"), onTap: () => {goToHomeScreen()}),
+              child: Text("Moje narudzbe"),
+              onTap: () => {
+                    if (_korisnikProvider.isDostavljac!)
+                      {goToDostavljacHomeScreen()}
+                    else
+                      {goToMojeNarudzbe()}
+                  }),
           SizedBox(
             height: 25,
           ),
+          if (!_korisnikProvider.isDostavljac!)
+            GestureDetector(
+                child: Text("Moja korpa"), onTap: () => {goToMojaKorpa()}),
+          if (!_korisnikProvider.isDostavljac!)
+            SizedBox(
+              height: 25,
+            ),
           GestureDetector(
-              child: Text("Moje narudzbe"), onTap: () => {goToMojeNarudzbe()}),
-          SizedBox(
-            height: 25,
-          ),
-          GestureDetector(
-              child: Text("Moja korpa"), onTap: () => {goToMojaKorpa()}),
-          SizedBox(
-            height: 25,
-          ),
-          GestureDetector(child: Text("Moje informacije"), onTap: () => {}),
+              child: Text("Moje informacije"),
+              onTap: () => {goToMojeInformacije()}),
           SizedBox(
             height: 25,
           ),
@@ -130,7 +188,7 @@ class _SideDrawerState extends State<SideDrawer> {
             height: 50,
           ),
           ElevatedButton(
-              onPressed: () => {},
+              onPressed: () => {odjava()},
               child: Text(
                 "Odjava",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NaruciBa.Services.Interfaces
 {
-    public interface IKorisnikService : ICRUDService<Model.Korisnik, Model.SearchObjects.KorisnikSearchObject, KorisnikInsertRequest, object>
+    public interface IKorisnikService : ICRUDService<Model.Korisnik, Model.SearchObjects.KorisnikSearchObject, KorisnikInsertRequest, KorisnikInsertRequest>
     {
     }
 }

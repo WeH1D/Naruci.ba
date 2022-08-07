@@ -31,7 +31,7 @@ namespace NaruciBa.WinUI.Narudzbe
 
         async Task connectToHubAsync()
         {
-            connection = new HubConnectionBuilder().WithUrl("http://localhost:5000/NaruciBaHub").Build();
+            connection = new HubConnectionBuilder().WithUrl("http://localhost:5000/NaruciBaHub").WithAutomaticReconnect().Build();
 
             connection.On("NarudzbaUpdateovana", () => loadNarudzbeAsync());
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:naruci_ba_mobile/models/Narudzba.dart';
 import 'package:naruci_ba_mobile/models/NarudzbaStatus.dart';
 import 'package:naruci_ba_mobile/models/Poslovnica.dart';
@@ -51,10 +52,13 @@ class _HomeScreenDostavljacState extends State<HomeScreenDostavljac> {
 
   late HubConnection hubConnection;
 
+  bool isLoading = true;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    isLoading = false;
     _narudzbaProvider = context.read<NarudzbaProvider>();
     _dostavljacProvider = context.read<DostavljacProvider>();
     _statusProvider = context.read<NarudzbaStatusProvider>();
@@ -65,12 +69,20 @@ class _HomeScreenDostavljacState extends State<HomeScreenDostavljac> {
   }
 
   Future<void> setHub() async {
+    setState(() {
+      isLoading = true;
+    });
     var config = await getAppConfigProvider();
-    hubConnection =
-        HubConnectionBuilder().withUrl(config.signalRHubEndpoint).build();
+    hubConnection = HubConnectionBuilder()
+        .withUrl(config.signalRHubEndpoint)
+        .withAutomaticReconnect()
+        .build();
     hubConnection.on(
         "NarudzbaUpdateovana", (List<Object>? arg) => getNarudzbe());
     await hubConnection.start();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   Future<AppConfig> getAppConfigProvider() async {
@@ -82,6 +94,9 @@ class _HomeScreenDostavljacState extends State<HomeScreenDostavljac> {
   }
 
   void getNarudzbe() async {
+    setState(() {
+      isLoading = true;
+    });
     List<Narudzba> narudzbe = await _narudzbaProvider
         .get(searchParams: {"DostavljacID": _dostavljacProvider.dostavljacID});
     for (var narudzba in narudzbe) {
@@ -99,6 +114,7 @@ class _HomeScreenDostavljacState extends State<HomeScreenDostavljac> {
     }
     setState(() {
       _narudzbe = narudzbe;
+      isLoading = false;
     });
   }
 
@@ -117,115 +133,120 @@ class _HomeScreenDostavljacState extends State<HomeScreenDostavljac> {
   @override
   Widget build(BuildContext context) {
     return MainTemplate(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-              child: Text("Dodijeljene narudzbe",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 255, 83, 73))),
-            ),
-            ..._narudzbe.map<Widget>((narudzba) {
-              return GestureDetector(
-                onTap: () => {openNarudzbaDetalji(narudzba.narudzbaID)},
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                              statusi.isNotEmpty
-                                  ? statusi
-                                      .where((status) =>
-                                          narudzba.narudzbaID ==
-                                          status.narudzbaId)
-                                      .first
-                                      .statusNaziv
-                                  : "",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Color.fromARGB(255, 255, 83, 73))),
-                          Row(
-                            children: [
-                              Text(
-                                "${narudzba.datum?.day}.",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
-                              ),
-                              Text("${narudzba.datum?.month}.",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15)),
-                              Text("${narudzba.datum?.year}",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15)),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text("${narudzba.datum?.hour}:"),
-                              Text("${narudzba.datum?.minute}")
-                            ],
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
+      child: ModalProgressHUD(
+        inAsyncCall: isLoading,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                child: Text("Dodijeljene narudzbe",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 255, 83, 73))),
+              ),
+              ..._narudzbe.map<Widget>((narudzba) {
+                return GestureDetector(
+                  onTap: () => {openNarudzbaDetalji(narudzba.narudzbaID)},
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
                                 statusi.isNotEmpty
                                     ? statusi
-                                            .where((status) =>
-                                                narudzba.narudzbaID ==
-                                                status.narudzbaId)
-                                            .first
-                                            .trgovackiLanac ??
-                                        ""
+                                        .where((status) =>
+                                            narudzba.narudzbaID ==
+                                            status.narudzbaId)
+                                        .first
+                                        .statusNaziv
                                     : "",
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Text(
-                                statusi.isNotEmpty
-                                    ? statusi
-                                            .where((status) =>
-                                                narudzba.narudzbaID ==
-                                                status.narudzbaId)
-                                            .first
-                                            .psolovnicaAdresa ??
-                                        ""
-                                    : "",
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Text(
-                                "${narudzba.ukupanIznos}KM",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 20),
-                          Icon(
-                            Icons.chevron_right,
-                            color: Color.fromARGB(255, 255, 83, 73),
-                          ),
-                        ],
-                      ),
-                    ],
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 255, 83, 73))),
+                            Row(
+                              children: [
+                                Text(
+                                  "${narudzba.datum?.day}.",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                Text("${narudzba.datum?.month}.",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15)),
+                                Text("${narudzba.datum?.year}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15)),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("${narudzba.datum?.hour}:"),
+                                Text("${narudzba.datum?.minute}")
+                              ],
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  statusi.isNotEmpty
+                                      ? statusi
+                                              .where((status) =>
+                                                  narudzba.narudzbaID ==
+                                                  status.narudzbaId)
+                                              .first
+                                              .trgovackiLanac ??
+                                          ""
+                                      : "",
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Text(
+                                  statusi.isNotEmpty
+                                      ? statusi
+                                              .where((status) =>
+                                                  narudzba.narudzbaID ==
+                                                  status.narudzbaId)
+                                              .first
+                                              .psolovnicaAdresa ??
+                                          ""
+                                      : "",
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Text(
+                                  "${narudzba.ukupanIznos}KM",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 20),
+                            Icon(
+                              Icons.chevron_right,
+                              color: Color.fromARGB(255, 255, 83, 73),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            }),
-          ],
+                );
+              }),
+            ],
+          ),
         ),
       ),
     );

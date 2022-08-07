@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:naruci_ba_mobile/screens/poslovnica_screen.dart';
 
@@ -5,11 +7,13 @@ class PoslovnicaCard extends StatefulWidget {
   final String poslovnicaId;
   final String nazivPoslovnice;
   final String adresaPoslovnice;
+  final String? slika;
   const PoslovnicaCard(
       {Key? key,
       required this.poslovnicaId,
       required this.nazivPoslovnice,
-      required this.adresaPoslovnice})
+      required this.adresaPoslovnice,
+      required this.slika})
       : super(key: key);
 
   @override
@@ -45,7 +49,10 @@ class _PoslovnicaCardState extends State<PoslovnicaCard> {
                 color: Color.fromARGB(255, 255, 255, 255),
                 height: 130,
                 child: Image(
-                  image: AssetImage("assets/images/bingo.jpg"),
+                  image: widget.slika != null
+                      ? Image.memory(Base64Decoder().convert(widget.slika!))
+                          .image
+                      : Image.asset("assets/images/missingImage.jpg").image,
                   fit: BoxFit.fitWidth,
                 ),
               ),

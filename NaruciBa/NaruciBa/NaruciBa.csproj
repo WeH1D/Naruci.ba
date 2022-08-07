@@ -27,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Images\NewFolder1\" />
+    <Folder Include="Images\NewFolder\" />
     <Folder Include="Images\Proizvod\" />
     <Folder Include="Images\TrgovackiLanac\" />
     <Folder Include="Migrations\" />

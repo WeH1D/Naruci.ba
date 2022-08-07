@@ -114,11 +114,7 @@ class AuthentificationProvider with ChangeNotifier {
     });
 
     _gettingNewToken = false;
-    if (resultToken.statusCode == 200) {
-      return true;
-    } else {
-      return false;
-    }
+    return resultToken;
   }
 
   createNewToken() async {
@@ -159,8 +155,7 @@ class AuthentificationProvider with ChangeNotifier {
   }
 
   logout() async {
-    // await insertInteraction("Logged out", "LOGOUT");
-    // _refreshToken = null;
-    // _accessToken = null;
+    _refreshToken = null;
+    _accessToken = null;
   }
 }

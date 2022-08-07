@@ -12,7 +12,8 @@ class Narudzba {
   final DateTime? datum;
   final double? ukupanIznos;
   final double? bonusZaDostavljaca;
-  final String slikaRacunaPutanja;
+  final String? slikaRacunaPutanja;
+  final String? slikaRacuna;
   final int? narudzbaStatusID;
   final int? kuponID;
 
@@ -26,6 +27,7 @@ class Narudzba {
       required this.ukupanIznos,
       required this.bonusZaDostavljaca,
       required this.slikaRacunaPutanja,
+      required this.slikaRacuna,
       required this.narudzbaStatusID,
       required this.kuponID});
 

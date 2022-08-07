@@ -15,6 +15,7 @@ namespace NaruciBa.WinUI.Login
     public partial class frmLogin : Form
     {
         private APIService _korisnikService = new APIService("Korisnik");
+        private APIService _koordinatorService = new APIService("Koordinator");
         TokenService service = new TokenService();
 
         public frmLogin()
@@ -55,27 +56,46 @@ namespace NaruciBa.WinUI.Login
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-           
-            try
+            Model.SearchObjects.KorisnikSearchObject korisnikSearch = new Model.SearchObjects.KorisnikSearchObject
             {
-                Properties.Settings.Default.AccessToken = "";
-                Properties.Settings.Default.RefreshToken = "";
-                Properties.Settings.Default.email = "";
-                Properties.Settings.Default.passwordHash = "";
+                Email = txtEmail.Text
+            };
+            List<Model.Korisnik> korisnik = await _korisnikService.Get<List<Model.Korisnik>>(korisnikSearch);
 
-                await service.setToken(txtEmail.Text, txtPassword.Text);
+            Model.SearchObjects.KoordinatorSearchObject koordinatorSearch = new Model.SearchObjects.KoordinatorSearchObject
+            {
+                KorisnikID = korisnik.First().KorisnikID
+            };
+            List<Model.Koordinator> koordinator = await _koordinatorService.Get<List<Model.Koordinator>>(koordinatorSearch);
 
-                Properties.Settings.Default.email = txtEmail.Text;
-                // TODO --> hashs the password
-                Properties.Settings.Default.passwordHash = txtPassword.Text;
-                Properties.Settings.Default.Save();
+            if (koordinator.Any())
+            {
+                try
+                {
+                    Properties.Settings.Default.AccessToken = "";
+                    Properties.Settings.Default.RefreshToken = "";
+                    Properties.Settings.Default.email = "";
+                    Properties.Settings.Default.passwordHash = "";
+
+                    await service.setToken(txtEmail.Text, txtPassword.Text);
+
+                    Properties.Settings.Default.email = txtEmail.Text;
+                    // TODO --> hashs the password
+                    Properties.Settings.Default.passwordHash = txtPassword.Text;
+                    Properties.Settings.Default.Save();
 
 
-                this.Hide();
-                frmHome frm = new frmHome();
-                frm.ShowDialog();
-            }
-            catch(Exception err)
+                    this.Hide();
+                    frmHome frm = new frmHome();
+                    frm.ShowDialog();
+                }
+                catch (Exception err)
+                {
+                    txtValidation.Visible = true;
+                    txtEmail.Text = "";
+                    txtPassword.Text = "";
+                }
+            } else
             {
                 txtValidation.Visible = true;
                 txtEmail.Text = "";

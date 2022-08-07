@@ -17,7 +17,8 @@ Narudzba _$NarudzbaFromJson(Map<String, dynamic> json) => Narudzba(
           : DateTime.parse(json['datum'] as String),
       ukupanIznos: (json['ukupanIznos'] as num?)?.toDouble(),
       bonusZaDostavljaca: (json['bonusZaDostavljaca'] as num?)?.toDouble(),
-      slikaRacunaPutanja: json['slikaRacunaPutanja'] as String,
+      slikaRacunaPutanja: json['slikaRacunaPutanja'] as String?,
+      slikaRacuna: json['slikaRacuna'] as String?,
       narudzbaStatusID: json['narudzbaStatusID'] as int?,
       kuponID: json['kuponID'] as int?,
     );
@@ -32,6 +33,7 @@ Map<String, dynamic> _$NarudzbaToJson(Narudzba instance) => <String, dynamic>{
       'ukupanIznos': instance.ukupanIznos,
       'bonusZaDostavljaca': instance.bonusZaDostavljaca,
       'slikaRacunaPutanja': instance.slikaRacunaPutanja,
+      'slikaRacuna': instance.slikaRacuna,
       'narudzbaStatusID': instance.narudzbaStatusID,
       'kuponID': instance.kuponID,
     };

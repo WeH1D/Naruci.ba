@@ -33,6 +33,15 @@ class KorisnikProvider extends BaseAPIProvider<Korisnik> with ChangeNotifier {
     _email = value;
   }
 
+  bool? _isDostavljac;
+  bool? get isDostavljac {
+    return _isDostavljac;
+  }
+
+  set isDostavljac(value) {
+    _isDostavljac = value;
+  }
+
   @override
   Future<String> basePath() async => (await getAppConfigProvider()).baseUrl;
 

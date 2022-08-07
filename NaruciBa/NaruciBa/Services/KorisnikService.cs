@@ -13,7 +13,7 @@ using NaruciBa.Model.SearchObjects;
 
 namespace NaruciBa.Services
 {
-    public class KorisnikService : BaseCRUDService<Model.Korisnik, Database.Korisnik, Model.SearchObjects.KorisnikSearchObject, KorisnikInsertRequest, object>, IKorisnikService
+    public class KorisnikService : BaseCRUDService<Model.Korisnik, Database.Korisnik, Model.SearchObjects.KorisnikSearchObject, KorisnikInsertRequest, KorisnikInsertRequest>, IKorisnikService
     {
         public KorisnikService(NaruciBaContext context, IMapper mapper)
             :base(context, mapper)

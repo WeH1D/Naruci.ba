@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:naruci_ba_mobile/models/Grad.dart';
 import 'package:naruci_ba_mobile/models/Korisnik.dart';
 import 'package:naruci_ba_mobile/providers/authentification_provider.dart';
@@ -39,9 +40,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final formKey = GlobalKey<FormState>();
 
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
+    isLoading = false;
     _authentication = context.read<AuthentificationProvider>();
     _korisnikProvider = context.read<KorisnikProvider>();
     _gradProvider = context.read<GradProvider>();
@@ -49,13 +53,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   fetchGradovi() async {
+    setState(() {
+      isLoading = true;
+    });
     List<Grad> data = await _gradProvider.get();
     setState(() {
       _gradovi = data;
+      isLoading = false;
     });
   }
 
   Future<void> register() async {
+    setState(() {
+      isLoading = true;
+    });
     if (formKey.currentState != null && formKey.currentState!.validate()) {
       var request = {
         "ime": imeController.text,
@@ -71,6 +82,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         "gradID": _selectedGrad?.gradID,
       };
       await _korisnikProvider.post(request: request);
+      setState(() {
+        isLoading = false;
+      });
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -78,6 +92,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       );
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 
   _selectDate(BuildContext context) async {
@@ -99,252 +116,256 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return MainTemplate(
-      child: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
-            child: Form(
-              key: formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Polje mora biti popunjeno";
-                      } else {
-                        return null;
-                      }
-                    },
-                    controller: imeController,
-                    decoration: InputDecoration(
-                        hintText: "Ime",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        contentPadding: EdgeInsets.all(10),
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(120, 64, 64, 64))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: prezimeController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Polje mora biti popunjeno";
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: InputDecoration(
-                        hintText: "Prezime",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        contentPadding: EdgeInsets.all(10),
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(120, 64, 64, 64))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: emailController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Polje mora biti popunjeno";
-                      } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
-                          .hasMatch(value)) {
-                        return "Upisite validan Email";
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: InputDecoration(
-                        hintText: "Email",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        contentPadding: EdgeInsets.all(10),
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(120, 64, 64, 64))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: passwordController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Polje mora biti popunjeno";
-                      } else if (passwordController.text !=
-                          confirmPasswordController.text) {
-                        return "Passwordi se ne podudaraju";
-                      } else {
-                        return null;
-                      }
-                    },
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        hintText: "Password",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        contentPadding: EdgeInsets.all(10),
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(120, 64, 64, 64))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: confirmPasswordController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Polje mora biti popunjeno";
-                      } else if (passwordController.text !=
-                          confirmPasswordController.text) {
-                        return "Passwordi se ne podudaraju";
-                      } else {
-                        return null;
-                      }
-                    },
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        hintText: "Confirm Password",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        contentPadding: EdgeInsets.all(10),
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(120, 64, 64, 64))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () => _selectDate(context),
-                    child: AbsorbPointer(
-                      child: TextFormField(
-                        controller: datumController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Polje mora biti popunjeno";
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                            hintText: "Date of birth",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            contentPadding: EdgeInsets.all(10),
-                            hintStyle: TextStyle(
-                                color: Color.fromARGB(120, 64, 64, 64))),
+      child: ModalProgressHUD(
+        inAsyncCall: isLoading,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Polje mora biti popunjeno";
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: imeController,
+                      decoration: InputDecoration(
+                          hintText: "Ime",
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          contentPadding: EdgeInsets.all(10),
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(120, 64, 64, 64))),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: prezimeController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Polje mora biti popunjeno";
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Prezime",
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          contentPadding: EdgeInsets.all(10),
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(120, 64, 64, 64))),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: emailController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Polje mora biti popunjeno";
+                        } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
+                            .hasMatch(value)) {
+                          return "Upisite validan Email";
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Email",
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          contentPadding: EdgeInsets.all(10),
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(120, 64, 64, 64))),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: passwordController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Polje mora biti popunjeno";
+                        } else if (passwordController.text !=
+                            confirmPasswordController.text) {
+                          return "Passwordi se ne podudaraju";
+                        } else {
+                          return null;
+                        }
+                      },
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: "Password",
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          contentPadding: EdgeInsets.all(10),
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(120, 64, 64, 64))),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: confirmPasswordController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Polje mora biti popunjeno";
+                        } else if (passwordController.text !=
+                            confirmPasswordController.text) {
+                          return "Passwordi se ne podudaraju";
+                        } else {
+                          return null;
+                        }
+                      },
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: "Confirm Password",
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          contentPadding: EdgeInsets.all(10),
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(120, 64, 64, 64))),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () => _selectDate(context),
+                      child: AbsorbPointer(
+                        child: TextFormField(
+                          controller: datumController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Polje mora biti popunjeno";
+                            } else {
+                              return null;
+                            }
+                          },
+                          decoration: InputDecoration(
+                              hintText: "Date of birth",
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              contentPadding: EdgeInsets.all(10),
+                              hintStyle: TextStyle(
+                                  color: Color.fromARGB(120, 64, 64, 64))),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.grey),
-                        borderRadius: BorderRadius.all((Radius.circular(10)))),
-                    child: DropdownButtonFormField(
-                        value: _selectedGrad?.naziv,
-                        validator: (value) {
-                          if (value == null) {
-                            return "Polje mora biti popunjeno";
-                          } else {
-                            return null;
-                          }
-                        },
-                        items: _gradovi
-                            ?.map<DropdownMenuItem<String>>((Grad grad) {
-                          return DropdownMenuItem<String>(
-                            value: grad.naziv,
-                            child: Text(
-                              grad.naziv,
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          );
-                        }).toList(),
-                        isExpanded: true,
-                        hint: Text(
-                          "Grad",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.grey),
+                          borderRadius:
+                              BorderRadius.all((Radius.circular(10)))),
+                      child: DropdownButtonFormField(
+                          value: _selectedGrad?.naziv,
+                          validator: (value) {
+                            if (value == null) {
+                              return "Polje mora biti popunjeno";
+                            } else {
+                              return null;
+                            }
+                          },
+                          items: _gradovi
+                              ?.map<DropdownMenuItem<String>>((Grad grad) {
+                            return DropdownMenuItem<String>(
+                              value: grad.naziv,
+                              child: Text(
+                                grad.naziv,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            );
+                          }).toList(),
+                          isExpanded: true,
+                          hint: Text(
+                            "Grad",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          onChanged: (data) => setState(() {
+                                _selectedGrad = _gradovi?.firstWhere(
+                                    (element) => element.naziv == data);
+                              })),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: adresaController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Polje mora biti popunjeno";
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Address",
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          contentPadding: EdgeInsets.all(10),
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(120, 64, 64, 64))),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: telefonController,
+                      keyboardType: TextInputType.phone,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Polje mora biti popunjeno";
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Telefon",
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          contentPadding: EdgeInsets.all(10),
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(120, 64, 64, 64))),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                        onPressed: () => register(),
+                        child: Text(
+                          "Register",
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        onChanged: (data) => setState(() {
-                              _selectedGrad = _gradovi?.firstWhere(
-                                  (element) => element.naziv == data);
-                            })),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: adresaController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Polje mora biti popunjeno";
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: InputDecoration(
-                        hintText: "Address",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        contentPadding: EdgeInsets.all(10),
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(120, 64, 64, 64))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: telefonController,
-                    keyboardType: TextInputType.phone,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Polje mora biti popunjeno";
-                      } else {
-                        return null;
-                      }
-                    },
-                    decoration: InputDecoration(
-                        hintText: "Telefon",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        contentPadding: EdgeInsets.all(10),
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(120, 64, 64, 64))),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                      onPressed: () => register(),
-                      child: Text(
-                        "Register",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          fixedSize:
-                              Size(MediaQuery.of(context).size.width, 40),
-                          primary: Color.fromARGB(255, 255, 83, 73))),
-                ],
+                        style: ElevatedButton.styleFrom(
+                            fixedSize:
+                                Size(MediaQuery.of(context).size.width, 40),
+                            primary: Color.fromARGB(255, 255, 83, 73))),
+                  ],
+                ),
               ),
             ),
           ),

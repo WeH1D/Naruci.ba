@@ -109,6 +109,7 @@ namespace NaruciBa
             services.AddScoped<IKlijentService, KlijentService>();
             services.AddScoped<IDostavljacService, DostavljacService>();
             services.AddScoped<IDostavljacStatus, DostavljacStatusService>();
+            services.AddScoped<IKoordinatorService, KoordinatorService>();
 
             //========================================================================//
 

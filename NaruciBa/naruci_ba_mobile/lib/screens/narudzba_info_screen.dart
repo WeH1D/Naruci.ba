@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:naruci_ba_mobile/models/NaruceniProizvod.dart';
 import 'package:naruci_ba_mobile/models/Narudzba.dart';
 import 'package:naruci_ba_mobile/models/Poslovnica.dart';
@@ -37,10 +38,13 @@ class _NarudzbaInfoScreenState extends State<NarudzbaInfoScreen> {
   List<Proizvod> itemsInBasket = List.empty();
   List<NaruceniProizvod> proizvodiUNarudzbi = List.empty();
 
+  bool isLoading = true;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    isLoading = false;
     _poslovnicaProvider = context.read<PoslovnicaProvider>();
     _narudzbaProvider = context.read<NarudzbaProvider>();
     _trgovackiLanacProvider = context.read<TrgovackiLanacProvider>();
@@ -51,6 +55,9 @@ class _NarudzbaInfoScreenState extends State<NarudzbaInfoScreen> {
   }
 
   void getNarudzbaInfo() async {
+    setState(() {
+      isLoading = true;
+    });
     Narudzba narudzba = await _narudzbaProvider.getById(id: widget.narudzbaId);
     Poslovnica poslovnica =
         await _poslovnicaProvider.getById(id: narudzba.poslovnicaID);
@@ -61,10 +68,14 @@ class _NarudzbaInfoScreenState extends State<NarudzbaInfoScreen> {
       _poslovnica = poslovnica;
       _trgovackiLanac = trgovackiLanac;
       _narudzba = narudzba;
+      isLoading = false;
     });
   }
 
   void setProizvodi() async {
+    setState(() {
+      isLoading = true;
+    });
     proizvodiUNarudzbi = await _naruceniProizvodProvider
         .get(searchParams: {"NarudzbaID": widget.narudzbaId});
     proizvodiUNarudzbi.forEach((prod) async {
@@ -72,102 +83,129 @@ class _NarudzbaInfoScreenState extends State<NarudzbaInfoScreen> {
       setState(() {
         itemsInBasket = [...itemsInBasket, temp];
       });
+      setState(() {
+        isLoading = false;
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MainTemplate(
-        child: SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            _trgovackiLanac?.naziv ?? "",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
-            _poslovnica?.adresa ?? "",
-            style: TextStyle(fontSize: 15),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("${_narudzba?.datum?.day.toString() ?? ""}."),
-              Text("${_narudzba?.datum?.month.toString() ?? ""}."),
-              Text(_narudzba?.datum?.year.toString() ?? ""),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          ...itemsInBasket.map<Widget>((prod) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  prod.slika != null
-                      ? Image(
-                          image:
-                              Image.memory(Base64Decoder().convert(prod.slika!))
-                                  .image,
-                          height: 50,
-                          width: 50,
-                          fit: BoxFit.contain,
-                        )
-                      : Container(
-                          height: 50,
-                          width: 50,
-                          color: Color.fromARGB(20, 0, 0, 0),
-                          child: Text("x"),
-                          alignment: Alignment.center,
+        child: ModalProgressHUD(
+      inAsyncCall: isLoading,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              _trgovackiLanac?.naziv ?? "",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              _poslovnica?.adresa ?? "",
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("${_narudzba?.datum?.day.toString() ?? ""}."),
+                Text("${_narudzba?.datum?.month.toString() ?? ""}."),
+                Text(_narudzba?.datum?.year.toString() ?? ""),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ...itemsInBasket.map<Widget>((prod) {
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    prod.slika != null
+                        ? Image(
+                            image: Image.memory(
+                                    Base64Decoder().convert(prod.slika!))
+                                .image,
+                            height: 50,
+                            width: 50,
+                            fit: BoxFit.contain,
+                          )
+                        : Container(
+                            height: 50,
+                            width: 50,
+                            color: Color.fromARGB(20, 0, 0, 0),
+                            child: Text("x"),
+                            alignment: Alignment.center,
+                          ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          prod.naziv,
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        prod.naziv,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        Text(
+                            "${proizvodiUNarudzbi.where((_prod) => _prod.proizvodID == prod.proizvodID).first.ukupnaCijena.toString()} KM"),
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          proizvodiUNarudzbi
+                              .where((_prod) =>
+                                  _prod.proizvodID == prod.proizvodID)
+                              .first
+                              .kolicina
+                              .toString(),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        prod.kg! ? Text("kg") : Text("kom"),
+                        SizedBox(
+                          width: 20,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }),
+            if (_narudzba?.slikaRacuna != null && _narudzba?.slikaRacuna != "")
+              Column(
+                children: [
+                  Text("Racun:",
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image(
+                        alignment: Alignment.topCenter,
+                        image: Image.memory(Base64Decoder()
+                                .convert(_narudzba!.slikaRacuna!))
+                            .image,
+                        fit: BoxFit.fill,
                       ),
-                      Text(
-                          "${proizvodiUNarudzbi.where((_prod) => _prod.proizvodID == prod.proizvodID).first.ukupnaCijena.toString()} KM"),
-                    ],
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        proizvodiUNarudzbi
-                            .where(
-                                (_prod) => _prod.proizvodID == prod.proizvodID)
-                            .first
-                            .kolicina
-                            .toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      prod.kg! ? Text("kg") : Text("kom"),
-                      SizedBox(
-                        width: 20,
-                      ),
-                    ],
+                    ),
                   ),
                 ],
-              ),
-            );
-          }),
-        ],
+              )
+          ],
+        ),
       ),
     ));
   }

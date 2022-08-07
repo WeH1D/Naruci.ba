@@ -30,13 +30,16 @@ namespace NaruciBa.WinUI.Proizvodi
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbPodkategorija = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblKM = new System.Windows.Forms.Label();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.lblSifra = new System.Windows.Forms.Label();
             this.cbKomad = new System.Windows.Forms.CheckBox();
             this.cbKg = new System.Windows.Forms.CheckBox();
             this.lblDodajSliku = new System.Windows.Forms.Label();
             this.pbSlika = new System.Windows.Forms.PictureBox();
-            this.cbPodkategorija = new System.Windows.Forms.ComboBox();
+            this.cbKategorija = new System.Windows.Forms.ComboBox();
             this.txtCijena = new System.Windows.Forms.TextBox();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.lblValidacija = new System.Windows.Forms.Label();
@@ -49,13 +52,14 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblPodkategorija = new System.Windows.Forms.Label();
             this.lblDodajProizvod = new System.Windows.Forms.Label();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
-            this.lblKM = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cbPodkategorija);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblKM);
             this.panel1.Controls.Add(this.txtSifra);
             this.panel1.Controls.Add(this.lblSifra);
@@ -63,7 +67,7 @@ namespace NaruciBa.WinUI.Proizvodi
             this.panel1.Controls.Add(this.cbKg);
             this.panel1.Controls.Add(this.lblDodajSliku);
             this.panel1.Controls.Add(this.pbSlika);
-            this.panel1.Controls.Add(this.cbPodkategorija);
+            this.panel1.Controls.Add(this.cbKategorija);
             this.panel1.Controls.Add(this.txtCijena);
             this.panel1.Controls.Add(this.txtNaziv);
             this.panel1.Controls.Add(this.lblValidacija);
@@ -76,8 +80,37 @@ namespace NaruciBa.WinUI.Proizvodi
             this.panel1.Controls.Add(this.lblPodkategorija);
             this.panel1.Location = new System.Drawing.Point(16, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(553, 342);
+            this.panel1.Size = new System.Drawing.Size(553, 401);
             this.panel1.TabIndex = 18;
+            // 
+            // cbPodkategorija
+            // 
+            this.cbPodkategorija.Font = new System.Drawing.Font("Montserrat Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPodkategorija.FormattingEnabled = true;
+            this.cbPodkategorija.Location = new System.Drawing.Point(387, 256);
+            this.cbPodkategorija.Name = "cbPodkategorija";
+            this.cbPodkategorija.Size = new System.Drawing.Size(163, 26);
+            this.cbPodkategorija.TabIndex = 28;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(233, 259);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 18);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Podkategorija:";
+            // 
+            // lblKM
+            // 
+            this.lblKM.AutoSize = true;
+            this.lblKM.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKM.Location = new System.Drawing.Point(521, 128);
+            this.lblKM.Name = "lblKM";
+            this.lblKM.Size = new System.Drawing.Size(29, 18);
+            this.lblKM.TabIndex = 26;
+            this.lblKM.Text = "KM";
             // 
             // txtSifra
             // 
@@ -145,14 +178,15 @@ namespace NaruciBa.WinUI.Proizvodi
             this.pbSlika.TabIndex = 19;
             this.pbSlika.TabStop = false;
             // 
-            // cbPodkategorija
+            // cbKategorija
             // 
-            this.cbPodkategorija.Font = new System.Drawing.Font("Montserrat Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPodkategorija.FormattingEnabled = true;
-            this.cbPodkategorija.Location = new System.Drawing.Point(387, 224);
-            this.cbPodkategorija.Name = "cbPodkategorija";
-            this.cbPodkategorija.Size = new System.Drawing.Size(163, 26);
-            this.cbPodkategorija.TabIndex = 20;
+            this.cbKategorija.Font = new System.Drawing.Font("Montserrat Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbKategorija.FormattingEnabled = true;
+            this.cbKategorija.Location = new System.Drawing.Point(387, 224);
+            this.cbKategorija.Name = "cbKategorija";
+            this.cbKategorija.Size = new System.Drawing.Size(163, 26);
+            this.cbKategorija.TabIndex = 20;
+            this.cbKategorija.SelectionChangeCommitted += new System.EventHandler(this.cbKategorija_SelectionChangeCommitted);
             // 
             // txtCijena
             // 
@@ -176,7 +210,7 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblValidacija.AutoSize = true;
             this.lblValidacija.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValidacija.ForeColor = System.Drawing.Color.Red;
-            this.lblValidacija.Location = new System.Drawing.Point(279, 259);
+            this.lblValidacija.Location = new System.Drawing.Point(280, 301);
             this.lblValidacija.Name = "lblValidacija";
             this.lblValidacija.Size = new System.Drawing.Size(180, 15);
             this.lblValidacija.TabIndex = 16;
@@ -199,7 +233,7 @@ namespace NaruciBa.WinUI.Proizvodi
             this.btnDodajPrpozvod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDodajPrpozvod.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajPrpozvod.ForeColor = System.Drawing.Color.White;
-            this.btnDodajPrpozvod.Location = new System.Drawing.Point(429, 287);
+            this.btnDodajPrpozvod.Location = new System.Drawing.Point(430, 329);
             this.btnDodajPrpozvod.Name = "btnDodajPrpozvod";
             this.btnDodajPrpozvod.Size = new System.Drawing.Size(121, 29);
             this.btnDodajPrpozvod.TabIndex = 15;
@@ -251,9 +285,9 @@ namespace NaruciBa.WinUI.Proizvodi
             this.lblPodkategorija.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPodkategorija.Location = new System.Drawing.Point(233, 227);
             this.lblPodkategorija.Name = "lblPodkategorija";
-            this.lblPodkategorija.Size = new System.Drawing.Size(102, 18);
+            this.lblPodkategorija.Size = new System.Drawing.Size(77, 18);
             this.lblPodkategorija.TabIndex = 11;
-            this.lblPodkategorija.Text = "Podkategorija:";
+            this.lblPodkategorija.Text = "Kategorija:";
             // 
             // lblDodajProizvod
             // 
@@ -270,27 +304,17 @@ namespace NaruciBa.WinUI.Proizvodi
             // 
             this.ofd.FileName = "openFileDialog1";
             // 
-            // lblKM
-            // 
-            this.lblKM.AutoSize = true;
-            this.lblKM.Font = new System.Drawing.Font("Montserrat Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKM.Location = new System.Drawing.Point(521, 128);
-            this.lblKM.Name = "lblKM";
-            this.lblKM.Size = new System.Drawing.Size(29, 18);
-            this.lblKM.TabIndex = 26;
-            this.lblKM.Text = "KM";
-            // 
             // frmDodajNoviProizvod
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(589, 411);
+            this.ClientSize = new System.Drawing.Size(589, 461);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblDodajProizvod);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(605, 450);
+            this.MaximumSize = new System.Drawing.Size(605, 500);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(605, 450);
+            this.MinimumSize = new System.Drawing.Size(605, 500);
             this.Name = "frmDodajNoviProizvod";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDodajNoviProizvod";
@@ -317,7 +341,7 @@ namespace NaruciBa.WinUI.Proizvodi
         private System.Windows.Forms.Label lblDodajProizvod;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.TextBox txtCijena;
-        private System.Windows.Forms.ComboBox cbPodkategorija;
+        private System.Windows.Forms.ComboBox cbKategorija;
         private System.Windows.Forms.Label lblDodajSliku;
         private System.Windows.Forms.PictureBox pbSlika;
         private System.Windows.Forms.CheckBox cbKg;
@@ -326,5 +350,7 @@ namespace NaruciBa.WinUI.Proizvodi
         private System.Windows.Forms.Label lblSifra;
         private System.Windows.Forms.OpenFileDialog ofd;
         private System.Windows.Forms.Label lblKM;
+        private System.Windows.Forms.ComboBox cbPodkategorija;
+        private System.Windows.Forms.Label label1;
     }
 }

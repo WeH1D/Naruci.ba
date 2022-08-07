@@ -31,7 +31,7 @@ namespace NaruciBa.Mapping
             CreateMap<ProizvodUpdateRequest, Database.Proizvod>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); ;
 
             CreateMap<Database.Korisnik, Model.Korisnik>().ReverseMap();
-            CreateMap<KorisnikInsertRequest, Database.Korisnik>();
+            CreateMap<KorisnikInsertRequest, Database.Korisnik>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
             CreateMap<Database.Grad, Model.Grad>().ReverseMap();
 
@@ -54,7 +54,8 @@ namespace NaruciBa.Mapping
             CreateMap<Database.DostavljacStatus, Model.DostavljacStatus>().ReverseMap();
             CreateMap<DostavljacStatusUpsertRequest, Database.DostavljacStatus>();
 
-
+            CreateMap<Database.Koordinator, Model.Koordinator>().ReverseMap();
+            CreateMap<KoordinatorInsertRequest, Database.Koordinator>();
         }
     }
 }

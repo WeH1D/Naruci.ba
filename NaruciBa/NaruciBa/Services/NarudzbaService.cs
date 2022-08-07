@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using NaruciBa.Database;
+using NaruciBa.Model.Requests;
+using NaruciBa.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,8 +13,32 @@ namespace NaruciBa.Services
 {
     public class NarudzbaService : BaseCRUDService<Model.Narudzba, Database.Narudzba, Model.SearchObjects.NarudzbaSearchObject, Model.Requests.NarudzbaUpsertRequest, Model.Requests.NarudzbaUpsertRequest>, Interfaces.INarudzbaService
     {
+        ImageHelper imageHelper = new ImageHelper();
         public NarudzbaService(NaruciBaContext context, IMapper mapper) : base(context, mapper)
         {
+        }
+        public override async Task<Model.Narudzba> Insert(NarudzbaUpsertRequest request)
+        {
+            var entity = _mapper.Map<Database.Narudzba>(request);
+            await Context.Narudzbas.AddAsync(entity);
+            await Context.SaveChangesAsync();
+
+            if (request.SlikaRacuna != null)
+            {
+                entity.SlikaRacunaPutanja = await imageHelper.InsertImage("Narudzba", entity.NarudzbaID, request.SlikaRacunaPutanja, request.SlikaRacuna);
+                await Context.SaveChangesAsync();
+            }
+
+            return _mapper.Map<Model.Narudzba>(entity);
+        }
+        public override async Task<Model.Narudzba> Update(int id, NarudzbaUpsertRequest request)
+        {
+            if (request.SlikaRacuna != null)
+            {
+                request.SlikaRacunaPutanja = await imageHelper.InsertImage("Narudzba", id, request.SlikaRacunaPutanja, request.SlikaRacuna);
+            }
+
+            return await base.Update(id, request);
         }
         public async override Task<IEnumerable<Model.Narudzba>> Get(Model.SearchObjects.NarudzbaSearchObject search = null)
         {
@@ -98,7 +125,26 @@ namespace NaruciBa.Services
                 }
             }
             var list = await entity.ToListAsync();
-            return _mapper.Map<List<Model.Narudzba>>(list);
+            var result = _mapper.Map<List<Model.Narudzba>>(list);
+
+            foreach (var item in result)
+            {
+                var directory = Path.Combine(Directory.GetCurrentDirectory(), "Images", "Narudzba", $"{item.SlikaRacunaPutanja}");
+                item.SlikaRacuna = await imageHelper.FindImage(directory);
+            }
+
+            return result;
+        }
+        public override async Task<Model.Narudzba> GetById(int id)
+        {
+            var entity = await Context.Narudzbas.FindAsync(id);
+
+            var result = _mapper.Map<Model.Narudzba>(entity);
+
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), "Images", "Narudzba", $"{result.SlikaRacunaPutanja}");
+            result.SlikaRacuna = await imageHelper.FindImage(directory);
+
+            return result;
         }
     }
 }

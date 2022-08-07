@@ -14,6 +14,7 @@ namespace NaruciBa.WinUI.Proizvodi
     public partial class frmDodajNoviProizvod : Form
     {
         APIService _podkategorijaService = new APIService("Podkategorija");
+        APIService _kategorijaService = new APIService("Kategorija");
         APIService _proizvodService = new APIService("Proizvod");
         string dodanaSlikaPutanja = "";
         byte[] dodanaSlika;
@@ -28,11 +29,19 @@ namespace NaruciBa.WinUI.Proizvodi
         private async void frmDodajNoviProizvod_Load(object sender, EventArgs e)
         {
             btnDodajPrpozvod.BackColor = AppTheme.PrimaryColor;
+            cbKategorija.DataSource = await _kategorijaService.Get<List<Model.Kategorija>>();
+            cbKategorija.DisplayMember = "Naziv";
+            cbKategorija.ValueMember = "KategorijaID";
 
-            cbPodkategorija.DataSource = await _podkategorijaService.Get<List<Model.Podkategorija>>();
+            fillPodkategorije(int.Parse(cbKategorija.SelectedValue.ToString()));
+        }
+
+        private async void fillPodkategorije(int kategorijaId)
+        {
+            Model.SearchObjects.PodkategorijaSearchObject search = new Model.SearchObjects.PodkategorijaSearchObject { KategorijaID = kategorijaId };
+            cbPodkategorija.DataSource = await _podkategorijaService.Get<List<Model.Podkategorija>>(search);
             cbPodkategorija.DisplayMember = "Naziv";
             cbPodkategorija.ValueMember = "PodkategorijaId";
-
         }
 
         private void lblDodajSliku_Click(object sender, EventArgs e)
@@ -98,6 +107,11 @@ namespace NaruciBa.WinUI.Proizvodi
         private void cbKomad_CheckedChanged(object sender, EventArgs e)
         {
             cbKg.Checked = false;
+        }
+
+        private void cbKategorija_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            fillPodkategorije(int.Parse(cbKategorija.SelectedValue.ToString()));
         }
     }
 }
