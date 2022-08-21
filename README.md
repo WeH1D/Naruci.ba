@@ -51,28 +51,8 @@ There are 3 different user types: desktop user which logs in to a windows deskto
 - SignalR enabling real-time order updates between the desktop and mobile app on
 - Picture upload used by delivery staff to upload pictures of physical receipts if available
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Screenshots
+![Screenshot_1](https://github.com/WeH1D/Naruci.ba/blob/main/Screenshots/Desktop.jpg)
+![Screenshot_2](https://github.com/WeH1D/Naruci.ba/blob/main/Screenshots/mobile.jpg)
 
 
