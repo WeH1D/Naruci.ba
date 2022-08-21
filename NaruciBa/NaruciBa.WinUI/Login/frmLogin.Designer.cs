@@ -38,7 +38,6 @@ namespace NaruciBa.WinUI.Login
             this.lblWelcomeBack = new System.Windows.Forms.Label();
             this.lblSignup = new System.Windows.Forms.Label();
             this.lblNewUser = new System.Windows.Forms.Label();
-            this.lblForgotPassword = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -79,7 +78,6 @@ namespace NaruciBa.WinUI.Login
             this.pnlLoginForm.Controls.Add(this.lblWelcomeBack);
             this.pnlLoginForm.Controls.Add(this.lblSignup);
             this.pnlLoginForm.Controls.Add(this.lblNewUser);
-            this.pnlLoginForm.Controls.Add(this.lblForgotPassword);
             this.pnlLoginForm.Controls.Add(this.btnLogin);
             this.pnlLoginForm.Controls.Add(this.lblPassword);
             this.pnlLoginForm.Controls.Add(this.lblEmail);
@@ -144,16 +142,6 @@ namespace NaruciBa.WinUI.Login
             this.lblNewUser.Size = new System.Drawing.Size(64, 15);
             this.lblNewUser.TabIndex = 6;
             this.lblNewUser.Text = "New user?";
-            // 
-            // lblForgotPassword
-            // 
-            this.lblForgotPassword.AutoSize = true;
-            this.lblForgotPassword.Font = new System.Drawing.Font("Montserrat Light", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForgotPassword.Location = new System.Drawing.Point(170, 268);
-            this.lblForgotPassword.Name = "lblForgotPassword";
-            this.lblForgotPassword.Size = new System.Drawing.Size(104, 15);
-            this.lblForgotPassword.TabIndex = 5;
-            this.lblForgotPassword.Text = "Forgot Password?";
             // 
             // btnLogin
             // 
@@ -279,7 +267,6 @@ namespace NaruciBa.WinUI.Login
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblSignup;
         private System.Windows.Forms.Label lblNewUser;
-        private System.Windows.Forms.Label lblForgotPassword;
         private System.Windows.Forms.Label lblSinginToContinue;
         private System.Windows.Forms.Label lblWelcomeBack;
         private System.Windows.Forms.Label txtValidation;

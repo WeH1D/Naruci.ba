@@ -35,7 +35,7 @@ namespace NaruciBa.WinUI.Dostavljac
 
         async Task connectToHubAsync()
         {
-            connection = new HubConnectionBuilder().WithUrl("http://localhost:5000/NaruciBaHub").WithAutomaticReconnect().Build();
+            connection = new HubConnectionBuilder().WithUrl(Properties.Settings.Default.hub).WithAutomaticReconnect().Build();
 
             await connection.StartAsync();
         }

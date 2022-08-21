@@ -56,51 +56,50 @@ namespace NaruciBa.WinUI.Login
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            Model.SearchObjects.KorisnikSearchObject korisnikSearch = new Model.SearchObjects.KorisnikSearchObject
+           
+            try
             {
-                Email = txtEmail.Text
-            };
-            List<Model.Korisnik> korisnik = await _korisnikService.Get<List<Model.Korisnik>>(korisnikSearch);
+                Properties.Settings.Default.AccessToken = "";
+                Properties.Settings.Default.RefreshToken = "";
+                Properties.Settings.Default.email = "";
+                Properties.Settings.Default.passwordHash = "";
 
-            Model.SearchObjects.KoordinatorSearchObject koordinatorSearch = new Model.SearchObjects.KoordinatorSearchObject
-            {
-                KorisnikID = korisnik.First().KorisnikID
-            };
-            List<Model.Koordinator> koordinator = await _koordinatorService.Get<List<Model.Koordinator>>(koordinatorSearch);
+                await service.setToken(txtEmail.Text, txtPassword.Text);
 
-            if (koordinator.Any())
-            {
-                try
+                Properties.Settings.Default.email = txtEmail.Text;
+                // TODO --> hashs the password
+                Properties.Settings.Default.passwordHash = txtPassword.Text;
+                Properties.Settings.Default.Save();
+
+                Model.SearchObjects.KorisnikSearchObject korisnikSearch = new Model.SearchObjects.KorisnikSearchObject
                 {
-                    Properties.Settings.Default.AccessToken = "";
-                    Properties.Settings.Default.RefreshToken = "";
-                    Properties.Settings.Default.email = "";
-                    Properties.Settings.Default.passwordHash = "";
+                    Email = txtEmail.Text
+                };
+                List<Model.Korisnik> korisnik = await _korisnikService.Get<List<Model.Korisnik>>(korisnikSearch);
 
-                    await service.setToken(txtEmail.Text, txtPassword.Text);
+                Model.SearchObjects.KoordinatorSearchObject koordinatorSearch = new Model.SearchObjects.KoordinatorSearchObject
+                {
+                    KorisnikID = korisnik.First().KorisnikID
+                };
+                List<Model.Koordinator> koordinator = await _koordinatorService.Get<List<Model.Koordinator>>(koordinatorSearch);
 
-                    Properties.Settings.Default.email = txtEmail.Text;
-                    // TODO --> hashs the password
-                    Properties.Settings.Default.passwordHash = txtPassword.Text;
-                    Properties.Settings.Default.Save();
-
-
+                if (koordinator.Any())
+                {
                     this.Hide();
                     frmHome frm = new frmHome();
                     frm.ShowDialog();
-                }
-                catch (Exception err)
+                } else
                 {
-                    txtValidation.Visible = true;
-                    txtEmail.Text = "";
-                    txtPassword.Text = "";
+                    throw new Exception("Wrong email or password");
                 }
-            } else
+            }
+            catch (Exception err)
             {
                 txtValidation.Visible = true;
                 txtEmail.Text = "";
                 txtPassword.Text = "";
             }
+            
         }
     }
 }

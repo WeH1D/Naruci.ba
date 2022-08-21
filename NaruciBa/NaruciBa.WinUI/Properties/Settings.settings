@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="ApiURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">https://localhost:5001/api</Value>
+      <Value Profile="(Default)">http://localhost:5001/api</Value>
     </Setting>
     <Setting Name="IdentityServerApi" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">https://localhost:5002</Value>
+      <Value Profile="(Default)">http://localhost:5002</Value>
     </Setting>
     <Setting Name="AccessToken" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -19,6 +19,9 @@
     </Setting>
     <Setting Name="passwordHash" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="hub" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:5001/NaruciBaHub</Value>
     </Setting>
   </Settings>
 </SettingsFile>

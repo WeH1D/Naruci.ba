@@ -180,7 +180,7 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
             maxHeight: MediaQuery.of(context).size.height,
             padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
             body: Stack(children: [
-              trgovackiLanac != null
+              trgovackiLanac != null && trgovackiLanac!.slika != null
                   ? Image(
                       image: Image.memory(
                               Base64Decoder().convert(trgovackiLanac!.slika))
@@ -190,15 +190,6 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
                       fit: BoxFit.contain,
                     )
                   : Container(),
-              Container(
-                alignment: Alignment.topRight,
-                padding: EdgeInsets.fromLTRB(0, 5, 25, 0),
-                child: Icon(
-                  Icons.star_border_rounded,
-                  size: 35,
-                  color: Color.fromARGB(255, 255, 83, 73),
-                ),
-              ),
               Container(
                   alignment: Alignment.bottomLeft,
                   width: MediaQuery.of(context).size.width,
@@ -228,47 +219,9 @@ class _PoslovnicaState extends State<PoslovnicaScreen> {
                           poslovnica != null ? poslovnica!.adresa : "",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "4.5/5",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Container(
-                              width: 3,
-                              height: 20,
-                              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Color.fromARGB(255, 0, 0, 0)),
-                            ),
-                            Icon(
-                              Icons.access_time_filled_rounded,
-                              color: Color.fromARGB(255, 255, 83, 73),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "30 - 40 min",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        )
                       ],
                     ),
                   )),
-              Container(
-                height: MediaQuery.of(context).size.height / 5 * 1.8,
-                alignment: Alignment.bottomRight,
-                padding: EdgeInsets.fromLTRB(0, 5, 25, 50),
-                child: Icon(
-                  Icons.info_outline,
-                  size: 30,
-                  color: Color.fromARGB(255, 255, 83, 73),
-                ),
-              ),
             ]),
             panel: Container(
               child: Padding(

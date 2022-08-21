@@ -293,23 +293,7 @@ class _NarudzbaScreenState extends State<NarudzbaScreen> {
                         ],
                       )
                     : Container()
-                : Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: ElevatedButton(
-                        onPressed: () => {},
-                        child: Text(
-                          "Lokacija dostavljaca",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
-                          fixedSize:
-                              Size(MediaQuery.of(context).size.width, 50),
-                          primary: Color.fromARGB(255, 255, 83, 73),
-                        )),
-                  ),
+                : Container()
           ],
         ),
       ),

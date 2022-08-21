@@ -1,3 +1,4 @@
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -64,13 +65,13 @@ namespace NaruciBa
                 });
             });
             services.AddDbContext<NaruciBaContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("naruciBaSql")));
 
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
 
-                options.Authority = Configuration.GetValue<string>("IndentityServerUrl");
+                options.Authority = Configuration["IDENTITY_AUTHORITY"]; ;
 
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -123,7 +124,6 @@ namespace NaruciBa
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -138,8 +138,7 @@ namespace NaruciBa
             {
                 endpoints.MapHub<NaruciBaHub>("NaruciBaHub");
                 endpoints.MapControllers();
-            }); 
-
+            });
         }
     }
 }

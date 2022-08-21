@@ -25,7 +25,7 @@ namespace NaruciBa.WinUI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:5001/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:5001/api")]
         public string ApiURL {
             get {
                 return ((string)(this["ApiURL"]));
@@ -34,7 +34,7 @@ namespace NaruciBa.WinUI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:5002")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:5002")]
         public string IdentityServerApi {
             get {
                 return ((string)(this["IdentityServerApi"]));
@@ -86,6 +86,15 @@ namespace NaruciBa.WinUI.Properties {
             }
             set {
                 this["passwordHash"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:5001/NaruciBaHub")]
+        public string hub {
+            get {
+                return ((string)(this["hub"]));
             }
         }
     }

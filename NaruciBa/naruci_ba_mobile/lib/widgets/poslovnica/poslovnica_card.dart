@@ -86,14 +86,6 @@ class _PoslovnicaCardState extends State<PoslovnicaCard> {
                         ),
                       ],
                     ),
-                    Text(
-                      "4.3/5.0",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 64, 64, 64),
-                        fontSize: 18,
-                      ),
-                    )
                   ],
                 ),
               )

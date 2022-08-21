@@ -171,22 +171,6 @@ class _SideDrawerState extends State<SideDrawer> {
           SizedBox(
             height: 25,
           ),
-          GestureDetector(child: Text("Kuponi"), onTap: () => {}),
-          SizedBox(
-            height: 25,
-          ),
-          GestureDetector(child: Text("Notifikacije"), onTap: () => {}),
-          SizedBox(
-            height: 25,
-          ),
-          GestureDetector(child: Text("Metode placanja"), onTap: () => {}),
-          SizedBox(
-            height: 25,
-          ),
-          GestureDetector(child: Text("O nama"), onTap: () => {}),
-          SizedBox(
-            height: 50,
-          ),
           ElevatedButton(
               onPressed: () => {odjava()},
               child: Text(

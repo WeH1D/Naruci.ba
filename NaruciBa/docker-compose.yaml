@@ -1,0 +1,65 @@
+version: '3.9'
+services:
+#api mssql docker
+ naruciba-sql:
+  image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+  restart: unless-stopped
+  environment:
+   - ACCEPT_EULA=Y
+   - SA_PASSWORD=QWEasd123!
+   - MSSQL_PID=Developer
+  ports:
+   - 1433:1433
+  networks:
+   - narucibanet
+
+#identity server mssql docker
+ naruciba-identity-sql:
+  image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+  restart: unless-stopped
+  environment:
+   - ACCEPT_EULA=Y
+   - SA_PASSWORD=QWEasd123!
+   - MSSQL_PID=Developer
+  ports:
+   - 5010:1433
+  networks:
+   - narucibanet
+
+#api docker
+ naruciba-api:
+  restart: unless-stopped
+  build:
+   context: .
+   dockerfile: ./NaruciBa/Dockerfile
+  environment:
+   - ConnectionStrings:naruciBaSql=Server=naruciba-sql,1433;Database=NaruciBa;Trusted_Connection=False;MultipleActiveResultSets=true;user=sa;Password=QWEasd123!
+   - IndentityServerUrl:http://identity-server-api:5002
+   - IDENTITY_AUTHORITY:http://identity-server-api:5002
+  ports:
+   - 5001:5001
+  networks:
+   - narucibanet
+  depends_on:
+   - naruciba-sql
+
+#identity server docker
+ identity-server-api:
+  restart: unless-stopped
+  build:
+   context: .
+   dockerfile: ./IdentityServer/Dockerfile
+  environment:
+   - ConnectionStrings:naruciBaSql=Server=naruciba-sql,1433;Database=NaruciBa;Trusted_Connection=False;MultipleActiveResultSets=true;user=sa;Password=QWEasd123!
+   - ConnectionStrings:identityServerSql=Server=naruciba-identity-sql,1433;Database=NaruciBaIdentityServer;Trusted_Connection=False;MultipleActiveResultSets=true;user=sa;Password=QWEasd123!
+   - IDENTITY_ISSUER:http://localhost:5002
+  ports:
+   - 5002:5002
+  networks:
+   - narucibanet
+  depends_on:
+   - naruciba-identity-sql
+
+networks:
+ narucibanet:
+  driver: bridge

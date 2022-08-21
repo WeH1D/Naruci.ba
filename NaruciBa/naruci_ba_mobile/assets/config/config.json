@@ -1,8 +1,8 @@
 {
-  "baseUrl" : "http://10.0.2.2:5000/api",
+  "baseUrl" : "http://10.0.2.2:5001/api",
   "accessTokenTimeLimit" : 60,
   "clientId" : "MobileApp",
   "clientSecret" : "MobileAppPassword",
-  "tokenEndpoint" : "https://10.0.2.2:5002/connect/token",
-  "signalRHubEndpoint" : "https://10.0.2.2:5001/NaruciBaHub"
+  "tokenEndpoint" : "http://10.0.2.2:5002/connect/token",
+  "signalRHubEndpoint" : "http://10.0.2.2:5001/NaruciBaHub"
 }

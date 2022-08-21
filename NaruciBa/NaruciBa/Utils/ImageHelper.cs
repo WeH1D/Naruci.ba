@@ -32,6 +32,9 @@ namespace NaruciBa.Utils
 
                     await File.WriteAllBytesAsync(newPath, byteArray);
 
+                    System.Diagnostics.Debug.WriteLine("FILENAME", filename);
+                    System.Diagnostics.Debug.WriteLine("newPath", newPath);
+
                     return $"{filename}{extension}";
                 }
                 else
