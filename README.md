@@ -7,6 +7,6 @@ Seminarski rad iz predmeta razvoj softvera II na Fakultetu Informacijskih Tehnol
 # Mobile user
   - mobile@gmail.com
   - test
-#Dostavljac
+# Dostavljac
   - dostavljac@gmail.com
   - test
