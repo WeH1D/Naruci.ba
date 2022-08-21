@@ -77,10 +77,10 @@ namespace NaruciBa.Database
             modelBuilder.Entity<Korisnik>().HasData(new Korisnik()
             {
                 KorisnikID = 1013,
-                Ime = "Dostavljac",
-                Prezime = "Test",
+                Ime = "Ahmo",
+                Prezime = "Ahmic",
                 Adresa = "Druga ulica 12",
-                Email = "dostavljac@gmail.com",
+                Email = "ahmo@gmail.com",
                 Telefon = "0623554555",
                 DatumRodenja = DateTime.Now,
                 DatumKreiranja = DateTime.Now,
@@ -109,16 +109,16 @@ namespace NaruciBa.Database
             modelBuilder.Entity<Korisnik>().HasData(new Korisnik()
             {
                 KorisnikID = 1015,
-                Ime = "Ahmo",
-                Prezime = "Ahmic",
+                Ime = "Dostavljac",
+                Prezime = "Test",
                 Adresa = "Cetvrta ulica 23",
-                Email = "ahmo@gmail.com",
+                Email = "dostavljac@gmail.com",
                 Telefon = "0623554555",
                 DatumRodenja = DateTime.Now,
                 DatumKreiranja = DateTime.Now,
                 DatumIzmjene = DateTime.Now,
-                PasswordHash = "2sX8hpEPmsgJ+ysbl+VPhj5ou3I=",
-                PasswordSalt = "FvicmQyCFpqFNCGzgiCwaQ==",
+                PasswordHash = "Sd+f8RaMfx6JgSeSCurQ7c4m1HQ=",
+                PasswordSalt = "p9av83cBc37tVxOqcJlaPA==",
                 GradID = 1
             });
 

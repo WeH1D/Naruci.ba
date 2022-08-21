@@ -87,6 +87,9 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } else if (login.statusCode == 400) {
       _validate = false;
+       setState(() {
+        isLoading = false;
+      });
     }
   }
 

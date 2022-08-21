@@ -35,6 +35,10 @@ namespace NaruciBa.WinUI.Poslovnice
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.dgvPoslovnice = new System.Windows.Forms.DataGridView();
+            this.pnlActions = new System.Windows.Forms.Panel();
+            this.btnDodajLanacPoslovnica = new System.Windows.Forms.Button();
+            this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
+            this.pnlSearch = new System.Windows.Forms.Panel();
             this.PoslovnicaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LanacPoslovnica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Adresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,10 +46,6 @@ namespace NaruciBa.WinUI.Poslovnice
             this.KontaktEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KontaktTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalji = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlActions = new System.Windows.Forms.Panel();
-            this.btnDodajLanacPoslovnica = new System.Windows.Forms.Button();
-            this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
-            this.pnlSearch = new System.Windows.Forms.Panel();
             this.pnlDgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPoslovnice)).BeginInit();
             this.pnlActions.SuspendLayout();
@@ -119,55 +119,6 @@ namespace NaruciBa.WinUI.Poslovnice
             this.dgvPoslovnice.TabIndex = 0;
             this.dgvPoslovnice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPoslovnice_CellClick);
             // 
-            // PoslovnicaID
-            // 
-            this.PoslovnicaID.DataPropertyName = "PoslovnicaID";
-            this.PoslovnicaID.HeaderText = "PoslovnicaID";
-            this.PoslovnicaID.Name = "PoslovnicaID";
-            this.PoslovnicaID.ReadOnly = true;
-            this.PoslovnicaID.Visible = false;
-            // 
-            // LanacPoslovnica
-            // 
-            this.LanacPoslovnica.DataPropertyName = "trgovackiLanacID";
-            this.LanacPoslovnica.HeaderText = "Lanac poslovnica";
-            this.LanacPoslovnica.Name = "LanacPoslovnica";
-            this.LanacPoslovnica.ReadOnly = true;
-            // 
-            // Adresa
-            // 
-            this.Adresa.DataPropertyName = "adresa";
-            this.Adresa.HeaderText = "Adresa poslovnice";
-            this.Adresa.Name = "Adresa";
-            this.Adresa.ReadOnly = true;
-            // 
-            // Grad
-            // 
-            this.Grad.DataPropertyName = "GradID";
-            this.Grad.HeaderText = "Grad";
-            this.Grad.Name = "Grad";
-            this.Grad.ReadOnly = true;
-            // 
-            // KontaktEmail
-            // 
-            this.KontaktEmail.DataPropertyName = "kontaktEmail";
-            this.KontaktEmail.HeaderText = "Kontakt email";
-            this.KontaktEmail.Name = "KontaktEmail";
-            this.KontaktEmail.ReadOnly = true;
-            // 
-            // KontaktTel
-            // 
-            this.KontaktTel.DataPropertyName = "kontaktTel";
-            this.KontaktTel.HeaderText = "Kontakt telefon";
-            this.KontaktTel.Name = "KontaktTel";
-            this.KontaktTel.ReadOnly = true;
-            // 
-            // Detalji
-            // 
-            this.Detalji.HeaderText = "Detalji";
-            this.Detalji.Name = "Detalji";
-            this.Detalji.ReadOnly = true;
-            // 
             // pnlActions
             // 
             this.pnlActions.Controls.Add(this.btnDodajLanacPoslovnica);
@@ -216,6 +167,55 @@ namespace NaruciBa.WinUI.Poslovnice
             this.pnlSearch.Name = "pnlSearch";
             this.pnlSearch.Size = new System.Drawing.Size(285, 100);
             this.pnlSearch.TabIndex = 3;
+            // 
+            // PoslovnicaID
+            // 
+            this.PoslovnicaID.DataPropertyName = "PoslovnicaID";
+            this.PoslovnicaID.HeaderText = "PoslovnicaID";
+            this.PoslovnicaID.Name = "PoslovnicaID";
+            this.PoslovnicaID.ReadOnly = true;
+            this.PoslovnicaID.Visible = false;
+            // 
+            // LanacPoslovnica
+            // 
+            this.LanacPoslovnica.DataPropertyName = "trgovackiLanac";
+            this.LanacPoslovnica.HeaderText = "Lanac poslovnica";
+            this.LanacPoslovnica.Name = "LanacPoslovnica";
+            this.LanacPoslovnica.ReadOnly = true;
+            // 
+            // Adresa
+            // 
+            this.Adresa.DataPropertyName = "adresa";
+            this.Adresa.HeaderText = "Adresa poslovnice";
+            this.Adresa.Name = "Adresa";
+            this.Adresa.ReadOnly = true;
+            // 
+            // Grad
+            // 
+            this.Grad.DataPropertyName = "Grad";
+            this.Grad.HeaderText = "Grad";
+            this.Grad.Name = "Grad";
+            this.Grad.ReadOnly = true;
+            // 
+            // KontaktEmail
+            // 
+            this.KontaktEmail.DataPropertyName = "kontaktEmail";
+            this.KontaktEmail.HeaderText = "Kontakt email";
+            this.KontaktEmail.Name = "KontaktEmail";
+            this.KontaktEmail.ReadOnly = true;
+            // 
+            // KontaktTel
+            // 
+            this.KontaktTel.DataPropertyName = "kontaktTel";
+            this.KontaktTel.HeaderText = "Kontakt telefon";
+            this.KontaktTel.Name = "KontaktTel";
+            this.KontaktTel.ReadOnly = true;
+            // 
+            // Detalji
+            // 
+            this.Detalji.HeaderText = "Detalji";
+            this.Detalji.Name = "Detalji";
+            this.Detalji.ReadOnly = true;
             // 
             // frmPoslovnicePrikaz
             // 

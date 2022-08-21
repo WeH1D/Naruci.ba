@@ -15,6 +15,8 @@ namespace NaruciBa.WinUI.Poslovnice
     public partial class frmPoslovnicePrikaz : Form
     {
         private APIService _poslovnicaService = new APIService("Poslovnica");
+        private APIService _gradService = new APIService("Grad");
+        private APIService _trgovackiLanacService = new APIService("TrgovackiLanac");
         public frmPoslovnicePrikaz()
         {
             InitializeComponent();
@@ -26,8 +28,26 @@ namespace NaruciBa.WinUI.Poslovnice
 
         private async void frmPoslovnicePrikaz_Load(object sender, EventArgs e)
         {
+            List<Model.Grad> gradovi = await _gradService.Get<List<Model.Grad>>();
+            List<Model.TrgovackiLanac> trgovackiLanci = await _trgovackiLanacService.Get<List<Model.TrgovackiLanac>>();
+
             dgvPoslovnice.AutoGenerateColumns = false;
-            dgvPoslovnice.DataSource = await _poslovnicaService.Get<List<Model.Poslovnica>>();
+            List<Model.Poslovnica> poslovnice = await _poslovnicaService.Get<List<Model.Poslovnica>>();
+            List<poslovniceForPrikaz> poslovniceForPrikaz = new List<poslovniceForPrikaz>();
+            foreach (var poslovnica in poslovnice)
+            {
+                poslovniceForPrikaz.Add(new poslovniceForPrikaz()
+                {
+                    PoslovnicaID = poslovnica.PoslovnicaID,
+                    Adresa = poslovnica.Adresa,
+                    KontaktEmail = poslovnica.KontaktEmail,
+                    KontaktTel = poslovnica.KontaktTel,
+                    TrgovackiLanac = trgovackiLanci.First(a => a.TrgovackiLanacID == poslovnica.TrgovackiLanacID).Naziv,
+                    Grad = gradovi.First(a => a.GradID == poslovnica.GradID).Naziv,
+                });
+            }
+
+            dgvPoslovnice.DataSource = poslovniceForPrikaz;
 
             foreach (DataGridViewRow Row in dgvPoslovnice.Rows)
             {
@@ -65,5 +85,15 @@ namespace NaruciBa.WinUI.Poslovnice
                 frm.Show();
             }
         }
+    }
+    public class poslovniceForPrikaz
+    {
+        public int PoslovnicaID { get; set; }
+        public string Adresa { get; set; }
+        public string KontaktTel { get; set; }
+        public string KontaktEmail { get; set; }
+        public string TrgovackiLanac { get; set; }
+        public string Grad { get; set; }
+
     }
 }

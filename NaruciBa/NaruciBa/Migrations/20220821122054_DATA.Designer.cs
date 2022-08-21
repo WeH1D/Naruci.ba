@@ -10,8 +10,8 @@ using NaruciBa.Database;
 namespace NaruciBa.Migrations
 {
     [DbContext(typeof(NaruciBaContext))]
-    [Migration("20220816194347_Data")]
-    partial class Data
+    [Migration("20220821122054_DATA")]
+    partial class DATA
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,28 +50,28 @@ namespace NaruciBa.Migrations
                         new
                         {
                             DostavljacID = 1,
-                            DatumZaposlenja = new DateTime(2022, 8, 16, 21, 43, 46, 146, DateTimeKind.Local).AddTicks(8385),
+                            DatumZaposlenja = new DateTime(2022, 8, 21, 14, 20, 53, 145, DateTimeKind.Local).AddTicks(1365),
                             DostavljacStatus = 1,
                             KorisnikID = 1013
                         },
                         new
                         {
                             DostavljacID = 2,
-                            DatumZaposlenja = new DateTime(2022, 8, 16, 21, 43, 46, 146, DateTimeKind.Local).AddTicks(9542),
+                            DatumZaposlenja = new DateTime(2022, 8, 21, 14, 20, 53, 145, DateTimeKind.Local).AddTicks(2238),
                             DostavljacStatus = 1,
                             KorisnikID = 1014
                         },
                         new
                         {
                             DostavljacID = 3,
-                            DatumZaposlenja = new DateTime(2022, 8, 16, 21, 43, 46, 146, DateTimeKind.Local).AddTicks(9637),
+                            DatumZaposlenja = new DateTime(2022, 8, 21, 14, 20, 53, 145, DateTimeKind.Local).AddTicks(2293),
                             DostavljacStatus = 2,
                             KorisnikID = 1015
                         },
                         new
                         {
                             DostavljacID = 4,
-                            DatumZaposlenja = new DateTime(2022, 8, 16, 21, 43, 46, 146, DateTimeKind.Local).AddTicks(9684),
+                            DatumZaposlenja = new DateTime(2022, 8, 21, 14, 20, 53, 145, DateTimeKind.Local).AddTicks(2317),
                             DostavljacStatus = 1,
                             KorisnikID = 2016
                         });
@@ -311,7 +311,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             KoordinatorID = 1,
-                            DatumZaposlenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(9635),
+                            DatumZaposlenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(4372),
                             KorisnikID = 2
                         });
                 });
@@ -377,9 +377,9 @@ namespace NaruciBa.Migrations
                         {
                             KorisnikID = 2,
                             Adresa = "Adresa admina 24",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 143, DateTimeKind.Local).AddTicks(8308),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 143, DateTimeKind.Local).AddTicks(7253),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 139, DateTimeKind.Local).AddTicks(6980),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 142, DateTimeKind.Local).AddTicks(9309),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 142, DateTimeKind.Local).AddTicks(8901),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 139, DateTimeKind.Local).AddTicks(4052),
                             Email = "desktop@gmail.com",
                             GradID = 1,
                             Ime = "desktop",
@@ -392,9 +392,9 @@ namespace NaruciBa.Migrations
                         {
                             KorisnikID = 1003,
                             Adresa = "Adresa mobile 23 L",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6024),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6002),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(5963),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(1917),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(1901),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(1876),
                             Email = "mobile@gmail.com",
                             GradID = 1,
                             Ime = "mobile",
@@ -407,9 +407,9 @@ namespace NaruciBa.Migrations
                         {
                             KorisnikID = 1007,
                             Adresa = "Neka Adresa",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6242),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6237),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6228),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2111),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2107),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2101),
                             Email = "velid@gmail.com",
                             GradID = 1,
                             Ime = "Velid",
@@ -422,9 +422,9 @@ namespace NaruciBa.Migrations
                         {
                             KorisnikID = 1012,
                             Adresa = "Prva ulica 42",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6300),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6295),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6289),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2146),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2143),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2139),
                             Email = "emir@gmail.com",
                             GradID = 1,
                             Ime = "Emir",
@@ -437,24 +437,24 @@ namespace NaruciBa.Migrations
                         {
                             KorisnikID = 1013,
                             Adresa = "Druga ulica 12",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6353),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6348),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6342),
-                            Email = "dostavljac@gmail.com",
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2174),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2171),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2168),
+                            Email = "ahmo@gmail.com",
                             GradID = 1,
-                            Ime = "Dostavljac",
-                            PasswordHash = "1EugEl7M4ngH6hgmNFEry4+bVbw=",
-                            PasswordSalt = "yzXzdHFnuImEw1YSJfo34Q==",
-                            Prezime = "Test",
+                            Ime = "Ahmo",
+                            PasswordHash = "Sd+f8RaMfx6JgSeSCurQ7c4m1HQ=",
+                            PasswordSalt = "p9av83cBc37tVxOqcJlaPA==",
+                            Prezime = "Ahmic",
                             Telefon = "0623554555"
                         },
                         new
                         {
                             KorisnikID = 1014,
                             Adresa = "Treca ulica 2",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6411),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6406),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6401),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2206),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2204),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2200),
                             Email = "haso@gmail.com",
                             GradID = 1,
                             Ime = "Haso",
@@ -467,24 +467,24 @@ namespace NaruciBa.Migrations
                         {
                             KorisnikID = 1015,
                             Adresa = "Cetvrta ulica 23",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6460),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6455),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6450),
-                            Email = "ahmo@gmail.com",
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2234),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2232),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2228),
+                            Email = "dostavljac@gmail.com",
                             GradID = 1,
-                            Ime = "Ahmo",
-                            PasswordHash = "2sX8hpEPmsgJ+ysbl+VPhj5ou3I=",
-                            PasswordSalt = "FvicmQyCFpqFNCGzgiCwaQ==",
-                            Prezime = "Ahmic",
+                            Ime = "Dostavljac",
+                            PasswordHash = "Sd+f8RaMfx6JgSeSCurQ7c4m1HQ=",
+                            PasswordSalt = "p9av83cBc37tVxOqcJlaPA==",
+                            Prezime = "Test",
                             Telefon = "0623554555"
                         },
                         new
                         {
                             KorisnikID = 1016,
                             Adresa = "Peta ulica 23",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6507),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6501),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6495),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2261),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2258),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2254),
                             Email = "ajdin@gmail.com",
                             GradID = 1,
                             Ime = "Ajdin",
@@ -497,9 +497,9 @@ namespace NaruciBa.Migrations
                         {
                             KorisnikID = 2016,
                             Adresa = "Sesta ulica 35",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6552),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6547),
-                            DatumRodenja = new DateTime(2022, 8, 16, 21, 43, 46, 145, DateTimeKind.Local).AddTicks(6542),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2288),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2286),
+                            DatumRodenja = new DateTime(2022, 8, 21, 14, 20, 53, 144, DateTimeKind.Local).AddTicks(2282),
                             Email = "bekir@gmail.com",
                             GradID = 3,
                             Ime = "Bekir",
@@ -798,7 +798,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 1,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(7476),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(5343),
                             DostavljacID = 2,
                             KlijentID = 2,
                             NarudzbaStatusID = 7,
@@ -808,7 +808,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 6,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(8551),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6355),
                             DostavljacID = 1,
                             KlijentID = 11,
                             NarudzbaStatusID = 6,
@@ -818,7 +818,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 9,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(8619),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6416),
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
                             PoslovnicaID = 1,
@@ -827,7 +827,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 8,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(8648),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6442),
                             DostavljacID = 3,
                             KlijentID = 2,
                             NarudzbaStatusID = 7,
@@ -837,7 +837,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 10,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(8673),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6465),
                             DostavljacID = 1,
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
@@ -847,7 +847,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 11,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(8702),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6490),
                             DostavljacID = 1,
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
@@ -857,7 +857,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 12,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(8777),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6513),
                             DostavljacID = 1,
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
@@ -868,7 +868,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 13,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9127),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6832),
                             DostavljacID = 2,
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
@@ -879,7 +879,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 14,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9179),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6879),
                             DostavljacID = 4,
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
@@ -889,7 +889,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 15,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9209),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6906),
                             DostavljacID = 3,
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
@@ -899,7 +899,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 16,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9234),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6928),
                             DostavljacID = 3,
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
@@ -909,7 +909,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 17,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9259),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(6950),
                             DostavljacID = 3,
                             KlijentID = 2,
                             NarudzbaStatusID = 6,
@@ -919,7 +919,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 19,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9284),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7038),
                             DostavljacID = 1,
                             KlijentID = 12,
                             NarudzbaStatusID = 6,
@@ -929,7 +929,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 20,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9309),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7062),
                             DostavljacID = 1,
                             KlijentID = 12,
                             NarudzbaStatusID = 6,
@@ -939,7 +939,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 21,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9335),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7085),
                             DostavljacID = 1,
                             KlijentID = 12,
                             NarudzbaStatusID = 6,
@@ -949,7 +949,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 1019,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9359),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7108),
                             DostavljacID = 4,
                             KlijentID = 12,
                             NarudzbaStatusID = 6,
@@ -959,7 +959,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 1021,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9384),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7131),
                             DostavljacID = 3,
                             KlijentID = 12,
                             NarudzbaStatusID = 3,
@@ -970,7 +970,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 2020,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9410),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7154),
                             KlijentID = 12,
                             NarudzbaStatusID = 2,
                             PoslovnicaID = 1,
@@ -979,7 +979,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 2021,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9435),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7177),
                             KlijentID = 12,
                             NarudzbaStatusID = 2,
                             PoslovnicaID = 1,
@@ -988,7 +988,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 2022,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9506),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7198),
                             KlijentID = 12,
                             NarudzbaStatusID = 2,
                             PoslovnicaID = 1,
@@ -997,7 +997,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 3020,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9533),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7221),
                             KlijentID = 12,
                             NarudzbaStatusID = 2,
                             PoslovnicaID = 1,
@@ -1006,7 +1006,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 3021,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9557),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7243),
                             KlijentID = 12,
                             NarudzbaStatusID = 2,
                             PoslovnicaID = 2,
@@ -1015,7 +1015,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 3022,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9581),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7264),
                             KlijentID = 12,
                             NarudzbaStatusID = 2,
                             PoslovnicaID = 1,
@@ -1024,7 +1024,7 @@ namespace NaruciBa.Migrations
                         new
                         {
                             NarudzbaID = 3023,
-                            Datum = new DateTime(2022, 8, 16, 21, 43, 46, 148, DateTimeKind.Local).AddTicks(9606),
+                            Datum = new DateTime(2022, 8, 21, 14, 20, 53, 146, DateTimeKind.Local).AddTicks(7285),
                             KlijentID = 2,
                             NarudzbaStatusID = 1,
                             PoslovnicaID = 1,
@@ -1293,8 +1293,8 @@ namespace NaruciBa.Migrations
                         {
                             PoslovnicaID = 1,
                             Adresa = "Mitra Trifunovica",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 149, DateTimeKind.Local).AddTicks(8472),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 149, DateTimeKind.Local).AddTicks(8156),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 147, DateTimeKind.Local).AddTicks(6730),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 147, DateTimeKind.Local).AddTicks(6423),
                             GradID = 1,
                             KontaktEmail = "managmentbcctuzla@confluence.ba",
                             KontaktTel = "035288699",
@@ -1305,8 +1305,8 @@ namespace NaruciBa.Migrations
                         {
                             PoslovnicaID = 2,
                             Adresa = "Ismeta Mujezinovica D9",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 149, DateTimeKind.Local).AddTicks(9160),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 149, DateTimeKind.Local).AddTicks(9136),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 147, DateTimeKind.Local).AddTicks(7310),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 147, DateTimeKind.Local).AddTicks(7289),
                             GradID = 1,
                             KontaktEmail = "bingoSjenjak@gmail.com",
                             KontaktTel = "035365580",
@@ -1317,8 +1317,8 @@ namespace NaruciBa.Migrations
                         {
                             PoslovnicaID = 3,
                             Adresa = "Bulevar 2. Armije BiH 1",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 149, DateTimeKind.Local).AddTicks(9245),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 149, DateTimeKind.Local).AddTicks(9240),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 147, DateTimeKind.Local).AddTicks(7558),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 147, DateTimeKind.Local).AddTicks(7553),
                             GradID = 1,
                             KontaktEmail = "konzum@gmail.com",
                             KontaktTel = "00023233344",
@@ -1329,8 +1329,8 @@ namespace NaruciBa.Migrations
                         {
                             PoslovnicaID = 4,
                             Adresa = "Stupine B-14",
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 149, DateTimeKind.Local).AddTicks(9282),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 149, DateTimeKind.Local).AddTicks(9278),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 147, DateTimeKind.Local).AddTicks(7592),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 147, DateTimeKind.Local).AddTicks(7588),
                             GradID = 1,
                             KontaktEmail = "genelecTuzla@gmail.com",
                             KontaktTel = "0643536266",
@@ -1497,8 +1497,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 11,
                             Cijena = 2.3m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(8350),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(8732),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(7253),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(7855),
                             Kg = true,
                             Naziv = "Jabuka",
                             Opis = "Svjeza jabuka",
@@ -1512,8 +1512,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 12,
                             Cijena = 2m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9690),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9719),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8691),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8715),
                             Kg = true,
                             Naziv = "Banana",
                             Opis = "Svjeza banana",
@@ -1527,8 +1527,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 13,
                             Cijena = 3m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9788),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9793),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8768),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8773),
                             Kg = false,
                             Naziv = "Head & Shoulders",
                             Opis = "sampon protiv peruti",
@@ -1542,50 +1542,53 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1011,
                             Cijena = 3.5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9824),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9828),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8807),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8812),
                             Kg = false,
                             Naziv = "Sampon",
                             Opis = "sampon protiv peruti",
                             PodkategorijaID = 43,
                             PoslovnicaID = 1,
                             Sifra = "0004",
+                            SlikaPutanja = "proizvod_13.jpg",
                             Status = true
                         },
                         new
                         {
                             ProizvodID = 1012,
                             Cijena = 2m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9858),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9862),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8843),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8848),
                             Kg = true,
                             Naziv = "Paradajz",
                             Opis = "Paradajz",
                             PodkategorijaID = 39,
                             PoslovnicaID = 1,
                             Sifra = "0034",
+                            SlikaPutanja = "proizvod_1012.jpg",
                             Status = true
                         },
                         new
                         {
                             ProizvodID = 1013,
                             Cijena = 4.5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9894),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9898),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8884),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8889),
                             Kg = true,
                             Naziv = "Ananas",
                             Opis = "Svjezi ananas",
                             PodkategorijaID = 38,
                             PoslovnicaID = 1,
                             Sifra = "0064",
+                            SlikaPutanja = "proizvod_1013.jpg",
                             Status = true
                         },
                         new
                         {
                             ProizvodID = 1014,
                             Cijena = 1.2m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9926),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9930),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8921),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(8926),
                             Kg = true,
                             Naziv = "Jabuka",
                             Opis = "Svjeza crvena jabuka",
@@ -1599,11 +1602,11 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1015,
                             Cijena = 2.3m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9958),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9962),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9015),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9021),
                             Kg = true,
                             Naziv = "Banana",
-                            Opis = "Svjeza crvena banana",
+                            Opis = "Svjeza banana",
                             PodkategorijaID = 38,
                             PoslovnicaID = 3,
                             Sifra = "3436",
@@ -1614,8 +1617,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1016,
                             Cijena = 2.5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9989),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 150, DateTimeKind.Local).AddTicks(9993),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9055),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9060),
                             Kg = true,
                             Naziv = "Narandza",
                             Opis = "Svjeza narandza",
@@ -1629,8 +1632,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1017,
                             Cijena = 6.5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(22),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(25),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9094),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9099),
                             Kg = false,
                             Naziv = "Schauma",
                             Opis = "sampon protiv peruti schauma",
@@ -1644,8 +1647,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1018,
                             Cijena = 8.5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(191),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(195),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9131),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9135),
                             Kg = false,
                             Naziv = "Hipp hrana za bebe",
                             Opis = "Hrana za bebe do 3 godine",
@@ -1659,8 +1662,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1019,
                             Cijena = 5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(265),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(269),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9167),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9171),
                             Kg = false,
                             Naziv = "Sampon za bebe",
                             Opis = "Neiritirajuci sampon za bebe",
@@ -1674,8 +1677,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1020,
                             Cijena = 2.3m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(295),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(298),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9202),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9206),
                             Kg = true,
                             Naziv = "Banana",
                             Opis = "Svjeza banana",
@@ -1689,8 +1692,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1021,
                             Cijena = 0.5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(323),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(326),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9238),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9243),
                             Kg = true,
                             Naziv = "Mrkva",
                             Opis = "Svjeza mrkva",
@@ -1704,8 +1707,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1022,
                             Cijena = 8.5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(350),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(353),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9274),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9279),
                             Kg = false,
                             Naziv = "Pedigree",
                             Opis = "Hrana za pse",
@@ -1719,8 +1722,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1023,
                             Cijena = 7.5m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(427),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(430),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9310),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9315),
                             Kg = false,
                             Naziv = "Friskies",
                             Opis = "Hrana za macke",
@@ -1734,8 +1737,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1024,
                             Cijena = 1500m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(457),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(461),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9346),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9350),
                             Kg = false,
                             Naziv = "Dell Lattitude E5440",
                             Opis = "15.6'' 1.7GhZ 8GB",
@@ -1749,8 +1752,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1025,
                             Cijena = 2500m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(486),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(490),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9384),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9389),
                             Kg = false,
                             Naziv = "MSI GS70",
                             Opis = "17 inch 16GB i7-8400 2.5 GHz",
@@ -1764,8 +1767,8 @@ namespace NaruciBa.Migrations
                         {
                             ProizvodID = 1026,
                             Cijena = 2500m,
-                            DatumIzmjene = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(514),
-                            DatumKreiranja = new DateTime(2022, 8, 16, 21, 43, 46, 151, DateTimeKind.Local).AddTicks(518),
+                            DatumIzmjene = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9420),
+                            DatumKreiranja = new DateTime(2022, 8, 21, 14, 20, 53, 149, DateTimeKind.Local).AddTicks(9425),
                             Kg = false,
                             Naziv = "Iphone 12 Pro",
                             Opis = "256GB Purple",
